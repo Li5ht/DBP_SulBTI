@@ -72,7 +72,7 @@ public class RecommendDao {
 				pId = rs.getInt(1);
 			}
 			
-			//jdbcUtil.commit();
+			jdbcUtil.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			jdbcUtil.rollback();
@@ -94,14 +94,24 @@ public class RecommendDao {
 			
 		Object[] param = new Object[] { memberId, alcoholId, amount };
 		
+		String key[] = { "preference_id" };
+		
 		// memberId, alcoholId가 존재하는지 MemberDao, AlcoholDao로 확인??
+		
+		ResultSet rs = null;
+		int pId = -1;
 			
 		try {
 			jdbcUtil.setSqlAndParameters(query, param);
 				
 			jdbcUtil.executeUpdate();
+			rs = jdbcUtil.getGeneratedKeys();
+			if (rs.next()) {
+				pId = rs.getInt(1);
+			}
 			
-			//jdbcUtil.commit();
+			
+			jdbcUtil.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			jdbcUtil.rollback();
@@ -126,7 +136,7 @@ public class RecommendDao {
 				
 			jdbcUtil.executeUpdate();
 			
-			//jdbcUtil.commit();
+			jdbcUtil.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			jdbcUtil.rollback();
@@ -151,7 +161,7 @@ public class RecommendDao {
 				
 			jdbcUtil.executeUpdate();
 			
-			//jdbcUtil.commit();
+			jdbcUtil.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			jdbcUtil.rollback();
