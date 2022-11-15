@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  	<modelVersion>4.0.0</modelVersion>
+	<groupId>dbp.alcoholSom</groupId>
+  	<artifactId>AlcoholService</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  	<packaging>war</packaging>
+	<name>AlcoholService Maven Webapp</name>
+	<description>Database Programming Team Project 01-10</description>
+  	<!-- FIXME change it to the project's website -->
+  	<url>http://www.example.com</url>
+
+	<properties>
+   		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		<servlet-api.version>4.0.1</servlet-api.version>
+		<jsp.version>2.3.3</jsp.version>
+		<jstl.version>1.2</jstl.version>
+		<logback-classic.version>1.2.6</logback-classic.version>
+		<commons-dbcp2.version>2.9.0</commons-dbcp2.version>
+		<commons-fileupload.version>1.4</commons-fileupload.version>
+		<jackson-databind.version>2.12.5</jackson-databind.version>
+		<junit.version>4.13.2</junit.version>
+		<oracle-jdbc-driver.version>21.3.0.0</oracle-jdbc-driver.version>
+	</properties>
+
+	<dependencies>
+		<!-- Servlet & JSP API -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${servlet-api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
+			<version>${jsp.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
+
+		<!-- logback -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback-classic.version}</version>
+		</dependency>
+
+		<!-- DBCP2 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>${commons-dbcp2.version}</version>
+		</dependency>
+
+		<!-- file upload API -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>${commons-fileupload.version}</version>
+		</dependency>
+
+		<!-- for JSON processing -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson-databind.version}</version>
+		</dependency>
+
+		<!-- Oracle JDBC driver -->
+		<dependency>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<version>${oracle-jdbc-driver.version}</version>			
+			<scope>runtime</scope>
+		</dependency>
+		
+		<!-- for unit test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+    	<sourceDirectory>src/main/java</sourceDirectory>
+    	<plugins>
+        	<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.2</version>
+			</plugin>
+      	</plugins>
+	</build>
+</project>
