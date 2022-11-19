@@ -24,7 +24,7 @@ public class RecommendDao {
 	    return aList;
 	} 
 	
-	public int existPreference(int memberId, int alcoholId) {
+	public long findPreference(long memberId, long alcoholId) {
 		String query = "SELECT preference_id FROM preference WHERE member_id = ? and alcohol_id = ?";
 		Object[] param = new Object[] { memberId, alcoholId };
 		
@@ -32,7 +32,7 @@ public class RecommendDao {
 		
 		ResultSet rs = null;
 		
-		int preferenceId = -1;
+		long preferenceId = -1;
 		
 		try {
 			rs = jdbcUtil.executeQuery();
@@ -50,7 +50,7 @@ public class RecommendDao {
 		return preferenceId;
 	}
 	
-	public int addPreferenceRate(int memberId, int alcoholId, float rate) {
+	public long createPreferenceByRate(long memberId, long alcoholId, float rate) {
 		String query = "INSERT INTO preference (preference_id, member_id, alcohol_id, rate) "
 				+ "values (preference_id_seq.nextval, ?, ?, ?)";
 
@@ -61,7 +61,7 @@ public class RecommendDao {
 		// memberId, alcoholId가 존재하는지 MemberDao, AlcoholDao로 확인??
 		
 		ResultSet rs = null;
-		int pId = -1;
+		long pId = -1;
 		
 		try {
 			jdbcUtil.setSqlAndParameters(query, param);
@@ -88,7 +88,7 @@ public class RecommendDao {
 		return pId;
 	}
 	
-	public void addPreferenceByAmount(int memberId, int alcoholId, float amount) {
+	public long createPreferenceByAmount(long memberId, long alcoholId, float amount) {
 		String query = "INSERT INTO preference (preference_id, member_id, alcohol_id, totalAmount) "
 				+ "values (preference_id_seq.nextval, ?, ?, ?)";
 			
@@ -99,18 +99,17 @@ public class RecommendDao {
 		// memberId, alcoholId가 존재하는지 MemberDao, AlcoholDao로 확인??
 		
 		ResultSet rs = null;
-		int pId = -1;
+		long pId = -1;
 			
 		try {
 			jdbcUtil.setSqlAndParameters(query, param);
 				
-			jdbcUtil.executeUpdate();
+			jdbcUtil.executeUpdate(key);
 			rs = jdbcUtil.getGeneratedKeys();
 			if (rs.next()) {
 				pId = rs.getInt(1);
 			}
 			
-			
 			jdbcUtil.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -123,13 +122,14 @@ public class RecommendDao {
 		} finally {	
 			jdbcUtil.close();
 		}	
+		return pId;
 	}
 		
-	public void updatePreferenceByRate(int memberId, int alcoholId, float rate) {
+	public void updatePreferenceByRate(long preferenceId, float rate) {
 		String query = "UPDATE preference SET rate = ? "
-				+ "WHERE member_id = ? and alcohol_id = ?";
+				+ "WHERE preference_id = ?";
 			
-		Object[] param = new Object[] { rate, memberId, alcoholId };
+		Object[] param = new Object[] { rate, preferenceId };
 			
 		try {
 			jdbcUtil.setSqlAndParameters(query, param);
@@ -150,7 +150,7 @@ public class RecommendDao {
 		}	
 	}
 		
-	public void updatePreferenceByAmount(int preferenceId, float amount) {
+	public void updatePreferenceByAmount(long preferenceId, float amount) {
 		String query = "UPDATE preference SET totalamount=totalamount+? "
 				+ "WHERE preference_id = ?";
 			
@@ -297,8 +297,11 @@ public class RecommendDao {
     	return rankList;
 	}
 	
+	
+	// 여기서부턴 AlcoholDao에 들어갈 내용
+	
 	public List<Alcohol> listByType(String type) {
-		String query = "SELECT name, type, rate, alcohol_level, image, taste, flavor, corps "
+		String query = "SELECT alcohol_id, name, type, rate, alcohol_level, image, taste, flavor, corps "
 				+ "FROM alcohol WHERE type = ?";
 		Object[] param = new Object[] { type };
 		jdbcUtil.setSqlAndParameters(query, param);
@@ -310,6 +313,7 @@ public class RecommendDao {
 			aList = new ArrayList<Alcohol>();
 			
 			while (rs.next()) {
+				long alcoholId = rs.getLong("alcohol_id");
 				String name = rs.getString("name");
 				float rate = rs.getFloat("rate");
 				float alcoholLevel = rs.getFloat("alcohol_level");
@@ -318,7 +322,7 @@ public class RecommendDao {
 				int flavor = rs.getInt("flavor");
 				int corps = rs.getInt("corps");
 				
-				Alcohol alcohol = new Alcohol(name, type, rate, alcoholLevel, imageUrl, taste, flavor, corps);
+				Alcohol alcohol = new Alcohol(alcoholId, name, type, rate, alcoholLevel, imageUrl, taste, flavor, corps);
 				
 				aList.add(alcohol);
 			}
@@ -332,7 +336,7 @@ public class RecommendDao {
 	}
 	
 	public List<Alcohol> searchAlcohol(String name) {
-		String query = "SELECT name, type, rate, alcohol_level, image, taste, flavor, corps "
+		String query = "SELECT alcohol_id name, type, rate, alcohol_level, image, taste, flavor, corps "
 				+ "FROM alcohol WHERE name Like ?";
 		String sQuery = "%"+name+"%";
 		Object[] param = new Object[] { sQuery };
@@ -345,6 +349,7 @@ public class RecommendDao {
 			aList = new ArrayList<Alcohol>();
 			
 			while (rs.next()) {
+				long alcoholId = rs.getLong("alcohol_id");
 				String aName = rs.getString("name");
 				String type = rs.getString("type");
 				float rate = rs.getFloat("rate");
@@ -354,7 +359,7 @@ public class RecommendDao {
 				int flavor = rs.getInt("flavor");
 				int corps = rs.getInt("corps");
 				
-				Alcohol alcohol = new Alcohol(aName, type, rate, alcoholLevel, imageUrl, taste, flavor, corps);
+				Alcohol alcohol = new Alcohol(alcoholId, aName, type, rate, alcoholLevel, imageUrl, taste, flavor, corps);
 				
 				aList.add(alcohol);
 			}

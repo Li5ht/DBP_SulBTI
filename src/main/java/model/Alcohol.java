@@ -1,6 +1,7 @@
 package model;
 
 public class Alcohol {
+	private long alcoholId;
 	private String name;
 	private String type;
 	private float rate;
@@ -40,6 +41,28 @@ public class Alcohol {
 		this.taste = taste;
 		this.flavor = flavor;
 		this.corps = corps;
+	}
+	
+	public Alcohol(long alcoholId, String name, String type, float rate, float alcoholLevel, String imageUrl, int taste,
+			int flavor, int corps) {
+		super();
+		this.alcoholId = alcoholId;
+		this.name = name;
+		this.type = type;
+		this.rate = rate;
+		this.alcoholLevel = alcoholLevel;
+		this.imageUrl = imageUrl;
+		this.taste = taste;
+		this.flavor = flavor;
+		this.corps = corps;
+	}
+
+	public void setAlcoholId(long alcoholId) {
+		this.alcoholId = alcoholId;
+	}
+	
+	public long getAlcoholId() {
+		return alcoholId;
 	}
 
 	public String getName() {
