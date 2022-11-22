@@ -14,6 +14,13 @@ public class Alcohol {
 	public Alcohol() {
 		super();
 	}
+	
+	public Alcohol(long alcoholId, String name, String imageUrl) {
+		super();
+		this.alcoholId = alcoholId;
+		this.name = name;
+		this.imageUrl = imageUrl;
+	}
 
 	public Alcohol(String name, String imageUrl) {
 		super();
