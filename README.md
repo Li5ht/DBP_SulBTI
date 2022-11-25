@@ -38,3 +38,11 @@
 - AlcoholDAO : insertReview에서 쿼리문 살짝 수정 (preference_id를 시퀀스 사용이 아닌, 해당 테이블이 있는지 확인하고 preference 테이블 관련 DB 관리는 RecommendDao에서 하도록 같이 수정) 
 - AlcoholDAO : updateReview에서 update를 해주고 delete를 하는 이유를 모르겠어서, delete를 빼고 preference 테이블에 별점도 같이 수정하는 거 추가
 - AlcoholDAO : deleteReview 불필요한 부분 삭제랑 약간의 수정
+
+<br><br>
+#### 추가사항 (src -> main -> webapp)
+- index.jsp가 홈 화면
+- WEB-INF -> 각 폴더 안에 관련 뷰 (jsp) 작성
+- css 폴더 추가 (지금은 common.css에 다 모아넣긴 했는데 나중엔 각각 별개로 나눠서 css 작성해야 할 듯)
+- images 폴더 추가 (로고 넣어둠)
+- 난 css 소질이 없는 듯.............................. 누가 멋지게 꾸며볼 사람^^?

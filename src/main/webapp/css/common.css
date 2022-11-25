@@ -1,0 +1,47 @@
+@FONT-FACE {
+	src:url("/fonts/Inter-Regular");
+	font-family: "Inter";
+}
+
+.grad0 {
+	/* index.jsp 배너에서 사용 */
+	font-family: "Inter";
+	background: linear-gradient( to bottom, #CFF09E, #A8DBA8 );
+	text-align : center;
+	font-size: 25px;
+}
+
+.grad1 {
+	/* grad0이랑 비슷한데 글씨 색이 다름 */
+	font-family: "Inter";
+	background: linear-gradient( to bottom, #CFF09E, #A8DBA8 );
+	color: #3B8686;
+	text-align : center;
+}
+
+table {
+	/* ----- P R O D U C T ----- 이런 식으로 생긴 거에서 사용,, */
+	border: 0px none;
+	margin: auto;
+	text-align: center;
+}
+.tr1 {
+	width: 45%;
+	border: 0px none;
+}
+.td1 {
+	width: 230px;
+}
+
+.d0 {
+	/* 배너랑 ----- P R O D U C T ----- 이런 식으로 생긴 거 위치 상단에 고정 */
+	position: fixed;
+	width: 100%;
+}
+
+.d1 {
+	/*  */
+	width:50%;
+	font-family: "Inter";
+	margin: auto;
+}
