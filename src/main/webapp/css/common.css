@@ -45,3 +45,54 @@ table {
 	font-family: "Inter";
 	margin: auto;
 }
+
+
+.box {
+	display: inline-block;
+	border: 1px solid;
+	margin-left : 20px;
+	margin-right: 20px;
+	border-radius: 10px;
+	width: 280px;
+	height: 40px;
+	vertical-align: middle;
+	text-align:center;
+}
+
+.box2 {
+	display: inline-block;
+	border: 1px solid;
+	border-radius: 10px;
+	width: 250px;
+	height: 40px;
+	vertical-align: middle;
+	text-align:center;
+}
+.d2 {
+	margin: auto;
+}
+
+.rankBox {
+	margin: auto;
+	width: 1300px;
+	border: none;
+	height: 250px;
+}
+
+.rankBox2 {
+	float: left;
+	width: 350px;
+	height: 250px;
+	margin-left: 60px;
+	border: 1px solid;
+	padding: 10px;
+}
+
+.goBox {
+	margin: auto;
+	width: 1300px;
+	border: none;
+	height: 40px;
+	text-align:center;
+	vertical-align: middle;
+}
