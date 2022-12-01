@@ -14,15 +14,6 @@ public class RecommendDao {
 	public RecommendDao() {	// 생성자
 		jdbcUtil = new JDBCUtil();		// JDBCUtil 객체 생성 및 활용
 	}
-		
-	public List<Alcohol> recommendList(int memberId) {
-		List<Alcohol> aList = null;
-		
-		// 일단 만들어두긴 했는데.. 
-		// 이건 MVC 구조에 따라서 Business Object 클래스에서 구현하는 게 맞다고 생각
-		
-	    return aList;
-	} 
 	
 	public long findPreference(long memberId, long alcoholId) {
 		String query = "SELECT preference_id FROM preference WHERE member_id = ? and alcohol_id = ?";
@@ -175,6 +166,7 @@ public class RecommendDao {
 		}	
 	}
 	
+	// 최근 언급량 증가 랭킹
 	public List<Rank> rankByRecentIncrease() {
 		/* 	SELECT name, image, count(drink.alcohol_id) AS "numOfAlcohol"
 			from diary, drink, alcohol
@@ -218,6 +210,7 @@ public class RecommendDao {
     	return rankList;
 	}
 	
+	// 꾸준히 인기많은
 	public List<Rank> rankByPopularity() {
 		/* 	SELECT name, image, count(drink.alcohol_id) AS "numOfAlcohol"
     		from diary, drink, alcohol
@@ -259,6 +252,7 @@ public class RecommendDao {
     	return rankList;
 	}
 	
+	// 주종별 랭킹
 	public List<Rank> rankByType(String type) {
 		String query = "SELECT name, image, count(drink.alcohol_id) AS \"numOfAlcohol\" "
 				+ "from diary, drink, alcohol "

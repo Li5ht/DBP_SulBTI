@@ -81,11 +81,11 @@ public class MemberDao {
 	}
 
 	// 회원의 아이디로 회원정보를 검색하여 해당회원의 정보를 갖고 있는 Member 객체를 반환하는 메소드
-	public Member getMemberById(long id) {
+	public Member getMemberById(String userId) {
 		String searchQuery = query +  "FROM member " +
-		  							  "WHERE member.id = ? ";	 
+		  							  "WHERE member.user_id = ? ";	 
 		
-		Object[] param = new Object[] { id };
+		Object[] param = new Object[] { userId };
 		jdbcUtil.setSqlAndParameters(searchQuery, param);
 
 		try {

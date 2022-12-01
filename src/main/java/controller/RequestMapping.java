@@ -23,9 +23,12 @@ public class RequestMapping {
         
         
        // 추천 관련
-       mappings.put("/recommend/list", new ForwardController("/recommend/list.jsp")); // 추후 수정
+       mappings.put("/recommend/list", new RecommendController());
+       mappings.put("/recommend/test", new TestController());
         
-        
+       // 시뮬레이터
+       mappings.put("/simulate", new SimulateController());
+       
         
         logger.info("Initialized Request Mapping!");
     }
