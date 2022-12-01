@@ -28,6 +28,10 @@
 		<input type="submit" value="술 추천" >
 	</form>
 	
+	<form name="form" method="POST" action="<c:url value='/user/login/form' />">
+		<input type="submit" value="로그인" >
+	</form>
+	
 	
 </body>
 </html>

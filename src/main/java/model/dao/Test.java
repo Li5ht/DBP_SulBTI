@@ -6,13 +6,15 @@ import model.*;
 
 public class Test {
 	
-	private static RecommendDao recDao = new RecommendDao();
-	private static AlcoholDAO alcoholDao = new AlcoholDAO();
+	private static MemberDao m = new MemberDao();
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner scanner = new Scanner(System.in);
 		
+		Member mem = m.getMemberById("abcd");
+		
+		System.out.println(mem.toString());
 		
 		
 		scanner.close();

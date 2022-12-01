@@ -18,16 +18,16 @@ public class MemberDao {
 		
 	// Member 의 기본 정보를 포함하는 query 문
 	private static String query = "SELECT member.id, " +
-								         "member.userId, " +
+								         "member.user_id, " +
 								         "member.nickname, " +
 								         "member.password, " +
 								         "member.email, " +
 								         "member.birth, " +
 								         "member.gender, " +
-								         "member.testType, " +
-								         "member.drinkingCapacity ";	
+								         "member.test_type, " +
+								         "member.drinking_capacity ";	
 	public long getDrinking(long id) {
-		String searchQuery = "SELECT member.drinkingCapacity  "
+		String searchQuery = "SELECT member.drinking_capacity  "
 				+ "FROM member "
 				+ "WHERE member.id = ? ";
 		
@@ -39,7 +39,7 @@ public class MemberDao {
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		
 			if (rs.next()) {
-				drinkingCapacity = rs.getLong("drinkingCapacity");
+				drinkingCapacity = rs.getLong("drinking_capacity");
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -61,14 +61,14 @@ public class MemberDao {
 			while (rs.next()) {	
 				Member dto = new Member();
 				dto.setId(rs.getLong("id"));
-				dto.setUserId(rs.getString("userId"));
+				dto.setUserId(rs.getString("user_id"));
 				dto.setNickname(rs.getString("nickname"));
 				dto.setPassword(rs.getString("password"));
 				dto.setEmail(rs.getString("email"));
 				dto.setBirth(rs.getDate("birth"));
 				dto.setGender(rs.getInt("gender"));
-				dto.setTestType(rs.getString("testType"));
-				dto.setDrinkingCapacity(rs.getLong("drinkingCapacity"));
+				dto.setTestType(rs.getString("test_type"));
+				dto.setDrinkingCapacity(rs.getFloat("drinking_capacity"));
 				list.add(dto);
 			}
 			return list;
@@ -94,14 +94,14 @@ public class MemberDao {
 			if (rs.next()) {
 				dto = new Member();
 				dto.setId(rs.getLong("id"));
-				dto.setUserId(rs.getString("userId"));
+				dto.setUserId(rs.getString("user_id"));
 				dto.setNickname(rs.getString("nickname"));
 				dto.setPassword(rs.getString("password"));
 				dto.setEmail(rs.getString("email"));
 				dto.setBirth(rs.getDate("birth"));
 				dto.setGender(rs.getInt("gender"));
-				dto.setTestType(rs.getString("testType"));
-				dto.setDrinkingCapacity(rs.getLong("drinkingCapacity"));
+				dto.setTestType(rs.getString("test_type"));
+				dto.setDrinkingCapacity(rs.getFloat("drinking_capacity"));
 			}
 			return dto;
 		} catch (Exception ex) {
@@ -178,7 +178,7 @@ public class MemberDao {
 			updateQuery += "testType = ?, ";		
 			tempParam[index++] = mem.getTestType();		
 		}
-		if (Long.valueOf(mem.getDrinkingCapacity()) != null) {		
+		if (Float.valueOf(mem.getDrinkingCapacity()) != null) {		
 			updateQuery += "drinkingCapacity = ?, ";		
 			tempParam[index++] = mem.getDrinkingCapacity();		
 		}
@@ -209,11 +209,11 @@ public class MemberDao {
 	}
 	
 	// 아이디를 전달받아 해당 아이디의 회원 정보를 삭제하는 메소드
-	public int deleteMember(long id) {
-		String deleteQuery = "DELETE FROM member WHERE id = ?";
+	public int deleteMember(String userId) {
+		String deleteQuery = "DELETE FROM member WHERE user_id = ?";
 		
 		jdbcUtil.setSql(deleteQuery);			// JDBCUtil 에 query 문 설정
-		Object[] param = new Object[] { id };
+		Object[] param = new Object[] { userId };
 		jdbcUtil.setParameters(param);			// JDBCUtil 에 매개변수 설정
 		
 		try {
@@ -227,6 +227,27 @@ public class MemberDao {
 			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 반환
 		}
 		return 0;
+	}
+	
+	/**
+	 * 주어진 사용자 ID에 해당하는 사용자가 존재하는지 검사 
+	 */
+	public boolean existingUser(String userId) throws SQLException {
+		String sql = "SELECT count(*) FROM member WHERE user_id=?";      
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});	// JDBCUtil에 query문과 매개 변수 설정
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+			if (rs.next()) {
+				int count = rs.getInt(1);
+				return (count == 1 ? true : false);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return false;
 	}
 
 }
