@@ -25,7 +25,7 @@
     </li>
     
     <li class="nav-item">
-		<a class="nav-link btn-link" href="#">음주 기록</a>
+		<a class="nav-link btn-link" href="<c:url value='/diary/list'/>">음주 기록</a>
     </li>
     
     <li class="nav-item">

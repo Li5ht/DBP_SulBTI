@@ -1,0 +1,10 @@
+.diaryBox1 {
+	width:70%;
+	margin:0px auto;
+}
+
+.diaryBox2 {
+	width:29%;
+	float:left;
+	clear:both;
+}

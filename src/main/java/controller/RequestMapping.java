@@ -5,6 +5,11 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import controller.comm.CreateCommunityController;
+import controller.comm.ListCommunityController;
+import controller.comm.UpdateCommunityController;
+import controller.comm.ViewCommunityController;
+
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -33,8 +38,15 @@ public class RequestMapping {
        mappings.put("/simulate", new SimulateController());
        mappings.put("simulate/result", new SimulateController());
        
-        
-        logger.info("Initialized Request Mapping!");
+       
+       // 음주 기록
+       mappings.put("/diary/list", new ListDiaryController());
+       mappings.put("/diary/view", new ViewDiaryController());
+       mappings.put("/diary/register/form", new ForwardController("/diary/registerForm.jsp"));
+       mappings.put("/diary/create", new CreateDiaryController());
+       mappings.put("/diary/update", new UpdateDiaryController());
+       
+       logger.info("Initialized Request Mapping!");
     }
 
     public Controller findController(String uri) {	
