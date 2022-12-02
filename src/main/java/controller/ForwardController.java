@@ -15,6 +15,12 @@ public class ForwardController implements Controller {
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        return forwardUrl;
+    	if (!UserSessionUtils.hasLogined(req.getSession())) {
+    		req.setAttribute("noLogin", true);
+        } else {
+        	req.setAttribute("hasLogin", true);
+        }
+    	
+    	return forwardUrl;
     }
 }

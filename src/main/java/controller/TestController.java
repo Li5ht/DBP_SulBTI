@@ -3,6 +3,8 @@ package controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.service.UserManager;
+
 //import controller.user.UserSessionUtils;
 
 
@@ -10,13 +12,16 @@ public class TestController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
 
-		/* 로그인 여부 확인 (현재 생략) 
+		/* 로그인 여부 확인 */
 		if (!UserSessionUtils.hasLogined(request.getSession())) {
-			String userId = UserSessionUtils.getLoginUserId(request.getSession());
-			request.setAttribute("userId", userId);
-			// 검사 후 testType 반영하기 위해
-        } */
-
+			/* 로그인 X */
+            request.setAttribute("noLogin", true);
+        } else {
+        	/* 로그인 O */
+        	request.setAttribute("hasLogin", true);
+			request.setAttribute("userId", UserSessionUtils.getLoginUserId(request.getSession()));
+        	request.setAttribute("nickname", UserSessionUtils.getLoginUserNickname(request.getSession()));
+        }
 
 		if (request.getMethod().equals("GET")) { // testForm 요청
 			return "/recommend/testForm.jsp";
@@ -35,6 +40,9 @@ public class TestController implements Controller {
 		
 		
 		// 사용자 DB testType에 추가
+		long id = UserSessionUtils.getLoginUserPrimaryKey(request.getSession());
+		UserManager userMan = UserManager.getInstance();
+		userMan.getDrinking(id);
 		
 		
 		// 결과 띄우기

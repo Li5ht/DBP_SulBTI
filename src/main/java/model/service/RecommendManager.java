@@ -29,7 +29,7 @@ public class RecommendManager {
 		// 회원 찾기
 		List<Drink> userRecList = null;
 		
-		
+		// 추후 수정
 		
 		
 		

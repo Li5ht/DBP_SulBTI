@@ -18,20 +18,11 @@
 </head>
 <body>
 	<!-- 네비게이션 바 -->
-	
-	
-	<c:if test="${noLogin}">
-		<a href="<c:url value='/user/login/form' />" class="btn btn-link">로그인 </a>
-		<a href="<c:url value='/user/register' />" class="btn btn-link">회원 가입 </a>
-	</c:if>
-	<c:if test="${hasLogin}">
-		<a href="<c:url value='/user/logout' />" class="btn btn-link">로그아웃 </a>
-	</c:if>
-	
+	<%@include file="/WEB-INF/navbar.jsp" %>
 	
 	
 	<!-- 배너 -->
-	<div class="grad0">	<!-- 클릭 시 이동하게 변경 -->
+	<div class="grad0">
 		<br><br>주량이 소주 4병인 내가 와인 3병을 먹는다면?<br><br><br>
 	</div>
 
@@ -69,7 +60,7 @@
 				<a href="<c:url value='/recommend/list' />">술 추천받기</a>
 			</div>
 			<div class="box">
-				<a href="#">주량 시뮬레이션하기</a>
+				<a href="<c:url value='/simulate' />">주량 시뮬레이션하기</a>
 			</div>
 			<div class="box2">
 				<a href="<c:url value='/recommend/test' />">술BTI 테스트 하러가기</a>

@@ -125,6 +125,7 @@ public class MemberDao {
 		try {				
 			result = jdbcUtil.executeUpdate();
 			System.out.println(mem.getId() + " 회원정보가 삽입되었습니다.");
+			jdbcUtil.commit();
 		} catch (SQLException ex) {
 			System.out.println("입력오류 발생!!!");
 			if (ex.getErrorCode() == 1)
@@ -133,7 +134,6 @@ public class MemberDao {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {		
-			jdbcUtil.commit();
 			jdbcUtil.close();
 		}		
 		return result;
@@ -196,13 +196,13 @@ public class MemberDao {
 		
 		try {
 			int result = jdbcUtil.executeUpdate();
+			jdbcUtil.commit();
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		}
 		finally {
-			jdbcUtil.commit();
 			jdbcUtil.close();
 		}		
 		return 0;
@@ -218,12 +218,12 @@ public class MemberDao {
 		
 		try {
 			int result = jdbcUtil.executeUpdate();		// delete 문 실행
+			jdbcUtil.commit();
 			return result;						// delete 에 의해 반영된 레코드 수 반환
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();		
 		} finally {
-			jdbcUtil.commit();
 			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 반환
 		}
 		return 0;
@@ -247,6 +247,27 @@ public class MemberDao {
 		} finally {
 			jdbcUtil.close();		// resource 반환
 		}
+		return false;
+	}
+	
+	
+	/* 사용자 testType 반영 */
+	public boolean updateUserTestType(String testType, long id) throws SQLException {
+		String sql = "UPDATE MEMBER SET test_type=? WHERE id=?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {testType, id});
+		
+		try {
+			int result = jdbcUtil.executeUpdate();
+			if (result > 0) {
+				jdbcUtil.commit();
+				return true;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		
 		return false;
 	}
 

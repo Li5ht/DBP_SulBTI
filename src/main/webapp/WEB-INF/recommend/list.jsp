@@ -5,6 +5,7 @@
 <title>추천 리스트</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel=stylesheet href="<c:url value='/css/common.css' />" type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script>
 $(document).ready(function($) {
     $(".scroll_move").click(function(event){
@@ -19,7 +20,7 @@ $(document).ready(function($) {
 </head>
 <body>
 	<!-- 네비게이션 바 -->
-	
+	<%@include file="/WEB-INF/navbar.jsp" %>
 	
 	<!-- 배너 -->
 	<div class="d0">

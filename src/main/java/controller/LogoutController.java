@@ -12,6 +12,8 @@ public class LogoutController implements Controller {
 		//세션에 저장된 사용자 이이디를 삭제하고 세션을 무효화 함 
 		HttpSession session = request.getSession();
 		session.removeAttribute(UserSessionUtils.USER_SESSION_KEY);
+		session.removeAttribute(UserSessionUtils.USER_PRIMARY_KEY);
+		session.removeAttribute(UserSessionUtils.USER_NICKNAME);
 		session.invalidate();		
         
         return "redirect:/home/home";

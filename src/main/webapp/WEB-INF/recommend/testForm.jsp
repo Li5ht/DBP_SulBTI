@@ -5,11 +5,16 @@
 <title>나와 어울리는 술 테스트하기</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel=stylesheet href="<c:url value='/css/common.css' />" type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script>
 
 </script>
 </head>
 <body>
+	<!-- 네비게이션 바 -->
+	<%@include file="/WEB-INF/navbar.jsp" %>
+	
+	
 	테스트 폼 (추후 수정;;ㅋㅋ)
 	<form method="post" action="<c:url value='/recommend/test' />">
 		<input type='radio' name="1" value="0" />선택1

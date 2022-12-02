@@ -46,17 +46,21 @@ public class UserManager {
 			return user;
 		}
 	
-	public boolean login(String userId, String password)
+	public Member login(String userId, String password)
 			throws SQLException, UserNotFoundException, PasswordMismatchException {
 			Member user = findUser(userId);
 
 			if (!user.matchPassword(password)) {
 				throw new PasswordMismatchException("비밀번호가 일치하지 않습니다.");
 			}
-			return true;
+			return user;
 		}
 	
 	public MemberDao getUserDAO() {
 		return this.userDAO;
+	}
+	
+	public long getDrinking(long id) {
+		return userDAO.getDrinking(id);
 	}
 }

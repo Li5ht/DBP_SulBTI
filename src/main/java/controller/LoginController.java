@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import model.Member;
 import model.service.UserManager;
 
 public class LoginController implements Controller {
@@ -16,11 +17,13 @@ public class LoginController implements Controller {
 		try {
 			// 모델에 로그인 처리를 위임
 			UserManager manager = UserManager.getInstance();
-			manager.login(userId, password);
-	
+			Member mem = manager.login(userId, password);
+			
 			// 세션에 사용자 이이디 저장
 			HttpSession session = request.getSession();
             session.setAttribute(UserSessionUtils.USER_SESSION_KEY, userId);
+            session.setAttribute(UserSessionUtils.USER_PRIMARY_KEY, mem.getId());
+            session.setAttribute(UserSessionUtils.USER_NICKNAME, mem.getNickname());
             
             return "redirect:/";			
 		} catch (Exception e) {

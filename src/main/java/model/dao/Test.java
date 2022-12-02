@@ -12,10 +12,6 @@ public class Test {
 		// TODO Auto-generated method stub
 		Scanner scanner = new Scanner(System.in);
 		
-		Member mem = m.getMemberById("abcd");
-		
-		System.out.println(mem.toString());
-		
 		
 		scanner.close();
 	}

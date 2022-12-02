@@ -86,7 +86,6 @@ function userCreate() {
    		<br>
 		<div class="form-group">        
 			<input type="button" class="btn btn-primary" value="가입" onClick="userCreate()"> 
-			<a href="<c:url value='/user/list' />" class="btn btn-link">사용자 목록 </a>    		     
 		</div>   
 	</form> 
 </div>
