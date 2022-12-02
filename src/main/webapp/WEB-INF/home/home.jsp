@@ -54,7 +54,7 @@
 	
 		<div class="goBox">
 			<div class="box">
-				<a href="#">음주 기록하기</a>
+				<a href="<c:url value='/diary/list' />">음주 기록하기</a>
 			</div>
 			<div class="box">
 				<a href="<c:url value='/recommend/list' />">술 추천받기</a>
