@@ -182,7 +182,7 @@ public class RecommendDao {
 				+ "and MONTHS_BETWEEN(SYSDATE, drinking_date) <= 1 "
 				+ "group by name, image "
 				+ "order by count(drink.alcohol_id) DESC";
-		jdbcUtil.setSql(query);
+		jdbcUtil.setSqlAndParameters(query, null);
 		ResultSet rs = null;
 		ArrayList<Rank> rankList = null;
 		int count = 1;
@@ -224,7 +224,7 @@ public class RecommendDao {
 				+ "and drink.alcohol_id = alcohol.alcohol_id "
 				+ "group by name, image "
 				+ "order by count(drink.alcohol_id) DESC";
-		jdbcUtil.setSql(query);
+		jdbcUtil.setSqlAndParameters(query, null);
 		ResultSet rs = null;
 		ArrayList<Rank> rankList = null;
 		int count = 1;

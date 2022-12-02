@@ -115,18 +115,18 @@ public class MemberDao {
 	// Member 객체에 담겨 있는 회원의 정보를 기반으로 회원정보를 member 테이블에 삽입하는 메소드
 	public int insertMember(Member mem) {
 		int result = 0;
-		String insertQuery = "INSERT INTO member (id, userId, nickname, password, email, birth, gender, testType, drinkingCapacity) " +
+		String insertQuery = "INSERT INTO member (id, user_id, nickname, password, email, birth, gender, test_type, drinking_capacity) " +
 							 "VALUES (id_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?) ";
 		
 		Object[] param = new Object[] {mem.getUserId(), mem.getNickname(), mem.getPassword(), mem.getEmail(), mem.getBirth(), mem.getGender(), mem.getTestType(), mem.getDrinkingCapacity()};		
-		jdbcUtil.setSql(insertQuery);
-		jdbcUtil.setParameters(param);
+		jdbcUtil.setSqlAndParameters(insertQuery, param);
 				
 		try {				
 			result = jdbcUtil.executeUpdate();
 			System.out.println(mem.getId() + " 회원정보가 삽입되었습니다.");
 			jdbcUtil.commit();
 		} catch (SQLException ex) {
+			jdbcUtil.rollback();
 			System.out.println("입력오류 발생!!!");
 			if (ex.getErrorCode() == 1)
 				System.out.println("동일한 회원정보가 이미 존재합니다."); 
@@ -151,7 +151,7 @@ public class MemberDao {
 			tempParam[index++] = mem.getId();
 		}
 		if (mem.getUserId() != null) {
-			updateQuery += "userId = ?, ";
+			updateQuery += "user_id = ?, ";
 			tempParam[index++] = mem.getUserId();
 		}
 		if (mem.getNickname() != null) {		
@@ -175,11 +175,11 @@ public class MemberDao {
 			tempParam[index++] = mem.getGender();		
 		}
 		if (mem.getTestType() != null) {		
-			updateQuery += "testType = ?, ";		
+			updateQuery += "test_type = ?, ";		
 			tempParam[index++] = mem.getTestType();		
 		}
 		if (Float.valueOf(mem.getDrinkingCapacity()) != null) {		
-			updateQuery += "drinkingCapacity = ?, ";		
+			updateQuery += "drinking_capacity = ?, ";		
 			tempParam[index++] = mem.getDrinkingCapacity();		
 		}
 		updateQuery += "WHERE id = ? ";
@@ -191,8 +191,7 @@ public class MemberDao {
 		for (int i=0; i < newParam.length; i++)
 			newParam[i] = tempParam[i];
 		
-		jdbcUtil.setSql(updateQuery);
-		jdbcUtil.setParameters(newParam);
+		jdbcUtil.setSqlAndParameters(updateQuery, newParam);
 		
 		try {
 			int result = jdbcUtil.executeUpdate();
@@ -212,9 +211,8 @@ public class MemberDao {
 	public int deleteMember(String userId) {
 		String deleteQuery = "DELETE FROM member WHERE user_id = ?";
 		
-		jdbcUtil.setSql(deleteQuery);			// JDBCUtil 에 query 문 설정
 		Object[] param = new Object[] { userId };
-		jdbcUtil.setParameters(param);			// JDBCUtil 에 매개변수 설정
+		jdbcUtil.setSqlAndParameters(deleteQuery, param);
 		
 		try {
 			int result = jdbcUtil.executeUpdate();		// delete 문 실행

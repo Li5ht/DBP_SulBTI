@@ -39,6 +39,7 @@ function userCreate() {
 <body>
 
 
+<%@include file="/WEB-INF/navbar.jsp" %>
 <div class="container">  
 	<br>
 	<h4>회원 가입</h4>

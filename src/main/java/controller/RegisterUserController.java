@@ -15,7 +15,17 @@ public class RegisterUserController implements Controller {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-       	if (request.getMethod().equals("GET")) {	
+    	/* 로그인 여부 확인 (네비게이션 바를 위해서 넣은 것) */
+		if (!UserSessionUtils.hasLogined(request.getSession())) {
+			/* 로그인 X */
+            request.setAttribute("noLogin", true);
+        } else {
+        	/* 로그인 O */
+        	request.setAttribute("hasLogin", true);
+        	request.setAttribute("nickname", UserSessionUtils.getLoginUserNickname(request.getSession()));
+        }
+    	
+    	if (request.getMethod().equals("GET")) {	
     		// GET request: 회원정보 등록 form 요청	
     		log.debug("RegisterForm Request");
 		

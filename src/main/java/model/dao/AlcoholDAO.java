@@ -24,7 +24,7 @@ public class AlcoholDAO {
 		ResultSet rs = null;
 		
 		String query = "SELECT name, type, rate, alcohol_level, image, taste, flavor, corps FROM alcohol";
-		jdbcUtil.setSql(query);
+		jdbcUtil.setSqlAndParameters(query, null);
 		
 		try {
 			rs = jdbcUtil.executeQuery();
