@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,11 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import model.Diary;
-import model.Drink;
-import model.Member;
-import model.dao.DiaryDAO;
-import model.service.UserManager;
+import model.*;
+import model.dao.*;
+import model.service.*;
 
 public class UpdateDiaryController implements Controller {
 	private static final Logger log = LoggerFactory.getLogger(UpdateDiaryController.class);
@@ -23,9 +19,9 @@ public class UpdateDiaryController implements Controller {
     	Diary diary = null;
     	long diaryId = Long.parseLong(request.getParameter("diaryId"));
 		DiaryDAO diaryDao = new DiaryDAO();
+		diary = diaryDao.getDiary(diaryId);	
 		if (request.getMethod().equals("GET")) {	
     		// GET request: 음주 기록 수정 form 요청	
-			diary = diaryDao.getDiary(diaryId);	
 			request.setAttribute("diary", diary);			
 			
 			return "/diary/updateForm.jsp";   // 검색한 정보를 update form으로 전송     

@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import model.Diary;
-import model.dao.DiaryDAO;
+import model.*;
+import model.dao.*;
 
 public class CreateDiaryController implements Controller {
 	private static final Logger log = LoggerFactory.getLogger(CreateDiaryController.class);

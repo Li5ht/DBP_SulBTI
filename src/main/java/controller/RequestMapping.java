@@ -5,10 +5,6 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import controller.comm.CreateCommunityController;
-import controller.comm.ListCommunityController;
-import controller.comm.UpdateCommunityController;
-import controller.comm.ViewCommunityController;
 
 
 public class RequestMapping {

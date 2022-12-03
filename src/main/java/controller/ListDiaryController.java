@@ -5,8 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Diary;
-import model.dao.DiaryDAO;
+import model.*;
+import model.dao.*;
 
 public class ListDiaryController implements Controller {
 	@Override
