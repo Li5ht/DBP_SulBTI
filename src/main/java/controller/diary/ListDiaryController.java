@@ -1,10 +1,12 @@
-package controller;
+package controller.diary;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import controller.Controller;
+import controller.user.UserSessionUtils;
 import model.*;
 import model.dao.*;
 
@@ -16,6 +18,7 @@ public class ListDiaryController implements Controller {
 		/* 로그인 여부 확인 */
 		if (!UserSessionUtils.hasLogined(request.getSession())) {
 			request.setAttribute("noLogin", true);
+			return "redirect:/user/login/form";
         } else {
         	request.setAttribute("hasLogin", true);
         	id = UserSessionUtils.getLoginUserPrimaryKey(request.getSession());

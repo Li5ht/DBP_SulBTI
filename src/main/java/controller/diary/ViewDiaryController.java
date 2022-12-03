@@ -1,8 +1,10 @@
-package controller;
+package controller.diary;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import controller.Controller;
+import controller.user.UserSessionUtils;
 import model.*;
 import model.dao.*;
 

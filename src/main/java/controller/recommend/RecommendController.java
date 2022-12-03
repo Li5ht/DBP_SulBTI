@@ -1,4 +1,4 @@
-package controller;
+package controller.recommend;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,7 +6,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.dao.*;
+import controller.Controller;
+import controller.user.UserSessionUtils;
 import model.service.RecommendManager;
 import model.*;
 
