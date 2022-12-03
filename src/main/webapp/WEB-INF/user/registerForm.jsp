@@ -71,10 +71,9 @@ function userCreate() {
 	        </div> 
 	    </div> 
 		<div class="form-group row">   
-	        <label for="name" class="col-lg-2 col-form-label">이름</label>
+	        <label for="userId" class="col-lg-2 col-form-label">닉네임</label>
 	        <div class="col-lg-10">
-	        	<input type="text" name="nickname" class="form-control" placeholder="닉네임"
-	        		<c:if test="${registerFailed}">value="${user.name}"</c:if> > 
+	            <input type="text" name="nickname" class="form-control"> 
 	        </div>
 	    </div>       
 	    <div class="form-group row">  
@@ -84,6 +83,35 @@ function userCreate() {
 	        		<c:if test="${registerFailed}">value="${user.email}"</c:if> >  
 	        </div>
 	    </div> 
+		<div class="form-group row">   
+	        <label for="name" class="col-lg-2 col-form-label">생일</label>
+	        <div class="col-lg-10">
+	        		<select name="birth1">
+				       <%for(int i=2013; i>=1900; i--){ %>
+				       <option value="<%=i %>"><%=i %></option>
+				       <%} %>
+				    </select>년&nbsp;
+				    <select name="birth2">
+				       <%for(int i=1; i<=12; i++){ %>
+				       <option value="<%=i %>"><%=i %></option>
+				       <%} %>
+				    </select>
+				    <select name="birth3">
+				       <%for(int i=1; i<=31; i++){ %>
+				       <option value="<%=i %>"><%=i %></option>
+				       <%} %>
+				    </select>일<br><br>
+				    
+	        </div>
+	    </div>       
+	    <div class="form-group row">  
+	        <label for="email" class="col-lg-2 col-form-label">성별</label>
+	        <div class="col-lg-10">
+				<input type="radio" name="gender" value="0"> 남자&nbsp;&nbsp;
+   				<input type="radio" name="gender" value="1" checked="checked"> 여자<br><br>
+	        </div>
+	    </div> 
+	    
    		<br>
 		<div class="form-group">        
 			<input type="button" class="btn btn-primary" value="가입" onClick="userCreate()"> 

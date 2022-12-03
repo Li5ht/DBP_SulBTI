@@ -15,7 +15,7 @@ public class MemberDao {
 	public MemberDao() {			
 		jdbcUtil = new JDBCUtil();		
 	}
-		
+
 	// Member 의 기본 정보를 포함하는 query 문
 	private static String query = "SELECT member.id, " +
 								         "member.user_id, " +

@@ -1,5 +1,7 @@
 package controller.user;
 
+import java.sql.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -39,6 +41,13 @@ public class RegisterUserController implements Controller {
        	user.setPassword(request.getParameter("password"));
        	user.setNickname(request.getParameter("nickname"));
        	user.setEmail(request.getParameter("email"));
+       	user.setGender(Integer.parseInt(request.getParameter("gender")));
+       	String year = request.getParameter("birth1");
+        String month = request.getParameter("birth2");
+        String day = request.getParameter("birth3");
+        
+        Date birthday = Date.valueOf(year+"-"+month+"-"+day);
+        user.setBirth(birthday);
 		
         log.debug("Create User : {}", user);
 

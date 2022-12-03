@@ -41,7 +41,10 @@
 	  	</li>
 	</c:if>
 	<c:if test="${hasLogin}">
-		${nickname}님 
+ 			<a class="nav-link btn-link" href="<c:url value='/user/view'>
+						   <c:param name='userId' value='${userId}'/>
+				 		 </c:url>">
+			${nickname}님</a>	
 		<li class="nav-item">
 	    	<a class="nav-link btn-link" href="<c:url value='/user/logout'/>">로그아웃</a>
 	  	</li>

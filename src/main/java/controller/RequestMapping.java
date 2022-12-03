@@ -11,9 +11,12 @@ import controller.diary.UpdateDiaryController;
 import controller.diary.ViewDiaryController;
 import controller.recommend.RecommendController;
 import controller.recommend.TestController;
+import controller.user.ListUserController;
 import controller.user.LoginController;
 import controller.user.LogoutController;
 import controller.user.RegisterUserController;
+import controller.user.UpdateUserController;
+import controller.user.ViewUserController;
 
 
 
@@ -31,10 +34,13 @@ public class RequestMapping {
         mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
         mappings.put("/user/login", new LoginController());
         mappings.put("/user/logout", new LogoutController());
-        
+        mappings.put("/user/list", new ListUserController());
+        mappings.put("/user/view", new ViewUserController());
+
         // 회원가입
         mappings.put("/user/register", new RegisterUserController());
-        
+        mappings.put("/user/update", new UpdateUserController());
+
         
        // 추천 관련
        mappings.put("/recommend/list", new RecommendController());
