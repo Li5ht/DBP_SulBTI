@@ -79,7 +79,10 @@ public class MyCalendar {
 		
 	<!-- 음주 기록 -->
 	<!-- <div class="diaryBox1"> -->
-		
+	
+	<!-- 음주 기록 추가 -->
+	<button type="button" class="btn btn-outline-success" onclick="location.href='create'">음주 기록 추가하기</button>
+	
 	<%
 	// 컴퓨터 시스템의 년, 월 받아오기
 		Date date = new Date();
