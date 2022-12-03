@@ -68,7 +68,7 @@ public class DiaryDAO {
 					diary.setContent(rs.getString("content"));
 
 					alcohol = new Alcohol();
-					alcohol.setAlcoholId(rs.getLong("alcoholId"));
+					alcohol.setAlcoholId(rs.getLong("alcohol_id"));
 					alcohol.setType(rs.getString("type"));
 
 					drink = new Drink();
@@ -78,7 +78,7 @@ public class DiaryDAO {
 					drinkingList.add(drink);
 				} else { // diaryId 같을 떄.. drinkingList에 drink 추가
 					alcohol = new Alcohol();
-					alcohol.setAlcoholId(rs.getLong("alcoholId"));
+					alcohol.setAlcoholId(rs.getLong("alcohol_id"));
 					alcohol.setType(rs.getString("type"));
 
 					drink = new Drink();
@@ -124,7 +124,7 @@ public class DiaryDAO {
 					diary.setContent(rs.getString("content"));
 
 					alcohol = new Alcohol();
-					alcohol.setAlcoholId(rs.getLong("alcoholId"));
+					alcohol.setAlcoholId(rs.getLong("alcohol_id"));
 					alcohol.setType(rs.getString("type"));
 
 					drink = new Drink();
@@ -134,7 +134,7 @@ public class DiaryDAO {
 					drinkingList.add(drink);
 				} else { // diaryId 같을 떄.. drinkingList에 drink 추가
 					alcohol = new Alcohol();
-					alcohol.setAlcoholId(rs.getLong("alcoholId"));
+					alcohol.setAlcoholId(rs.getLong("alcohol_id"));
 					alcohol.setType(rs.getString("type"));
 
 					drink = new Drink();
@@ -192,12 +192,12 @@ public class DiaryDAO {
 				}
 			}
 
+			jdbcUtil.commit();
 			return diary;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.commit();
 			jdbcUtil.close(); // resource 반환
 		}
 		return null;
@@ -239,12 +239,12 @@ public class DiaryDAO {
 				rcd.updatePreferenceByAmount(preferenceId, dr.getAmount());
 			}
 
+			jdbcUtil.commit();
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.commit();
 			jdbcUtil.close(); // resource 반환
 		}
 		return 0;
@@ -269,12 +269,12 @@ public class DiaryDAO {
 			jdbcUtil.setSqlAndParameters(sql2, new Object[] { diary.getDiaryId() }); // JDBCUtil에 delete문과 매개 변수 설정
 			result += jdbcUtil.executeUpdate(); // delete 문 실행
 
+			jdbcUtil.commit();
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.commit();
 			jdbcUtil.close(); // resource 반환
 		}
 		return 0;
