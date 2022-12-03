@@ -1,6 +1,6 @@
 package model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Member {
 	private long id; 				// primary key
@@ -52,6 +52,12 @@ public class Member {
 		this.drinking_capacity = drinking_capacity;
 	}
 
+	public Member(String password, String nickname, String email) {
+		// TODO Auto-generated constructor stub
+		this.password = password;
+		this.nickname = nickname;
+		this.email = email;
+	}
 
 	public long getId() {
 		return id;

@@ -146,14 +146,14 @@ public class MemberDao {
 		int index = 0;
 		Object[] tempParam = new Object[10];
 		
-		if(Long.valueOf(mem.getId()) != null) {
-			updateQuery += "id = ?, ";		
-			tempParam[index++] = mem.getId();
-		}
-		if (mem.getUserId() != null) {
-			updateQuery += "user_id = ?, ";
-			tempParam[index++] = mem.getUserId();
-		}
+//		if(Long.valueOf(mem.getId()) != null) {
+//			updateQuery += "id = ?, ";		
+//			tempParam[index++] = mem.getId();
+//		}
+//		if (mem.getUserId() != null) {
+//			updateQuery += "user_id = ?, ";
+//			tempParam[index++] = mem.getUserId();
+//		}
 		if (mem.getNickname() != null) {		
 			updateQuery += "nickname = ?, ";		
 			tempParam[index++] = mem.getNickname();		
@@ -166,22 +166,22 @@ public class MemberDao {
 			updateQuery += "email = ?, ";	
 			tempParam[index++] = mem.getEmail();		
 		}
-		if (mem.getBirth() != null) {		
-			updateQuery += "birth = ?, ";	
-			tempParam[index++] = mem.getBirth();		
-		}
-		if (Integer.valueOf(mem.getGender()) != null) {		
-			updateQuery += "gender = ?, ";		
-			tempParam[index++] = mem.getGender();		
-		}
-		if (mem.getTestType() != null) {		
-			updateQuery += "test_type = ?, ";		
-			tempParam[index++] = mem.getTestType();		
-		}
-		if (Float.valueOf(mem.getDrinkingCapacity()) != null) {		
-			updateQuery += "drinking_capacity = ?, ";		
-			tempParam[index++] = mem.getDrinkingCapacity();		
-		}
+//		if (mem.getBirth() != null) {		
+//			updateQuery += "birth = ?, ";	
+//			tempParam[index++] = mem.getBirth();		
+//		}
+//		if (Integer.valueOf(mem.getGender()) != null) {		
+//			updateQuery += "gender = ?, ";		
+//			tempParam[index++] = mem.getGender();		
+//		}
+//		if (mem.getTestType() != null) {		
+//			updateQuery += "test_type = ?, ";		
+//			tempParam[index++] = mem.getTestType();		
+//		}
+//		if (Float.valueOf(mem.getDrinkingCapacity()) != null) {		
+//			updateQuery += "drinking_capacity = ?, ";		
+//			tempParam[index++] = mem.getDrinkingCapacity();		
+//		}
 		updateQuery += "WHERE id = ? ";
 		updateQuery = updateQuery.replace(", WHERE", " WHERE");
 		

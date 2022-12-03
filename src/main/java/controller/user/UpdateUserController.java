@@ -1,5 +1,7 @@
 package controller.user;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,9 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import controller.Controller;
 import model.service.UserManager;
-import model.Community;
 import model.Member;
-import model.User;
 
 public class UpdateUserController implements Controller {
     private static final Logger log = LoggerFactory.getLogger(UpdateUserController.class);
@@ -37,8 +37,8 @@ public class UpdateUserController implements Controller {
 				UserSessionUtils.isLoginUser("admin", session)) {
 				// 현재 로그인한 사용자가 수정 대상 사용자이거나 관리자인 경우 -> 수정 가능
 								
-				List<Community> commList = manager.findCommunityList();	// 커뮤니티 리스트 검색
-				request.setAttribute("commList", commList);	
+//				List<Community> commList = manager.findCommunityList();	// 커뮤니티 리스트 검색
+//				request.setAttribute("commList", commList);	
 				
 				return "/user/updateForm.jsp";   // 검색한 사용자 정보 및 커뮤니티 리스트를 updateForm으로 전송     
 			}    
@@ -51,18 +51,18 @@ public class UpdateUserController implements Controller {
 	    }	
     	
     	// POST request (회원정보가 parameter로 전송됨)
+//    	String from = request.getParameter("birth");
+//    	SimpleDateFormat fm = new SimpleDateFormat("yy/MM/dd");
+//    	Date to = fm.parse(from);
     	Member updateUser = new Member(
-    		request.getParameter("userId"),
     		request.getParameter("password"),
-    		request.getParameter("name"),
-    		request.getParameter("email"),
-    		request.getParameter("phone"),
-			Integer.parseInt(request.getParameter("commId")));
+    		request.getParameter("nickname"),
+    		request.getParameter("email"));
 
     	log.debug("Update User : {}", updateUser);
 
 		UserManager manager = UserManager.getInstance();
 		manager.update(updateUser);			
-        return "redirect:/user/list";			
+        return "redirect:/user/view";			
     }
 }

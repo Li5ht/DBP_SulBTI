@@ -87,9 +87,11 @@ function userCreate() {
 	        <label for="name" class="col-lg-2 col-form-label">생일</label>
 	        <div class="col-lg-10">
 	        		<select name="birth1">
-				       <%for(int i=2013; i>=1900; i--){ %>
-				       <option value="<%=i %>"><%=i %></option>
-				       <%} %>
+	        			<% java.util.Calendar cal = java.util.Calendar.getInstance(); %>
+
+				    	<%for(int i = cal.get(java.util.Calendar.YEAR) - 19; i>=1900; i--){ %>
+				    	<option value="<%=i %>"><%=i %></option>
+				    	<%} %>
 				    </select>년&nbsp;
 				    <select name="birth2">
 				       <%for(int i=1; i<=12; i++){ %>
