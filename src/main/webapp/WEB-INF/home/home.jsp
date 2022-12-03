@@ -32,7 +32,8 @@
 			<div class="rankBox2">
 				<b>종합 랭킹</b> <%= sf.format(nowTime) %> 기준<br><br>
 				<c:forEach var="rank" items="${overallRank}">
-					${rank.ranking}. ${rank.alcohol.imageUrl} 
+					${rank.ranking}. 
+					<img src='${rank.alcohol.imageUrl}' width="50px" height="auto">
 					&nbsp;&nbsp;&nbsp; ${rank.alcohol.name}
 					+${rank.numberOfMention}<br>
 				</c:forEach>
@@ -40,7 +41,8 @@
 			<div class="rankBox2">
 				<b>HOT</b> <%= sf.format(nowTime) %>기준<br><br>
 				<c:forEach var="rank" items="${hotRank}">
-					${rank.ranking}. ${rank.alcohol.imageUrl} 
+					${rank.ranking}. 
+					<img src='${rank.alcohol.imageUrl}' width="50px" height="auto">
 					&nbsp;&nbsp;&nbsp; ${rank.alcohol.name}
 					+${rank.numberOfMention}<br>
 				</c:forEach>

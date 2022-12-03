@@ -19,7 +19,7 @@
 	text-align : center;
 }
 
-table {
+.banner {
 	/* ----- P R O D U C T ----- 이런 식으로 생긴 거에서 사용,, */
 	border: 0px none;
 	margin: auto;
@@ -31,12 +31,6 @@ table {
 }
 .td1 {
 	width: 230px;
-}
-
-.d0 {
-	/* 배너랑 ----- P R O D U C T ----- 이런 식으로 생긴 거 위치 상단에 고정 */
-	position: fixed;
-	width: 100%;
 }
 
 .d1 {
@@ -95,4 +89,30 @@ table {
 	height: 40px;
 	text-align:center;
 	vertical-align: middle;
+}
+
+.recTable {
+	margin: auto;
+	border: 1px solid;
+	width: 900px;
+	height: 50px;
+	text-align:center;
+	vertical-align: middle;
+}
+
+.recTable2 {
+	margin: auto;
+	width: 100%;
+	height: 100px;
+	text-align:center;
+	vertical-align: middle;
+}
+
+.recTd {
+	border: 1px solid;
+}
+
+.recTd2 {
+	width: 20%;
+	border: 1px solid;
 }

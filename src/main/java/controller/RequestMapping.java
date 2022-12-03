@@ -5,18 +5,9 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import controller.diary.CreateDiaryController;
-import controller.diary.ListDiaryController;
-import controller.diary.UpdateDiaryController;
-import controller.diary.ViewDiaryController;
-import controller.recommend.RecommendController;
-import controller.recommend.TestController;
-import controller.user.ListUserController;
-import controller.user.LoginController;
-import controller.user.LogoutController;
-import controller.user.RegisterUserController;
-import controller.user.UpdateUserController;
-import controller.user.ViewUserController;
+import controller.diary.*;
+import controller.recommend.*;
+import controller.user.*;
 
 
 

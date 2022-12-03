@@ -53,7 +53,7 @@
     	href="<c:url value='/user/update' >
      		     <c:param name='userId' value='${user.userId}'/>
 		 	  </c:url>">수정</a>
-     <br>	   
+     <br>
 	    
 	<!-- 수정 또는 삭제가  실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
 	<c:if test="${updateFailed}">

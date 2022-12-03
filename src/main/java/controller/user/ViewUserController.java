@@ -13,7 +13,11 @@ public class ViewUserController implements Controller {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {			
     	// 로그인 여부 확인
     	if (!UserSessionUtils.hasLogined(request.getSession())) {
-            return "redirect:/user/login/form";		// login form 요청으로 redirect
+    		request.setAttribute("noLogin", true);
+    		return "redirect:/user/login/form";		// login form 요청으로 redirect
+        } else {
+        	request.setAttribute("hasLogin", true);
+        	request.setAttribute("nickname", UserSessionUtils.getLoginUserNickname(request.getSession()));
         }
     	
 		UserManager manager = UserManager.getInstance();
