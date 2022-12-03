@@ -2,7 +2,10 @@ package model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import model.Alcohol;
 import model.Diary;
@@ -119,7 +122,9 @@ public class DiaryDAO {
 					diaryId = rs.getLong("diary_id");
 					diary = new Diary();
 					diary.setDiaryId(diaryId);
-					diary.setDrinkingDate(rs.getDate("drinking_date"));
+				    java.sql.Date drinkingDate = rs.getDate("drinking_date");  // DATE 타입 컬럼 --> java.sql.Date
+				    java.util.Date utilDate = new java.util.Date(drinkingDate.getTime());   // java.sql.Date --> java.util.Date                        
+				    diary.setDrinkingDate(utilDate); // DTO 필드에 저장 
 					diary.setCondition(rs.getInt("condition"));
 					diary.setContent(rs.getString("content"));
 
