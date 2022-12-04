@@ -26,6 +26,7 @@ public class CreateDiaryController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	long id = -1; /* 사용자 primary key */
+    	String userId = null; /* 사용자가 회원가입 시 입력한 아이디 */
     	/* 로그인 여부 확인 */
 		if (!UserSessionUtils.hasLogined(request.getSession())) {
 			request.setAttribute("noLogin", true);
@@ -33,6 +34,7 @@ public class CreateDiaryController implements Controller {
         } else {
         	request.setAttribute("hasLogin", true);
         	id = UserSessionUtils.getLoginUserPrimaryKey(request.getSession());
+        	userId = UserSessionUtils.getLoginUserId(request.getSession());
         	request.setAttribute("nickname", UserSessionUtils.getLoginUserNickname(request.getSession()));
         }
     	
@@ -54,11 +56,16 @@ public class CreateDiaryController implements Controller {
     	List<Drink> drinkingList = new ArrayList<Drink>(); // 술 목록
     	// 추후에 반복문으로 수정.. 일단 테스트부터 하고
     	Drink drink = new Drink();
-    	String alcoholName = request.getParameter("alcohol");
-    	List<Alcohol> alcohol = alcoholDao.searchAlcohol(alcoholName);
-    	if (alcohol.size() != 0) {
-    		drink.setAlcohol(alcohol.get(0));
-    	}
+    	//String alcoholName = request.getParameter("alcohol");
+//    	String alcoholName = "카스";
+//    	List<Alcohol> alcohol = alcoholDao.searchAlcohol(alcoholName);
+//    	if (alcohol.size() != 0) {
+//    		drink.setAlcohol(alcohol.get(0));
+//    	}
+    	long n = 10001;
+    	float f1 = 0;
+    	float f2 = (float) 4.5;
+    	drink.setAlcohol(new Alcohol(n, "카스", "맥주", f1, f2, "https://w.namu.la/s/4f1303df52a3acaf98f0f74756c12df81600bd5720083f2322c16be36a3d1fb79efb5467d530e6cfd1a159af4cd95f68930601542b383aa8e3ce55c2db6dfbbeba404188c4afde712c831d2b5ae543057d48ba70a4544d9ba8555ee45001a375", 0, 0, 0));
     	drink.setAmount(Integer.parseInt(request.getParameter("amount")));
     	drinkingList.add(drink);
     	
@@ -66,7 +73,7 @@ public class CreateDiaryController implements Controller {
     	String content = request.getParameter("content");
     	
     	UserManager userManager = UserManager.getInstance();
-    	Member member = userManager.findUser(String.valueOf(id));
+    	Member member = userManager.findUser(userId);
     	
     	diary.setDrinkingDate(drinkingDate);
     	diary.setDrinkingList(drinkingList);
