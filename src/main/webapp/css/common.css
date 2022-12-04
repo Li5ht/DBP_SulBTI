@@ -4,7 +4,7 @@
 }
 
 .grad0 {
-	/* index.jsp ¹è³Ê¿¡¼­ »ç¿ë */
+	/* index.jsp ï¿½ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ */
 	font-family: "Inter";
 	background: linear-gradient( to bottom, #CFF09E, #A8DBA8 );
 	text-align : center;
@@ -12,7 +12,7 @@
 }
 
 .grad1 {
-	/* grad0ÀÌ¶û ºñ½ÁÇÑµ¥ ±Û¾¾ »öÀÌ ´Ù¸§ */
+	/* grad0ï¿½Ì¶ï¿½ ï¿½ï¿½ï¿½ï¿½Ñµï¿½ ï¿½Û¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ */
 	font-family: "Inter";
 	background: linear-gradient( to bottom, #CFF09E, #A8DBA8 );
 	color: #3B8686;
@@ -20,7 +20,7 @@
 }
 
 .banner {
-	/* ----- P R O D U C T ----- ÀÌ·± ½ÄÀ¸·Î »ý±ä °Å¿¡¼­ »ç¿ë,, */
+	/* ----- P R O D U C T ----- ï¿½Ì·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½,, */
 	border: 0px none;
 	margin: auto;
 	text-align: center;
@@ -70,13 +70,13 @@
 	margin: auto;
 	width: 1300px;
 	border: none;
-	height: 250px;
+	overflow: auto;
 }
 
 .rankBox2 {
 	float: left;
 	width: 350px;
-	height: 250px;
+	overflow: auto;
 	margin-left: 60px;
 	border: 1px solid;
 	padding: 10px;
