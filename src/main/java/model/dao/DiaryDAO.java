@@ -5,11 +5,8 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import model.Alcohol;
-import model.Diary;
-import model.Drink;
+import model.*;
 
 public class DiaryDAO {
 	private JDBCUtil jdbcUtil = null;
@@ -26,7 +23,7 @@ public class DiaryDAO {
 	public List<Diary> getDiaryListByDate(long memberId, String... date) throws SQLException {
 		// 기간 조회 (조회 시작 날짜와 끝 날짜)
 		if (date.length == 2) {
-			String sql = "SELECT di.diary_id, drinking_date, condition, content, a.alcohol_id, type, amount "
+			String sql = "SELECT di.diary_id, drinking_date, condition, content, a.alcohol_id, name, type, amount "
 					+ "FROM diary di JOIN drink dr ON di.diary_id = dr.diary_id JOIN alcohol a ON dr.alcohol_id = a.alcohol_id "
 					+ "WHERE member_id=? and drinking_date >= TO_DATE(?) and drinking_date < TO_DATE(?) "
 					+ "ORDER BY di.diary_id ";
@@ -39,9 +36,9 @@ public class DiaryDAO {
 		if (date.length == 1) {
 			String sql = "SELECT di.diary_id, drinking_date, condition, content, a.alcohol_id, name, type, amount "
 					+ "FROM diary di JOIN drink dr ON di.diary_id = dr.diary_id JOIN alcohol a ON dr.alcohol_id = a.alcohol_id "
-					+ "WHERE member_id=? and TO_CHAR(drinking_date, ?)=? ";
-
-			jdbcUtil.setSqlAndParameters(sql, new Object[] { memberId, "YYMMDD", date[0] }); // JDBCUtil에 query문과 매개 변수
+					+ "WHERE member_id=? and TO_CHAR(drinking_date, 'YYYYMMDD')=? ";
+				
+			jdbcUtil.setSqlAndParameters(sql, new Object[] { memberId, date[0] }); // JDBCUtil에 query문과 매개 변수
 																								// 설정
 		}
 
@@ -66,12 +63,16 @@ public class DiaryDAO {
 					diaryId = rs.getLong("diary_id");
 					diary = new Diary();
 					diary.setDiaryId(diaryId);
+					Member member = new Member();
+					member.setId(memberId);
+					diary.setMember(member);
 					diary.setDrinkingDate(rs.getDate("drinking_date"));
 					diary.setCondition(rs.getInt("condition"));
 					diary.setContent(rs.getString("content"));
 
 					alcohol = new Alcohol();
 					alcohol.setAlcoholId(rs.getLong("alcohol_id"));
+					alcohol.setName(rs.getString("name"));
 					alcohol.setType(rs.getString("type"));
 
 					drink = new Drink();
@@ -82,6 +83,7 @@ public class DiaryDAO {
 				} else { // diaryId 같을 떄.. drinkingList에 drink 추가
 					alcohol = new Alcohol();
 					alcohol.setAlcoholId(rs.getLong("alcohol_id"));
+					alcohol.setName(rs.getString("name"));
 					alcohol.setType(rs.getString("type"));
 
 					drink = new Drink();
@@ -130,6 +132,7 @@ public class DiaryDAO {
 
 					alcohol = new Alcohol();
 					alcohol.setAlcoholId(rs.getLong("alcohol_id"));
+					alcohol.setName(rs.getString("name"));
 					alcohol.setType(rs.getString("type"));
 
 					drink = new Drink();
@@ -140,6 +143,7 @@ public class DiaryDAO {
 				} else { // diaryId 같을 떄.. drinkingList에 drink 추가
 					alcohol = new Alcohol();
 					alcohol.setAlcoholId(rs.getLong("alcohol_id"));
+					alcohol.setName(rs.getString("name"));
 					alcohol.setType(rs.getString("type"));
 
 					drink = new Drink();
@@ -163,11 +167,11 @@ public class DiaryDAO {
 	
 	// diary 추가
 	public Diary createDiary(Diary diary) throws SQLException { // 추가한 diary 객체 반환
-		String key1[] = { "diaryId" }; // PK 컬럼의 이름
+		String key1[] = { "diary_id" }; // PK 컬럼의 이름
 		try {
 			// Diary 테이블에 추가
 			String sql1 = "INSERT INTO Diary VALUES (diary_id_seq.nextval, ?, ?, ?, ?)";
-			Object[] param1 = new Object[] { diary.getMember().getId(), diary.getDrinkingDate(), diary.getCondition(),
+			Object[] param1 = new Object[] { diary.getMember().getId(), new java.sql.Date(diary.getDrinkingDate().getTime()), diary.getCondition(),
 					diary.getContent() };
 			jdbcUtil.setSqlAndParameters(sql1, param1); // JDBCUtil 에 insert문과 매개 변수 설정
 			jdbcUtil.executeUpdate(key1); // insert 문 실행
@@ -176,10 +180,11 @@ public class DiaryDAO {
 			if (rs.next()) {
 				int generatedKey = rs.getInt(1); // 생성된 PK 값
 				diary.setDiaryId(generatedKey); // id필드에 저장
+				System.out.println("생성된 키 " + generatedKey);
 			}
-
+			
 			// Drink 테이블에 마신 술 내역 추가
-			String key2[] = { "drinkId" };
+			String key2[] = { "drink_id" };
 			RecommendDao rcd = new RecommendDao();
 			for (Drink dr : diary.getDrinkingList()) {
 				String sql2 = "INSERT INTO Drink VALUES (drink_id_seq.nextval, ?, ?, ?)";
@@ -195,17 +200,16 @@ public class DiaryDAO {
 				} else {
 					rcd.updatePreferenceByAmount(preferenceId, dr.getAmount());
 				}
+				
 			}
-
-			jdbcUtil.commit();
-			return diary;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
+			jdbcUtil.commit();
 			jdbcUtil.close(); // resource 반환
 		}
-		return null;
+		return diary;
 	}
 
 	// diary 수정
@@ -227,7 +231,7 @@ public class DiaryDAO {
 			}
 
 			// drink 테이블에서 해당 diary id 모두 삭제 후, 추가
-			String sql2 = "DELETE FROM Diary WHERE diaryId=?";
+			String sql2 = "DELETE FROM Diary WHERE diary_id=?";
 			jdbcUtil.setSqlAndParameters(sql2, new Object[] { diary.getDiaryId() }); // JDBCUtil에 delete문과 매개 변수 설정
 			jdbcUtil.executeUpdate(); // delete 문 실행
 
@@ -244,12 +248,12 @@ public class DiaryDAO {
 				rcd.updatePreferenceByAmount(preferenceId, dr.getAmount());
 			}
 
-			jdbcUtil.commit();
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
+			jdbcUtil.commit();
 			jdbcUtil.close(); // resource 반환
 		}
 		return 0;
@@ -266,20 +270,20 @@ public class DiaryDAO {
 				rcd.updatePreferenceByAmount(preferenceId, amount);
 			}
 
-			String sql1 = "DELETE FROM Drink WHERE diaryId=?";
+			String sql1 = "DELETE FROM Drink WHERE diary_id=?";
 			jdbcUtil.setSqlAndParameters(sql1, new Object[] { diary.getDiaryId() }); // JDBCUtil에 delete문과 매개 변수 설정
 			int result = jdbcUtil.executeUpdate(); // delete 문 실행
 
-			String sql2 = "DELETE FROM Diary WHERE diaryId=?";
+			String sql2 = "DELETE FROM Diary WHERE diary_id=?";
 			jdbcUtil.setSqlAndParameters(sql2, new Object[] { diary.getDiaryId() }); // JDBCUtil에 delete문과 매개 변수 설정
 			result += jdbcUtil.executeUpdate(); // delete 문 실행
 
-			jdbcUtil.commit();
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
+			jdbcUtil.commit();
 			jdbcUtil.close(); // resource 반환
 		}
 		return 0;
