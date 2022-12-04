@@ -9,10 +9,7 @@
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <script>
-function fillBlank() {
-	$("dc").val("소주").prop("selected", true);
-	$("alcoholByType").val("참이슬 오리지널").prop("selected", true);
-})
+var count = 0;
 
 </script>
 </head>
@@ -28,25 +25,56 @@ function fillBlank() {
 	</div>
 	<br><br>
 	
+	<div class="simulDiv">
+	
 	<form class="f1" id="f1" method="post" action="<c:url value='/simulate/result' />">
 		
+		<div class="simulDiv2" id="simulDiv2">
+		
+		
+		<!-- 주량 -->
 		주량 입력 &nbsp;&nbsp;&nbsp;
+		<c:if test="${drinkingCapacity gt 0}"> <!-- 로그인 되어 있을 경우 -->
+			<select id="sel1_1" onchange="categorychange(this, 1)">
+				<option value="0">주종 선택</option>
+				<option value="소주" selected="selected">소주</option>
+				<option value="맥주">맥주</option>
+				<option value="와인">와인</option>
+			</select>&nbsp;&nbsp;
+			
+			<select id="sel2_1">
+				<option value="0">술 선택</option>
+				<c:forEach var="alcohol" items="${aSoju}">
+					<c:if test="${alcohol.name eq '참이슬 오리지널'}">
+						<option value="${alcohol.name}" selected="selected">${alcohol.name}</option>
+					</c:if>
+					<c:if test="${alcohol.name ne '참이슬 오리지널'}">
+						<option value="${alcohol.name}">${alcohol.name}</option>
+					</c:if>
+				</c:forEach>
+			</select>&nbsp;&nbsp;
+			
+			<input type="text" width="30" id="amount1" value="${drinkingCapacity}">
+		</c:if>
 		
-		<select id="sel1_1" onchange="categorychange(this, 1)">
-			<option>주종 선택</option>
-			<option value="소주">소주</option>
-			<option value="맥주">맥주</option>
-			<option value="와인">와인</option>
-		</select>&nbsp;&nbsp;
-		
-		<select id="sel2_1">
-			<option>술 선택</option>
-		</select>
-		
-		<input type="text" width="30">
+		<c:if test="${drinkingCapacity le 0}"> <!-- 로그인 되어 있지 않을 경우 -->
+			<select id="sel1_1" onchange="categorychange(this, 1)">
+				<option value="0">주종 선택</option>
+				<option value="소주">소주</option>
+				<option value="맥주">맥주</option>
+				<option value="와인">와인</option>
+			</select>&nbsp;&nbsp;
+			
+			<select id="sel2_1">
+				<option value="0">술 선택</option>
+			</select>&nbsp;&nbsp;
+			
+			<input type="text" width="30" id="amount1">
+		</c:if>
 		<br><br>
 		
 		
+		<!-- 마실 양 -->
 		마실 양 &nbsp;&nbsp;&nbsp;
 		<select id="sel1_2" onchange="categorychange(this, 2)">
 			<option>주종 선택</option>
@@ -57,7 +85,8 @@ function fillBlank() {
 		<select id="sel2_2">
 			<option>술 선택</option>
 		</select>
-		<input type="text" width="30"> 
+		<input type="text" width="30" id="amount2"> 
+		<a href="#" onclick="plus()"> + </a>
 		
 		
 		<script>
@@ -81,15 +110,51 @@ function fillBlank() {
         			target.appendChild(opt);
         		}
     		}
+    		
+    		function plus() {
+    			// 아직 안 됨
+    			count++;
+    			
+    			var form = document.getElementById("f1");
+    			
+    			var type = $("#sel1_2").val();
+    			var name = $("#sel2_2").val();
+    			var amount = $("#amount2").val();
+    			
+    			var drink = [type, name, amount];
+    			var str = "drink" + count.toString();
+    			
+    			var hiddenField = document.createElement('input');
+    			hiddenField.setAttribute(str, drink);
+    			form.appendChild(hiddenField);
+    			
+    			$("#sel1_2").val("0").prop("selected", true);
+    			$("#sel2_2").val("0").prop("selected", true);
+    			
+    			
+    			var target = document.getElementById("simulDiv2");
+    			var drinkStr = type + " " + name + " " + amount + "ml";
+    			
+    			var newDiv = document.createElement('div');
+    			var newText = document.createTextNode(drinkStr);
+    			newDiv.className = "simulDiv4";
+    			newDiv.appendChild(newText);
+    			
+    			target.appendChild(newDiv);
+    		}
     	</script>
+		</div>
 		
-		<c:if test="${drinkingCapacity} ne -1"> 
-		<!-- 주량이 null이 아닌 경우 -->
-			<script>
-				fillBlank();
-			</script>
-		</c:if>
-
+		
+		
+		<div class="simulDiv3">
+			<br><br><br>
+			<input type="button" value="시뮬레이션" onclick="simulSubmit()">
+		</div>
+		
+		
 	</form>
+	
+	</div>
 </body>
 </html>

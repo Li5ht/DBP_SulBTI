@@ -52,7 +52,13 @@ $(document).ready(function($) {
 		
 		<br>
 		<table class="recTable"><tr>
-			<td class="recTd"><a href="#recommend1" class="scroll_move">나만을 위한 추천</a></td>
+			<c:if test="${hasLogin}">
+				<td class="recTd"><a href="#recommend1" class="scroll_move">나만을 위한 추천</a></td>
+			</c:if>
+			<c:if test="${noLogin}">
+				<td class="recTd"><a href="<c:url value='/user/login/form'/>">나만을 위한 추천</a></td>
+			</c:if>
+			
 			<td class="recTd"><a href="#recommend2" class="scroll_move">랭킹 기반 추천</a></td>
 			<td class="recTd"><a href="#recommend3" class="scroll_move">최근 인기 순위 추천</a></td>
 			<td class="recTd"><a href="<c:url value='/recommend/test'/>">테스트 기반 추천</a></td>
@@ -64,21 +70,23 @@ $(document).ready(function($) {
 	<div class="d1">
 		<!-- 일단 css 다 빼고 기능만 작성 -->
 		
-		<div id="recommend1">
-			<h3>회원님을 위한 추천</h3>
-			<table class="recTable2"><tr>
-				<c:forEach var="drink" items="${userRecList}">
-					<td class="recTd2">
-						술 이름 : ${drink.alcohol.name} <br>
-						이미지 링크 : ${drink.alcohol.imageUrl} <br>
-						#${drink.alcohol.taste} #${drink.alcohol.flavor} #${rank.alcohol.corps} <br>
-						마셔도 되는 양 : ${drink.amount} <br>
-					</td>
-				</c:forEach>
-			</tr></table>
-		</div>
+		<c:if test="${hasLogin}">
+			<div id="recommend1">
+				<h3>회원님을 위한 추천</h3>
+				<table class="recTable2"><tr>
+					<c:forEach var="drink" items="${userRecList}">
+						<td class="recTd2">
+							술 이름 : ${drink.alcohol.name} <br>
+							이미지 링크 : ${drink.alcohol.imageUrl} <br>
+							#${drink.alcohol.taste} #${drink.alcohol.flavor} #${rank.alcohol.corps} <br>
+							마셔도 되는 양 : ${drink.amount} <br>
+						</td>
+					</c:forEach>
+				</tr></table>
+			</div>
+			<br><br><br>
+		</c:if>
 		
-		<br><br><br>
 		<div id="recommend2">
 			<h3>랭킹</h3>
 			<table class="recTable2"><tr>

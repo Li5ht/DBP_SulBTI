@@ -42,9 +42,13 @@ public class TestController implements Controller {
 		
 		
 		// 사용자 DB testType에 추가
-		long id = UserSessionUtils.getLoginUserPrimaryKey(request.getSession());
-		UserManager userMan = UserManager.getInstance();
-		userMan.getDrinking(id);
+		if (UserSessionUtils.hasLogined(request.getSession())) {
+			/* 로그인 O */
+            long id = UserSessionUtils.getLoginUserPrimaryKey(request.getSession());
+            UserManager userMan = UserManager.getInstance();
+            userMan.getDrinking(id);
+        }
+		
 		
 		
 		// 결과 띄우기

@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -27,6 +29,14 @@ public class SimulateController implements Controller {
         }
 		
 		request.setAttribute("drinkingCapacity", drinkingCapacity);
+		
+		/* 술 목록 받아오기 */
+		AlcoholDAO alcoholDao = new AlcoholDAO();
+		List<Alcohol> aSoju = alcoholDao.listByType("소주");
+		List<Alcohol> aBeer = alcoholDao.listByType("맥주");
+		
+		request.setAttribute("aSoju", aSoju);
+		request.setAttribute("aBeer", aBeer);
 	
 		if (request.getServletPath().equals("/simulate/result")) {
 			/* 시뮬레이터 결과 페이지 */

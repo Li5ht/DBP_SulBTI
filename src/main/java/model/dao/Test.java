@@ -3,6 +3,7 @@ package model.dao;
 import java.util.*;
 
 import model.*;
+import model.service.UserManager;
 
 public class Test {
 	

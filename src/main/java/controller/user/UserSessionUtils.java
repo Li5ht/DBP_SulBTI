@@ -15,7 +15,7 @@ public class UserSessionUtils {
     
     /* 현재 로그인한 사용자의 primary key를 구함 */
     public static long getLoginUserPrimaryKey(HttpSession session) {
-    	long id = (long)session.getAttribute(USER_PRIMARY_KEY);
+    	long id = (long) session.getAttribute(USER_PRIMARY_KEY);
     	return id;
     }
     
