@@ -27,9 +27,16 @@ public class HomeController implements Controller {
 		List<Rank> hotRank = manager.hotRank();
 		List<Rank> overallRank = manager.overallRank();
 		
+		List<Rank> soju = manager.typeRank("소주");
+		List<Rank> beer = manager.typeRank("맥주");
+		// 그 이하는 일단 생략
+		
 		/* 랭킹 결과 전달 */
 		request.setAttribute("hotRank", hotRank);
 		request.setAttribute("overallRank", overallRank);
+		
+		request.setAttribute("soju", soju);
+		request.setAttribute("beer", beer);
 		
 		return "/home/home.jsp";
 	}

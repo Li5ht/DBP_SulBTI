@@ -1,6 +1,5 @@
 package controller.recommend;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,18 +33,15 @@ public class RecommendController implements Controller {
 		List<Rank> hotRank = manager.hotRank();
 		List<Rank> overallRank = manager.overallRank();
 		
-		HashMap<String, List<Rank>> rankByType = new HashMap<String, List<Rank>>();
-		List<Rank> rank = manager.typeRank("소주");
-		rankByType.put("소주", rank);
-		rank.clear();
-		rank = manager.typeRank("맥주");
-		rankByType.put("맥주", rank);
+		List<Rank> soju = manager.typeRank("소주");
+		List<Rank> beer = manager.typeRank("맥주");
 		// 그 이하는 일단 생략
 		
 		request.setAttribute("userRecList", userRecList);
 		request.setAttribute("hotRank", hotRank);
 		request.setAttribute("overallRank", overallRank);
-		request.setAttribute("rankType", rankByType);
+		request.setAttribute("soju", soju);
+		request.setAttribute("beer", beer);
 		
 	
 		return "/recommend/list.jsp";

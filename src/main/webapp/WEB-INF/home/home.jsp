@@ -13,7 +13,21 @@
 <link rel=stylesheet href="<c:url value='/css/common.css' />" type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script>
-
+$(document).ready(function($) {
+	// select 선택에 맞게 보여지는 div 변화 (안먹힘ㅠ)
+    $('#selectBox').change(function() {
+        var result = $("select[name=selectBox]").val();
+        if (result == 'soju') {
+        	$('.beer').hide();
+        	
+          	$('.soju').show();
+        } else {
+          	$('.soju').hide();
+          	
+          	$('.beer').show();
+        }
+      }); 
+});
 </script>
 
 </head>
@@ -49,7 +63,29 @@
 				</c:forEach>
 			</div>
 			<div class="rankBox2">
-				여기엔 무슨 랭킹을...
+				<b>주종별 랭킹</b> <%= sf.format(nowTime) %>기준
+				<select id="selectBox" name="selectBox">
+					<option value="soju" selected="selected">소주</option>
+					<option value="beer">맥주</option>
+				</select><br><br>
+				
+				<div class="soju" id="soju">
+					<c:forEach var="rank" items="${soju}">
+						${rank.ranking}. 
+						<img src='${rank.alcohol.imageUrl}' width="auto" height="60px">
+						&nbsp;&nbsp;&nbsp; ${rank.alcohol.name}
+						+${rank.numberOfMention}<br><br>
+					</c:forEach>
+				</div>
+				
+				<div class="beer" id="beer">
+					<c:forEach var="rank" items="${beer}">
+						${rank.ranking}. 
+						<img src='${rank.alcohol.imageUrl}' width="auto" height="60px">
+						&nbsp;&nbsp;&nbsp; ${rank.alcohol.name}
+						+${rank.numberOfMention}<br><br>
+					</c:forEach>
+				</div>
 			</div>
 		</div>
 	

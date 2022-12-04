@@ -9,12 +9,26 @@
 <script>
 $(document).ready(function($) {
     $(".scroll_move").click(function(event){
-        console.log(".scroll_move");         
+        console.log(".scroll_move");
         event.preventDefault();
         $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
     });
 
+    // select 선택에 맞게 보여지는 div 변화 (안먹힘ㅠ)
+    $('#selectBox').change(function() {
+        var result = $("select[name=selectBox]").val();
+        if (result == 'soju') {
+        	$('.beer').hide();
+        	
+          	$('.soju').show();
+        } else {
+          	$('.soju').hide();
+          	
+          	$('.beer').show();
+        }
+      }); 
 });
+
 
 </script>
 </head>
@@ -62,13 +76,14 @@ $(document).ready(function($) {
 				</c:forEach>
 			</tr></table>
 		</div>
+		
 		<br><br><br>
 		<div id="recommend2">
 			<h3>랭킹</h3>
 			<table class="recTable2"><tr>
 				<c:forEach var="rank" items="${overallRank}">
 					<td class="recTd2">
-						<img src='${rank.alcohol.imageUrl}' width="50px" height="auto"> <br>
+						<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
 						${rank.alcohol.name} <br>
 						#${rank.alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps} <br>
 					</td>
@@ -76,25 +91,55 @@ $(document).ready(function($) {
 			</tr></table>
 		</div>
 		<br><br><br>
+		
 		<div id="recommend3">
 			<h3>최근 인기 순위 추천</h3>
 			<table class="recTable2"><tr>
 				<c:forEach var="rank" items="${hotRank}">
 					<td class="recTd2">
-						<img src='${rank.alcohol.imageUrl}' width="50px" height="auto"> <br>
+						<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
 						${rank.alcohol.name} <br>
 						#${rank.alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps} <br>
 					</td>
 				</c:forEach>
 			</tr></table>
 		</div>
-		<!-- 타입 별 랭킹....
-		<div id="recommend4">
-			
-		</div> -->
+		
+		<br><br><br>
+		<!-- 타입별 랭킹.... -->
+		<select id="selectBox" name="selectBox">
+			<option value="soju" selected="selected">소주</option>
+			<option value="beer">맥주</option>
+		</select> <h3>주종별 랭킹</h3><br>
+		
+		<div id="soju" class="soju">
+			<table class="recTable2"><tr>
+				<c:forEach var="rank" items="${soju}">
+					<td class="recTd2">
+						<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
+						${rank.alcohol.name} <br>
+						#${rank.alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps} <br>
+					</td>
+				</c:forEach>
+			</tr></table>
+		</div>
+		
+		<br><br>
+		<div id="beer" class="beer">
+			<table class="recTable2"><tr>
+				<c:forEach var="rank" items="${beer}">
+					<td class="recTd2">
+						<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
+						${rank.alcohol.name} <br>
+						#${rank.alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps} <br>
+					</td>
+				</c:forEach>
+			</tr></table>
+		</div>
+		
+		
 		
 	</div>
-	
 	<br><br>
 </body>
 </html>
