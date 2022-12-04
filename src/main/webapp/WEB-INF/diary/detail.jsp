@@ -1,12 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@page contentType="text/html; charset=utf-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>澜林 扁废 惑技其捞瘤</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel=stylesheet href="<c:url value='/css/common.css' />" type="text/css">
+<link rel=stylesheet href="<c:url value='/css/diary.css' />" type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<title>鞚岇＜ 旮半 靸侅劯韼橃澊歆�</title>
 </head>
 <body>
-	惑技 其捞瘤
+	靸侅劯 韼橃澊歆�
 </body>
 </html>

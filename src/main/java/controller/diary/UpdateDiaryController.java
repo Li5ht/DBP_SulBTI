@@ -1,6 +1,8 @@
 package controller.diary;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,8 +21,9 @@ public class UpdateDiaryController implements Controller {
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
     	Diary diary = null;
     	long diaryId = Long.parseLong(request.getParameter("diaryId"));
-		DiaryDAO diaryDao = new DiaryDAO();
-		diary = diaryDao.getDiary(diaryId);	
+    	DiaryManager dManager = DiaryManager.getInstance();
+    	diary = dManager.findDiary(diaryId);
+    	
 		if (request.getMethod().equals("GET")) {	
     		// GET request: 음주 기록 수정 form 요청	
 			request.setAttribute("diary", diary);			
@@ -35,7 +38,7 @@ public class UpdateDiaryController implements Controller {
     	diary.setContent(request.getParameter("content"));
     	log.debug("Update Diary : {}", diary);
 
-    	diaryDao.updateDiary(diary);
+    	dManager.update(diary);
     	
         return "redirect:/diary/list";			
     }

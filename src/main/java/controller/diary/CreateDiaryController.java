@@ -17,6 +17,8 @@ import controller.Controller;
 import controller.user.UserSessionUtils;
 import model.*;
 import model.dao.*;
+import model.service.DiaryManager;
+import model.service.UserManager;
 
 public class CreateDiaryController implements Controller {
 	private static final Logger log = LoggerFactory.getLogger(CreateDiaryController.class);
@@ -63,8 +65,8 @@ public class CreateDiaryController implements Controller {
     	int condition = Integer.parseInt(request.getParameter("condition"));
     	String content = request.getParameter("content");
     	
-    	MemberDao memberDao = new MemberDao();
-    	Member member = memberDao.getMemberById(String.valueOf(id));
+    	UserManager userManager = UserManager.getInstance();
+    	Member member = userManager.findUser(String.valueOf(id));
     	
     	diary.setDrinkingDate(drinkingDate);
     	diary.setDrinkingList(drinkingList);
@@ -73,8 +75,8 @@ public class CreateDiaryController implements Controller {
     	diary.setMember(member);
     	
 		try {
-			DiaryDAO diaryDao = new DiaryDAO();
-			diaryDao.createDiary(diary);
+			DiaryManager dManager = DiaryManager.getInstance();
+			dManager.create(diary);
 			
 	    	log.debug("Create Diary : {}", diary);
 	        return "redirect:/diary/list";	// 성공 시 음주 기록 리스트 화면으로 redirect

@@ -23,7 +23,7 @@ public class DiaryDAO {
 	 * date는 '20221101'(YYMMDD) 형식으로 넘어옴. 조회 시작 날짜와 끝 날짜를 받아, diary 리스트를 반환하거나 조회하고자
 	 * 하는 날짜 하나만을 넘겨 받아 diary 객체를 반환함.
 	 */
-	public List<Diary> findMonthlyDiary(long memberId, String... date) throws SQLException {
+	public List<Diary> getDiaryListByDate(long memberId, String... date) throws SQLException {
 		// 기간 조회 (조회 시작 날짜와 끝 날짜)
 		if (date.length == 2) {
 			String sql = "SELECT di.diary_id, drinking_date, condition, content, a.alcohol_id, type, amount "
@@ -160,7 +160,7 @@ public class DiaryDAO {
 
 		return diary;
 	}
-
+	
 	// diary 추가
 	public Diary createDiary(Diary diary) throws SQLException { // 추가한 diary 객체 반환
 		String key1[] = { "diaryId" }; // PK 컬럼의 이름

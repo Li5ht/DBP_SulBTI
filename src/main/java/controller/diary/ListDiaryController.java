@@ -9,6 +9,7 @@ import controller.Controller;
 import controller.user.UserSessionUtils;
 import model.*;
 import model.dao.*;
+import model.service.DiaryManager;
 
 public class ListDiaryController implements Controller {
 	@Override
@@ -25,8 +26,8 @@ public class ListDiaryController implements Controller {
         	request.setAttribute("nickname", UserSessionUtils.getLoginUserNickname(request.getSession()));
         }
 		
-    	DiaryDAO diaryDao = new DiaryDAO();
-		List<Diary> diaryList = diaryDao.findMonthlyDiary(id, "20221101", "20221201");
+		DiaryManager dManager = DiaryManager.getInstance();
+		List<Diary> diaryList = dManager.findDiaryListBydate(id, "20221101", "20221201");
 		
 		// diaryList 객체를 request에 저장하여 음주 기록 리스트 화면으로 이동(forwarding)
 		request.setAttribute("diaryList", diaryList);				
