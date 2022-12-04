@@ -12,6 +12,7 @@
 %>
 <link rel=stylesheet href="<c:url value='/css/common.css' />" type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
 $(document).ready(function($) {
 	// select 선택에 맞게 보여지는 div 변화 (안먹힘ㅠ)
@@ -105,5 +106,6 @@ $(document).ready(function($) {
 				<a href="<c:url value='/recommend/test' />">술BTI 테스트 하러가기</a>
 			</div>
 		</div>
+		<br><br>
 </body>
 </html>

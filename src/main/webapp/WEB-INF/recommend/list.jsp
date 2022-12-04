@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel=stylesheet href="<c:url value='/css/common.css' />" type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
 $(document).ready(function($) {
     $(".scroll_move").click(function(event){
@@ -124,7 +125,6 @@ $(document).ready(function($) {
 			</tr></table>
 		</div>
 		
-		<br><br>
 		<div id="beer" class="beer">
 			<table class="recTable2"><tr>
 				<c:forEach var="rank" items="${beer}">
