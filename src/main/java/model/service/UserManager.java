@@ -63,4 +63,8 @@ public class UserManager {
 	public long getDrinking(long id) {
 		return userDAO.getDrinking(id);
 	}
+	
+	public boolean updateUserTestType(String testType, long id) throws SQLException {
+		return userDAO.updateUserTestType(testType, id);
+	}
 }

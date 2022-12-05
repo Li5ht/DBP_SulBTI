@@ -147,8 +147,11 @@
 
 .simulDiv4 {
 	float: left;
-	width: 150px;
+	width: 250px;
 	height: 30px;
 	text-align:center;
 	vertical-align: middle;
+	border: 1px solid;
+	margin-left: 30px;
+	margin-bottom: 30px;
 }

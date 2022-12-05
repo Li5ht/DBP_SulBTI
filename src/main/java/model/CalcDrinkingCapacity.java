@@ -4,23 +4,23 @@ import java.util.*;
 
 /* 주량 계산하는 클래스 */
 public class CalcDrinkingCapacity {
-	private float userDrinkingCapacity;
+	private Drink userDrinkingCapacity;
 	private List<Drink> drinkList;
 	
 	public CalcDrinkingCapacity() {
 		super();
 	}
 	
-	public CalcDrinkingCapacity(float userDrinkingCapacity, List<Drink> drinkList) {
+	public CalcDrinkingCapacity(Drink userDrinkingCapacity, List<Drink> drinkList) {
 		super();
 		this.userDrinkingCapacity = userDrinkingCapacity;
 		this.drinkList = drinkList;
 	}
 	
-	public float getUserDrinkingCapacity() {
+	public Drink getUserDrinkingCapacity() {
 		return userDrinkingCapacity;
 	}
-	public void setUserDrinkingCapacity(float userDrinkingCapacity) {
+	public void setUserDrinkingCapacity(Drink userDrinkingCapacity) {
 		this.userDrinkingCapacity = userDrinkingCapacity;
 	}
 	public List<Drink> getDrinkList() {
@@ -38,7 +38,7 @@ public class CalcDrinkingCapacity {
 	public int calculate() {
 		/* 상태에 따른 정수 결과 반환 (0이면 무슨 상태, 1이면 무슨 상태 이런 식) */
 		
-		// 추후 수정 ㅎ;
+		// 추후 수정
 		
 		
 		return 0;

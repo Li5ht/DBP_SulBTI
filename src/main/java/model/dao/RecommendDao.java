@@ -40,6 +40,7 @@ public class RecommendDao {
 		return preferenceId;
 	}
 	
+	
 	public long createPreferenceByRate(long memberId, long alcoholId, float rate) {
 		String query = "INSERT INTO preference (preference_id, member_id, alcohol_id, rate) "
 				+ "values (preference_id_seq.nextval, ?, ?, ?)";

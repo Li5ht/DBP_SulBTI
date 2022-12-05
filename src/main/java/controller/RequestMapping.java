@@ -39,7 +39,7 @@ public class RequestMapping {
         
        // 시뮬레이터
        mappings.put("/simulate", new SimulateController());
-       mappings.put("simulate/result", new SimulateController());
+       mappings.put("/simulate/result", new SimulateController());
        
        
        // 음주 기록

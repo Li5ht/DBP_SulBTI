@@ -52,7 +52,7 @@ public class AlcoholDAO {
 	
 	// 술 검색 기능 (search)
 	public List<Alcohol> searchAlcohol(String name) {
-		String query = "SELECT alcohol_id name, type, rate, alcohol_level, image, taste, flavor, corps "
+		String query = "SELECT alcohol_id, name, type, rate, alcohol_level, image, taste, flavor, corps "
 				+ "FROM alcohol WHERE name Like ?";
 		String sQuery = "%"+name+"%";
 		Object[] param = new Object[] { sQuery };
@@ -86,6 +86,40 @@ public class AlcoholDAO {
 			jdbcUtil.close();
 		}	
     	return aList;
+	}
+	
+	// 술 정보 받아오기
+	public Alcohol findAlcohol(String type, String name) {
+		String query = "SELECT alcohol_id, name, type, rate, alcohol_level, image, taste, flavor, corps "
+				+ "FROM alcohol WHERE name=? AND type=?";
+		Object[] param = new Object[] { name, type };
+		jdbcUtil.setSqlAndParameters(query, param);
+		ResultSet rs = null;
+		Alcohol alcohol = null;
+			
+		try {
+			rs = jdbcUtil.executeQuery();
+				
+			if (rs.next()) {
+				long alcoholId = rs.getLong("alcohol_id");
+				String aName = rs.getString("name");
+				String aType = rs.getString("type");
+				float rate = rs.getFloat("rate");
+				float alcoholLevel = rs.getFloat("alcohol_level");
+				String imageUrl = rs.getString("image");
+				int taste = rs.getInt("taste");
+				int flavor = rs.getInt("flavor");
+				int corps = rs.getInt("corps");
+					
+				alcohol = new Alcohol(alcoholId, aName, aType, rate, alcoholLevel, imageUrl, taste, flavor, corps);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {	
+			jdbcUtil.close();
+		}	
+	    return alcohol;
 	}
 	
 	// 술 필터링 기능 (주종별)

@@ -35,14 +35,14 @@ var count = 0;
 		<!-- 주량 -->
 		주량 입력 &nbsp;&nbsp;&nbsp;
 		<c:if test="${drinkingCapacity gt 0}"> <!-- 로그인 되어 있을 경우 -->
-			<select id="sel1_1" onchange="categorychange(this, 1)">
+			<select id="sel1_1" name="sel1_1" onchange="categorychange(this, 1)">
 				<option value="0">주종 선택</option>
 				<option value="소주" selected="selected">소주</option>
 				<option value="맥주">맥주</option>
 				<option value="와인">와인</option>
 			</select>&nbsp;&nbsp;
 			
-			<select id="sel2_1">
+			<select id="sel2_1" name="sel2_1">
 				<option value="0">술 선택</option>
 				<c:forEach var="alcohol" items="${aSoju}">
 					<c:if test="${alcohol.name eq '참이슬 오리지널'}">
@@ -54,22 +54,22 @@ var count = 0;
 				</c:forEach>
 			</select>&nbsp;&nbsp;
 			
-			<input type="text" width="30" id="amount1" value="${drinkingCapacity}">
+			<input type="text" name="amount1" width="30" id="amount1" value="${drinkingCapacity}">
 		</c:if>
 		
 		<c:if test="${drinkingCapacity le 0}"> <!-- 로그인 되어 있지 않을 경우 -->
-			<select id="sel1_1" onchange="categorychange(this, 1)">
+			<select id="sel1_1" name="sel1_1" onchange="categorychange(this, 1)">
 				<option value="0">주종 선택</option>
 				<option value="소주">소주</option>
 				<option value="맥주">맥주</option>
 				<option value="와인">와인</option>
 			</select>&nbsp;&nbsp;
 			
-			<select id="sel2_1">
+			<select id="sel2_1" name="sel2_1">
 				<option value="0">술 선택</option>
 			</select>&nbsp;&nbsp;
 			
-			<input type="text" width="30" id="amount1">
+			<input type="text" name="amount1" width="30" id="amount1">
 		</c:if>
 		<br><br>
 		
@@ -87,7 +87,7 @@ var count = 0;
 		</select>
 		<input type="text" width="30" id="amount2"> 
 		<a href="#" onclick="plus()"> + </a>
-		
+		<br><br><br><br><br><br>
 		
 		<script>
     		function categorychange(e, num) {
@@ -121,26 +121,42 @@ var count = 0;
     			var name = $("#sel2_2").val();
     			var amount = $("#amount2").val();
     			
-    			var drink = [type, name, amount];
     			var str = "drink" + count.toString();
+    			var drinkStr = type + "/" + name + "/" + amount;
     			
     			var hiddenField = document.createElement('input');
-    			hiddenField.setAttribute(str, drink);
+    			hiddenField.setAttribute("name", str);
+    			hiddenField.setAttribute("type", "hidden");
+    			hiddenField.setAttribute("value", drinkStr);
     			form.appendChild(hiddenField);
     			
     			$("#sel1_2").val("0").prop("selected", true);
     			$("#sel2_2").val("0").prop("selected", true);
+    			$("#amount2").val("");
     			
     			
     			var target = document.getElementById("simulDiv2");
-    			var drinkStr = type + " " + name + " " + amount + "ml";
     			
+    			var c = count.toString();
+    			var textBox = c + ". " + type + " " + name + " " + amount + "ml";
     			var newDiv = document.createElement('div');
-    			var newText = document.createTextNode(drinkStr);
+    			var newText = document.createTextNode(textBox);
     			newDiv.className = "simulDiv4";
     			newDiv.appendChild(newText);
     			
     			target.appendChild(newDiv);
+    		}
+    		
+    		function simulSubmit() {
+    			var form = document.getElementById("f1");
+    			
+    			var hiddenField = document.createElement('input');
+    			hiddenField.setAttribute("name", "count");
+    			hiddenField.setAttribute("type", "hidden");
+    			hiddenField.setAttribute("value", count);
+    			form.appendChild(hiddenField);
+    			
+    			form.submit();
     		}
     	</script>
 		</div>

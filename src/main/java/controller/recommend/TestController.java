@@ -46,7 +46,7 @@ public class TestController implements Controller {
 			/* 로그인 O */
             long id = UserSessionUtils.getLoginUserPrimaryKey(request.getSession());
             UserManager userMan = UserManager.getInstance();
-            userMan.getDrinking(id);
+            userMan.updateUserTestType(testType, id);
         }
 		
 		
