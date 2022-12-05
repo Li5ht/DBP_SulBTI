@@ -46,7 +46,7 @@ function login() {
 	        <input type="password" name="password" class="form-control" placeholder="비밀번호"> 
 	    </div> 
 		<div class="form-group">        
-			<input type="button" class="btn btn-primary" value="로그인" onClick="login()"> 
+			<input type="button" class="btn btn-outline-success" value="로그인" onClick="login()"> 
 			<a href="<c:url value='/user/register' />" class="btn btn-link">회원 가입 </a>    		     
 		</div>   	
 	</form> 

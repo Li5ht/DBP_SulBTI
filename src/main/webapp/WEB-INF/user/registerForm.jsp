@@ -116,7 +116,7 @@ function userCreate() {
 	    
    		<br>
 		<div class="form-group">        
-			<input type="button" class="btn btn-primary" value="가입" onClick="userCreate()"> 
+			<input type="button" class="btn btn-outline-success" value="가입" onClick="userCreate()"> 
 		</div>   
 	</form> 
 </div>

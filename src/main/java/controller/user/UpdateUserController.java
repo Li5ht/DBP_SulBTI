@@ -1,8 +1,6 @@
 package controller.user;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,13 +49,19 @@ public class UpdateUserController implements Controller {
 	    }	
     	
     	// POST request (회원정보가 parameter로 전송됨)
-//    	String from = request.getParameter("birth");
-//    	SimpleDateFormat fm = new SimpleDateFormat("yy/MM/dd");
-//    	Date to = fm.parse(from);
-    	Member updateUser = new Member(
+       	String year = request.getParameter("birth1");
+        String month = request.getParameter("birth2");
+        String day = request.getParameter("birth3");
+        
+        Date birthday = Date.valueOf(year+"-"+month+"-"+day);
+
+        Member updateUser = new Member(
+        	request.getParameter("userId"),
     		request.getParameter("password"),
     		request.getParameter("nickname"),
-    		request.getParameter("email"));
+    		request.getParameter("email"),
+    		request.getParameter("gender"),
+    		birthday);
 
     	log.debug("Update User : {}", updateUser);
 

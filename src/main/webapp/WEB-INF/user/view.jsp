@@ -49,7 +49,7 @@
 		</tbody>
 	</table>
 	<br> 		     
-    <a class="btn btn-primary" 
+    <a class="btn btn-outline-success" 
     	href="<c:url value='/user/update' >
      		     <c:param name='userId' value='${user.userId}'/>
 		 	  </c:url>">수정</a>

@@ -154,26 +154,26 @@ public class MemberDao {
 //			updateQuery += "user_id = ?, ";
 //			tempParam[index++] = mem.getUserId();
 //		}
-		if (mem.getNickname() != null) {		
-			updateQuery += "nickname = ?, ";		
-			tempParam[index++] = mem.getNickname();		
-		}
 		if (mem.getPassword() != null) {		
 			updateQuery += "password = ?, ";	
 			tempParam[index++] = mem.getPassword();		
+		}
+		if (mem.getNickname() != null) {		
+			updateQuery += "nickname = ?, ";		
+			tempParam[index++] = mem.getNickname();		
 		}
 		if (mem.getEmail() != null) {		
 			updateQuery += "email = ?, ";	
 			tempParam[index++] = mem.getEmail();		
 		}
-//		if (mem.getBirth() != null) {		
-//			updateQuery += "birth = ?, ";	
-//			tempParam[index++] = mem.getBirth();		
-//		}
-//		if (Integer.valueOf(mem.getGender()) != null) {		
-//			updateQuery += "gender = ?, ";		
-//			tempParam[index++] = mem.getGender();		
-//		}
+		if (mem.getBirth() != null) {		
+			updateQuery += "birth = ?, ";	
+			tempParam[index++] = mem.getBirth();		
+		}
+		if (Integer.valueOf(mem.getGender()) != null) {		
+			updateQuery += "gender = ?, ";		
+			tempParam[index++] = mem.getGender();		
+		}
 //		if (mem.getTestType() != null) {		
 //			updateQuery += "test_type = ?, ";		
 //			tempParam[index++] = mem.getTestType();		
@@ -182,10 +182,10 @@ public class MemberDao {
 //			updateQuery += "drinking_capacity = ?, ";		
 //			tempParam[index++] = mem.getDrinkingCapacity();		
 //		}
-		updateQuery += "WHERE id = ? ";
+		updateQuery += "WHERE user_id = ? ";
 		updateQuery = updateQuery.replace(", WHERE", " WHERE");
 		
-		tempParam[index++] = mem.getId();
+		tempParam[index++] = mem.getUserId();
 		
 		Object[] newParam = new Object[index];
 		for (int i=0; i < newParam.length; i++)

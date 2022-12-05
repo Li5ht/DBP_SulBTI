@@ -59,6 +59,16 @@ public class Member {
 		this.email = email;
 	}
 
+	public Member(String userId, String password, String nickname, String email, String gender, Date birth) {
+		// TODO Auto-generated constructor stub
+		this.user_id = userId;
+		this.password = password;
+		this.nickname = nickname;
+		this.email = email;
+		this.gender = Integer.parseInt(gender);
+		this.birth = birth;
+	}
+
 	public long getId() {
 		return id;
 	}
