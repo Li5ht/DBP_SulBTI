@@ -33,7 +33,7 @@ var count = 0;
 		
 		
 		<!-- 주량 -->
-		주량 입력 &nbsp;&nbsp;&nbsp;
+		주량 입력(ml) &nbsp;&nbsp;&nbsp;
 		<c:if test="${drinkingCapacity gt 0}"> <!-- 로그인 되어 있을 경우 -->
 			<select id="sel1_1" name="sel1_1" onchange="categorychange(this, 1)">
 				<option value="0">주종 선택</option>
@@ -75,7 +75,7 @@ var count = 0;
 		
 		
 		<!-- 마실 양 -->
-		마실 양 &nbsp;&nbsp;&nbsp;
+		마실 양(ml) &nbsp;&nbsp;&nbsp;
 		<select id="sel1_2" onchange="categorychange(this, 2)">
 			<option>주종 선택</option>
 			<option value="소주">소주</option>

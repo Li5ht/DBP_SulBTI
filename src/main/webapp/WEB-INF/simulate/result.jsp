@@ -58,7 +58,7 @@
 		<br><br>
 		
 		
-		<div><a href="<c:url value='/simulate' />">다시하기</a></div>	<!-- div에 디자인 적용 -->
+		<div><a href="<c:url value='/simulate' />" style="color:#28a745;">다시하기</a></div>	<!-- div에 디자인 적용 -->
 	</div>
 </body>
 </html>
