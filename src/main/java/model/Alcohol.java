@@ -141,4 +141,8 @@ public class Alcohol {
 		return "name=" + name + ", type=" + type + ", rate=" + rate + ", alcoholLevel=" + alcoholLevel
 				+ ", imageUrl=" + imageUrl + ", taste=" + taste + ", flavor=" + flavor + ", corps=" + corps;
 	}
+	
+	public String toCalendarString() {
+		return name + " ";
+	}
 }
