@@ -54,20 +54,19 @@ public class CreateDiaryController implements Controller {
         Date drinkingDate = df.parse(request.getParameter("date")); // String --> java.util.Date 변환
 
     	List<Drink> drinkingList = new ArrayList<Drink>(); // 술 목록
-    	// 추후에 반복문으로 수정.. 일단 테스트부터 하고
+    	// 추후에 반복문으로 수정.. 
     	Drink drink = new Drink();
-    	//String alcoholName = request.getParameter("alcohol");
-//    	String alcoholName = "카스";
-//    	List<Alcohol> alcohol = alcoholDao.searchAlcohol(alcoholName);
-//    	if (alcohol.size() != 0) {
-//    		drink.setAlcohol(alcohol.get(0));
-//    	}
-    	long n = 10001;
-    	float f1 = 0;
-    	float f2 = (float) 4.5;
-    	drink.setAlcohol(new Alcohol(n, "카스", "맥주", f1, f2, "https://w.namu.la/s/4f1303df52a3acaf98f0f74756c12df81600bd5720083f2322c16be36a3d1fb79efb5467d530e6cfd1a159af4cd95f68930601542b383aa8e3ce55c2db6dfbbeba404188c4afde712c831d2b5ae543057d48ba70a4544d9ba8555ee45001a375", 0, 0, 0));
+    	String alcoholName = request.getParameter("selectedAlcohol");
+    	List<Alcohol> alcohol = alcoholDao.searchAlcohol(alcoholName);
+    	System.out.println(alcohol);
+    	if (alcohol.size() != 0) {
+    		drink.setAlcohol(alcohol.get(0));
+    	}
+    	System.out.println(drink);
+    	
     	drink.setAmount(Integer.parseInt(request.getParameter("amount")));
     	drinkingList.add(drink);
+    	System.out.println(drinkingList);
     	
     	int condition = Integer.parseInt(request.getParameter("condition"));
     	String content = request.getParameter("content");
@@ -81,6 +80,7 @@ public class CreateDiaryController implements Controller {
     	diary.setContent(content);
     	diary.setMember(member);
     	
+    	System.out.println(diary);
 		try {
 			DiaryManager dManager = DiaryManager.getInstance();
 			dManager.create(diary);

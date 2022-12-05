@@ -9,9 +9,19 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script>
 function diaryCreate() {
-	// 폼 내용 확인
-	
+	// 폼 내용 확인=
 	form.submit();
+}
+
+function changeFn(){
+	var alcohol = document.getElementById("alcohol");
+	var v = (alcohol.options[alcohol.selectedIndex].value);
+	document.getElementById("selectedAlcohol").value = v;
+	
+	/* 		
+	var selectedindex = city.selectedIndex;
+	alert("value = "+value+" , selectedindex = "+selectedindex); 
+	*/
 }
 </script>
 <title>음주 기록 추가</title>
@@ -44,11 +54,12 @@ function diaryCreate() {
 	    <div class="form-group row">   
 	        <label for="alcohol" class="col-lg-2 col-form-label">마신 술 목록</label>
 	        <div class="col-lg-10">
-	        	<select id="alcohol" name="alcohol" form="myForm">
+	        	<select id="alcohol" name="alcohol" form="myForm" onchange="changeFn()">
 		        	<c:forEach var="alcohol" items="${alcoholList}">
 		        		<option value=${alcohol.name}>${alcohol.name}</option>
 		        	</c:forEach>
 		        </select>
+		        <input type="text" id ="selectedAlcohol" class="form-control" name="selectedAlcohol" readonly>
 	            <input type="number" name="amount" class="form-control" placeholder="마신 양 (ml 단위)" 
 					<c:if test="${creationFailed}">value="${diary.drinkingList[0].amount}"</c:if>>
 	        </div>
