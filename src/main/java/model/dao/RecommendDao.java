@@ -35,7 +35,6 @@ public class RecommendDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {	
-			jdbcUtil.close();
 		}	
 		
 		return preferenceId;
@@ -101,7 +100,6 @@ public class RecommendDao {
 				pId = rs.getInt(1);
 			}
 			
-			jdbcUtil.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			jdbcUtil.rollback();
@@ -111,7 +109,6 @@ public class RecommendDao {
 			jdbcUtil.rollback();
 			e.printStackTrace();
 		} finally {	
-			jdbcUtil.close();
 		}	
 		return pId;
 	}
@@ -152,7 +149,6 @@ public class RecommendDao {
 				
 			jdbcUtil.executeUpdate();
 			
-			jdbcUtil.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			jdbcUtil.rollback();
@@ -162,7 +158,6 @@ public class RecommendDao {
 			jdbcUtil.rollback();
 			e.printStackTrace();
 		} finally {	
-			jdbcUtil.close();
 		}	
 	}
 	

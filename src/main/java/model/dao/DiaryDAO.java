@@ -175,7 +175,8 @@ public class DiaryDAO {
 					diary.getContent() };
 			jdbcUtil.setSqlAndParameters(sql1, param1); // JDBCUtil 에 insert문과 매개 변수 설정
 			jdbcUtil.executeUpdate(key1); // insert 문 실행
-
+			jdbcUtil.commit();
+			
 			ResultSet rs = jdbcUtil.getGeneratedKeys();
 			if (rs.next()) {
 				int generatedKey = rs.getInt(1); // 생성된 PK 값

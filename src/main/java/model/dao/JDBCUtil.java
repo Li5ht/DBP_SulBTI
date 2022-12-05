@@ -17,6 +17,7 @@ public class JDBCUtil {
 
 	// 기본 생성자
 	public JDBCUtil() {
+		conn = connMan.getConnection();
 	}
 
 	
@@ -212,6 +213,7 @@ public class JDBCUtil {
 
 	public void commit() {
 		try {
+			conn.setAutoCommit(false);
 			conn.commit();
 		} catch (SQLException ex) {
 			ex.printStackTrace();
