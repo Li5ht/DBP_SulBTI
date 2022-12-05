@@ -35,5 +35,9 @@ public class Drink {
 	public String toString() {
 		return "Drink [alcohol=" + alcohol + ", amount=" + amount + "]";
 	}
+	
+	public String toCalendarString() {
+		return alcohol.toCalendarString() + amount + "ml";
+	}
 
 }

@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="model.*"%>
 <%@page contentType="text/html; charset=utf-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.Date"%>
@@ -161,17 +163,33 @@ public class MyCalendar {
 			}
 	
 	/* 1일부터 달력을 출력한 달의 마지막 날짜까지 반복하며 날짜를 출력 */
+			List<Diary> diaryList = (List<Diary>) request.getAttribute("diaryList");
+			
+			String[] list = new String[32];
+			for (int i = 0; i < 32; i++) {
+				list[i] = "";
+			}
+			if (diaryList != null) {
+				for (Diary diary : diaryList) {
+					String str = diary.getDrinkingDate().toString();;
+					int day = Integer.parseInt(str.substring(str.length() - 2, str.length()));
+					for (Drink drink : diary.getDrinkingList()) {
+						list[day] += "<br>" + drink.toCalendarString() + "\n";
+					}
+				}
+			}
+			
 			for(int i = 1; i <= MyCalendar.lastDay(year, month); i++){
 				/* 요일별로 색깔 다르게 해주기위해 td에 class 태그걸어주기 */
 				switch(MyCalendar.weekDay(year, month, i)){
 					case 0 :
-						out.println("<td class ='sun'>" +i +"</td>");
+						out.println("<td class ='sun'>" + i + list[i] + "</td>");
 						break;
 					case 6 :
-						out.println("<td class ='sat'>" +i +"</td>");
+						out.println("<td class ='sat'>" + i + list[i] + "</td>");
 						break;
 					default :
-						out.println("<td class ='etc'>" +i +"</td>");
+						out.println("<td class ='etc'>" + i + list[i] + "</td>");
 						break;
 				}
 				
