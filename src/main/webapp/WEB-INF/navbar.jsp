@@ -29,7 +29,7 @@
     </li>
     
     <li class="nav-item">
-		<a class="nav-link btn-link" href="#">술 정보</a>
+		<a class="nav-link btn-link" href="<c:url value='/product/info'/>">술 정보</a>
     </li>
     
     <c:if test="${noLogin}">

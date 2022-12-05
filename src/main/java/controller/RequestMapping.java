@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import controller.diary.*;
 import controller.recommend.*;
+import controller.review.ViewAlcoholController;
 import controller.user.*;
 
 
@@ -46,6 +47,12 @@ public class RequestMapping {
        mappings.put("/diary/view", new ViewDiaryController());
        mappings.put("/diary/create", new CreateDiaryController());
        mappings.put("/diary/update", new UpdateDiaryController());
+       
+       
+       // 술 정보
+       mappings.put("/product/info", new ViewAlcoholController());
+       
+       
        
        logger.info("Initialized Request Mapping!");
     }

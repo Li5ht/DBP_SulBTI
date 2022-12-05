@@ -15,7 +15,7 @@ $(document).ready(function($) {
         $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
     });
 
-    // select 선택에 맞게 보여지는 div 변화 (안먹힘ㅠ)
+    // select 선택에 맞게 보여지는 div 변화
     $('#selectBox').change(function() {
         var result = $("select[name=selectBox]").val();
         if (result == 'soju') {

@@ -12,6 +12,7 @@
 <title>술 정보</title>
 
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
 $(document).ready(function($) {
     $(".scroll_move").click(function(event){
         console.log(".scroll_move");
@@ -19,7 +20,7 @@ $(document).ready(function($) {
         $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
     });
 )};
-
+</script>
 </head>
 <body>
 	<!-- 네비게이션 바 -->
