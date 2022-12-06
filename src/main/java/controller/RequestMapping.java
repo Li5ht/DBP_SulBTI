@@ -51,6 +51,7 @@ public class RequestMapping {
        
        // 술 정보
        mappings.put("/product/info", new ViewAlcoholController());
+       mappings.put("/alcohol/review", new ViewAlcoholController());
        
        
        

@@ -88,7 +88,7 @@ public class AlcoholDAO {
     	return aList;
 	}
 	
-	// 술 정보 받아오기
+	// 술 정보 받아오기 (타입, 이름)
 	public Alcohol findAlcohol(String type, String name) {
 		String query = "SELECT alcohol_id, name, type, rate, alcohol_level, image, taste, flavor, corps "
 				+ "FROM alcohol WHERE name=? AND type=?";
@@ -121,6 +121,41 @@ public class AlcoholDAO {
 		}	
 	    return alcohol;
 	}
+	
+	// 술 정보 받아오기 (alcoholId)
+		public Alcohol findAlcoholById(long alcoholId) {
+			String query = "SELECT alcohol_id, name, type, rate, alcohol_level, image, taste, flavor, corps "
+					+ "FROM alcohol WHERE alcohol_id=?";
+			Object[] param = new Object[] { alcoholId };
+			jdbcUtil.setSqlAndParameters(query, param);
+			ResultSet rs = null;
+			Alcohol alcohol = null;
+				
+			try {
+				rs = jdbcUtil.executeQuery();
+					
+				if (rs.next()) {
+					long aId = rs.getLong("alcohol_id");
+					String aName = rs.getString("name");
+					String aType = rs.getString("type");
+					float rate = rs.getFloat("rate");
+					float alcoholLevel = rs.getFloat("alcohol_level");
+					String imageUrl = rs.getString("image");
+					int taste = rs.getInt("taste");
+					int flavor = rs.getInt("flavor");
+					int corps = rs.getInt("corps");
+						
+					alcohol = new Alcohol(aId, aName, aType, rate, alcoholLevel, imageUrl, taste, flavor, corps);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {	
+				jdbcUtil.close();
+			}	
+		    return alcohol;
+		}
+	
 	
 	// 술 필터링 기능 (주종별)
 	public List<Alcohol> listByType(String type) {
@@ -159,85 +194,85 @@ public class AlcoholDAO {
 	}
 	
 	// 술 디테일 + 리뷰 (read)
-	/*
-	    HashMap<Alcohol, List<Review>>로 전달하므로 사용 시,
-	    HashMap<Alcohol, List<Review>> map = alcoholDao.reviewListByAlcohol(alcoholId);
-		Alcohol alcohol = null;
-		List<Review> reviewList = null;
-		for (Alcohol a : map.keySet()) {
-			alcohol = a;
-			reviewList = map.get(a);
-		}
-		이런 식으로 저장해서 사용할 수 있음 
-		(어차피 이 메소드에서 HashMap이어도 put을 1번만 때문에 for문으로 써도 반복문 1번 실행하고 끝남)
-	 */
-	public HashMap<Alcohol, List<Review>> reviewListByAlcohol(long alcoholId) {
-		List<Review> reviewList = null;
-		Alcohol alcohol = null;
-		Member member = null;
-		Review review = null;
-		HashMap<Alcohol, List<Review>> map = null;
-		
-		String query = "SELECT a.name AS \"aName\", a.type AS \"aType\", a.alcohol_level AS \"alcoholLevel\", "
-				+ "a.rate AS \"aRate\", a.taste AS \"aTaste\", a.flavor AS \"aFlavor\", a.corps AS \"aCorps\", "
-				+ "m.id AS \"mId\", m.nickname AS \"nickname\", p.rate AS \"pRate\", r.reg_date AS \"regDate\", "
-				+ "r.taste AS \"rTaste\", r.flavor AS \"rFlavor\", r.corps AS \"rCorps\", r.content AS \"content\" "
-				+ "FROM Review r, Alcohol a, Preference p, Member m "
-				+ "WHERE r.preference_id = p.preference_id "
-				+ "AND a.alcohol_id = p.alcohol_id "
-				+ "AND p.member_id = m.id "
-				+ "AND p.alcohol_id = ? "
-				+ "ORDER BY r.reg_date DESC";
-		
-		Object[] param = new Object[] { alcoholId };
-		
-		jdbcUtil.setSqlAndParameters(query, param);
-		ResultSet rs = null;
-		
-		try {
-			rs = jdbcUtil.executeQuery();
-			
-			alcohol = new Alcohol();
-			reviewList = new ArrayList<Review>();
-			map = new HashMap<Alcohol, List<Review>>();
-			
-			while (rs.next()) {
-				alcohol.setName(rs.getString("aName"));
-				alcohol.setType(rs.getString("aType"));
-				alcohol.setAlcoholLevel(rs.getFloat("alcoholLevel"));
-				alcohol.setRate(rs.getFloat("aRate"));
-				alcohol.setTaste(rs.getInt("aTaste"));
-				alcohol.setFlavor(rs.getInt("aFlavor"));
-				alcohol.setCorps(rs.getInt("aCorps"));
-				
-				member = new Member();
-				member.setId(rs.getLong("mId")); 			// 혹시나 필요할까봐,, member의 식별자도 추가
-				member.setNickname(rs.getString("nickname"));	// 리뷰 보여줄 때 작성자의 닉네임만 알면 되므로 다른 컬럼 생략
-				
-				review = new Review();
-				review.setAlcohol(alcohol);
-				review.setMember(member);
-				review.setRate(rs.getFloat("pRate"));
-				review.setRegDate(rs.getDate("regDate"));
-				review.setTaste(rs.getInt("rTaste"));
-				review.setFlavor(rs.getInt("rFlavor"));
-				review.setCorps(rs.getInt("rCorps"));
-				review.setContent(rs.getString("content"));
-				
-				reviewList.add(review); // reviewList에 리뷰 저장
+		/*
+		    HashMap<Alcohol, List<Review>>로 전달하므로 사용 시,
+		    HashMap<Alcohol, List<Review>> map = alcoholDao.reviewListByAlcohol(alcoholId);
+			Alcohol alcohol = null;
+			List<Review> reviewList = null;
+			for (Alcohol a : map.keySet()) {
+				alcohol = a;
+				reviewList = map.get(a);
 			}
+			이런 식으로 저장해서 사용할 수 있음 
+			(어차피 이 메소드에서 HashMap이어도 put을 1번만 때문에 for문으로 써도 반복문 1번 실행하고 끝남)
+		 */
+		public HashMap<Alcohol, List<Review>> reviewListByAlcohol(long alcoholId) {
+			List<Review> reviewList = null;
+			Alcohol alcohol = null;
+			Member member = null;
+			Review review = null;
+			HashMap<Alcohol, List<Review>> map = null;
 			
-			map.put(alcohol, reviewList); // HashMap에 put
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {	
-			jdbcUtil.close();
-		}	
-		
-		return map;
-	}
-	
+			String query = "SELECT a.name AS \"aName\", a.type AS \"aType\", a.alcohol_level AS \"alcoholLevel\", a.image AS \"imageUrl\", "
+					+ "a.rate AS \"aRate\", a.taste AS \"aTaste\", a.flavor AS \"aFlavor\", a.corps AS \"aCorps\", "
+					+ "m.id AS \"mId\", m.nickname AS \"nickname\", p.rate AS \"pRate\", r.reg_date AS \"regDate\", "
+					+ "r.taste AS \"rTaste\", r.flavor AS \"rFlavor\", r.corps AS \"rCorps\", r.content AS \"content\" "
+					+ "FROM Review r, Alcohol a, Preference p, Member m "
+					+ "WHERE r.preference_id = p.preference_id "
+					+ "AND a.alcohol_id = p.alcohol_id "
+					+ "AND p.member_id = m.id "
+					+ "AND p.alcohol_id = ? "
+					+ "ORDER BY r.reg_date DESC";
+			
+			Object[] param = new Object[] { alcoholId };
+			
+			jdbcUtil.setSqlAndParameters(query, param);
+			ResultSet rs = null;
+			
+			try {
+				rs = jdbcUtil.executeQuery();
+				
+				alcohol = new Alcohol();
+				reviewList = new ArrayList<Review>();
+				map = new HashMap<Alcohol, List<Review>>();
+				
+				while (rs.next()) {
+					alcohol.setName(rs.getString("aName"));
+					alcohol.setType(rs.getString("aType"));
+					alcohol.setAlcoholLevel(rs.getFloat("alcoholLevel"));
+					alcohol.setImageUrl(rs.getString("imageUrl"));
+					alcohol.setRate(rs.getFloat("aRate"));
+					alcohol.setTaste(rs.getInt("aTaste"));
+					alcohol.setFlavor(rs.getInt("aFlavor"));
+					alcohol.setCorps(rs.getInt("aCorps"));
+					
+					member = new Member();
+					member.setId(rs.getLong("mId")); 			// 혹시나 필요할까봐,, member의 식별자도 추가
+					member.setNickname(rs.getString("nickname"));	// 리뷰 보여줄 때 작성자의 닉네임만 알면 되므로 다른 컬럼 생략
+					
+					review = new Review();
+					review.setAlcohol(alcohol);
+					review.setMember(member);
+					review.setRate(rs.getFloat("pRate"));
+					review.setRegDate(rs.getDate("regDate"));
+					review.setTaste(rs.getInt("rTaste"));
+					review.setFlavor(rs.getInt("rFlavor"));
+					review.setCorps(rs.getInt("rCorps"));
+					review.setContent(rs.getString("content"));
+					
+					reviewList.add(review); // reviewList에 리뷰 저장
+				}
+				
+				map.put(alcohol, reviewList); // HashMap에 put
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {	
+				jdbcUtil.close();
+			}	
+			
+			return map;
+		}
 	
 	// 리뷰 추가 (insert)
 	public long insertReview(Review review) {

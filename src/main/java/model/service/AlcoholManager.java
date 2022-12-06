@@ -37,6 +37,10 @@ public class AlcoholManager {
 		return alDao.findAlcohol(type, name);
 	}
 	
+	public Alcohol findAlcoholById(long alcoholId) {
+		return alDao.findAlcoholById(alcoholId);
+	}
+	
 	/* 술 필터링 (주종별) */
 	public List<Alcohol> listByType(String type) {
 		return alDao.listByType(type);

@@ -40,8 +40,23 @@ public class ViewAlcoholController implements Controller {
 		request.setAttribute("spirits", spirits);
 		request.setAttribute("cocktail", cocktail);
 		
-		
-		
+		int detail = 0;
+		if (request.getParameter("aId") != null) {
+			long aId = Long.parseLong(request.getParameter("aId"));
+			HashMap<Alcohol, List<Review>> map = alMan.reviewListByAlcohol(aId);
+			Alcohol alcohol = alMan.findAlcoholById(aId);
+			List<Review> reviewList = null;
+			for (Alcohol a : map.keySet()) {
+				reviewList = map.get(a);
+			}
+			
+			detail = 1;
+			
+			request.setAttribute("alcohol", alcohol);
+			request.setAttribute("reviewList", reviewList);
+			
+		}
+		request.setAttribute("detail", detail);
 		
 		return "/review/productInfo.jsp";
 	}
