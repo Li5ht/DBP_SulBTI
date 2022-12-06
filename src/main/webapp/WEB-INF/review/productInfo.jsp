@@ -93,29 +93,77 @@ function selectDiv(str) {
 			</tr>
 		</table><br><br>
 		
-		<div class="d1">
-			<div id="alcohol1" class="alcohol1">	<!-- 여기 div 사이에는 소주 -->
-				버튼 먹히는지 확인 (소주)	<!-- 이 글자들은 당연히 지우고 작업 ㄱㄱ -->
+		<div class="alD">
+			<div id="alcohol1" class="alcohol1">	<!-- 소주 -->
+				<c:forEach var="alcohol" items="${soju}">
+					<div class="alDiv">
+						<img src='${alcohol.imageUrl}'  width="auto" height="150px"> <br>
+						${alcohol.name} <br>
+						${alcohol.type} <br>
+						${alcohol.rate} <br>
+						#${alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps}
+					</div>	
+				</c:forEach>
 			</div>
 			
-			<div id="alcohol2" class="alcohol2">	<!-- 여기 div 사이에는 맥주 -->
-				맥주
+			<div id="alcohol2" class="alcohol2">	<!-- 맥주 -->
+				<c:forEach var="alcohol" items="${beer}">
+					<div class="alDiv">
+						<img src='${alcohol.imageUrl}'  width="auto" height="150px"> <br>
+						${alcohol.name} <br>
+						${alcohol.type} <br>
+						${alcohol.rate} <br>
+						#${alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps}
+					</div>
+				</c:forEach>
 			</div>
 			
-			<div id="alcohol3" class="alcohol3">	<!-- 여기 div 사이에는 전통주 -->
-				전통주
+			<div id="alcohol3" class="alcohol3">	<!-- 전통주 -->
+				<c:forEach var="alcohol" items="${traditional}">
+					<div class="alDiv">
+						<img src='${alcohol.imageUrl}'  width="auto" height="150px"> <br>
+						${alcohol.name} <br>
+						${alcohol.type} <br>
+						${alcohol.rate} <br>
+						#${alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps}
+					</div>
+				</c:forEach>
 			</div>
 			
-			<div id="alcohol4" class="alcohol4">	<!-- 여기 div 사이에는 와인 -->
-				와인
+			<div id="alcohol4" class="alcohol4">	<!-- 와인 -->
+				<c:forEach var="alcohol" items="${wine}">
+					<div class="alDiv">
+						<img src='${alcohol.imageUrl}'  width="auto" height="150px"> <br>
+						${alcohol.name} <br>
+						${alcohol.type} <br>
+						${alcohol.rate} <br>
+						#${alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps}
+					</div>
+				</c:forEach>
 			</div>
 			
-			<div id="alcohol5" class="alcohol5">	<!-- 여기 div 사이에는 양주 -->
-				양주
+			<div id="alcohol5" class="alcohol5">	<!-- 양주 -->
+				<c:forEach var="alcohol" items="${spirits}">
+					<div class="alDiv">
+						<img src='${alcohol.imageUrl}'  width="auto" height="150px"> <br>
+						${alcohol.name} <br>
+						${alcohol.type} <br>
+						${alcohol.rate} <br>
+						#${alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps}
+					</div>
+				</c:forEach>
 			</div>
 			
-			<div id="alcohol6" class="alcohol6">	<!-- 여기 div 사이에는 칵테일 -->
-				칵테일
+			<div id="alcohol6" class="alcohol6">	<!-- 칵테일 -->
+				<c:forEach var="alcohol" items="${cocktail}">
+					<div class="alDiv">
+						<img src='${alcohol.imageUrl}'  width="auto" height="150px"> <br>
+						${alcohol.name} <br>
+						${alcohol.type} <br>
+						${alcohol.rate} <br>
+						#${alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps}
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 		

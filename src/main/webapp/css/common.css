@@ -163,3 +163,21 @@
 .alcohol4 { display: none; }
 .alcohol5 { display: none; }
 .alcohol6 { display: none; }
+
+.alDiv {
+	text-align:center;
+	vertical-align: middle;
+	border: 1px solid;
+	float: left;
+	width: 200px;
+	height: 280px;
+	margin-left : 50px;
+	margin-bottom: 30px;
+	padding: 25px;
+}
+
+.alD {
+	width:70%;
+	font-family: "Inter";
+	margin: auto;
+}
