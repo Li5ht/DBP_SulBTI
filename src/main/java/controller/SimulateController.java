@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.user.UserSessionUtils;
-import model.dao.*;
 import model.service.*;
 import model.*;
 
@@ -32,9 +31,9 @@ public class SimulateController implements Controller {
 		request.setAttribute("drinkingCapacity", drinkingCapacity);
 		
 		/* 술 목록 받아오기 */
-		AlcoholDAO alcoholDao = new AlcoholDAO();
-		List<Alcohol> aSoju = alcoholDao.listByType("소주");
-		List<Alcohol> aBeer = alcoholDao.listByType("맥주");
+		AlcoholManager alMan = AlcoholManager.getInstance();
+		List<Alcohol> aSoju = alMan.listByType("소주");
+		List<Alcohol> aBeer = alMan.listByType("맥주");
 		
 		request.setAttribute("aSoju", aSoju);
 		request.setAttribute("aBeer", aBeer);
@@ -46,7 +45,7 @@ public class SimulateController implements Controller {
 			String userAlcoholType = request.getParameter("sel1_1");
 			String userAlcoholName = request.getParameter("sel2_1");
 			int userAmount = Integer.parseInt(request.getParameter("amount1"));
-			Alcohol userAlcohol = alcoholDao.findAlcohol(userAlcoholType, userAlcoholName); // -> 도수 알아내는 용도!!
+			Alcohol userAlcohol = alMan.findAlcohol(userAlcoholType, userAlcoholName); // -> 도수 알아내는 용도!!
 			Drink userDC = new Drink(userAlcohol, userAmount);
 			
 			// 잘 되는지 result.jsp에서 확인 용
@@ -61,7 +60,7 @@ public class SimulateController implements Controller {
 				
 				String[] arr = drinkStr.split("/"); 	// arr[0] = 주종, arr[1] = 술 이름, arr[2] = 양
 				
-				Alcohol alcohol = alcoholDao.findAlcohol(arr[0], arr[1]);
+				Alcohol alcohol = alMan.findAlcohol(arr[0], arr[1]);
 				Drink drink = new Drink(alcohol, Integer.parseInt(arr[2]));
 				
 				drinkingList.add(drink);
