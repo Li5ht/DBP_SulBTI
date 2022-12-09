@@ -187,3 +187,74 @@
 	text-align:center;
 	vertical-align: middle;
 }
+
+
+.testDiv {
+	float: left;
+	text-align:center;
+	width: 300px;
+	height: 150px;
+	padding: 15px;
+	margin-left: 30px;
+	border: 1px solid;
+}
+
+.testDiv1 {
+	display: block;
+	margin: auto;
+	text-align:center;
+}
+.testDiv2 {
+	display: none;
+	margin: auto;
+	text-align:center;
+	vertical-align: middle;
+}
+.testDiv3 {
+	display: none;
+	margin: auto;
+	text-align:center;
+	vertical-align: middle;
+}
+.testDiv4 {
+	display: none;
+	margin: auto;
+	text-align:center;
+	vertical-align: middle;
+}
+.testDiv5 {
+	display: none;
+	margin: auto;
+	text-align:center;
+	vertical-align: middle;
+}
+.testDiv6 {
+	display: none;
+	margin: auto;
+	text-align:center;
+	vertical-align: middle;
+}
+.testDiv7 {
+	display: none;
+	margin: auto;
+	text-align:center;
+	vertical-align: middle;
+}
+.testDiv8 {
+	display: none;
+	margin: auto;
+	text-align:center;
+	vertical-align: middle;
+}
+.testDiv9 {
+	display: none;
+	margin: auto;
+	text-align:center;
+	vertical-align: middle;
+}
+.testDiv10 {
+	display: none;
+	margin: auto;
+	text-align:center;
+	vertical-align: middle;
+}

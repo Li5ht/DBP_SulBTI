@@ -112,7 +112,6 @@ var count = 0;
     		}
     		
     		function plus() {
-    			// 아직 안 됨
     			count++;
     			
     			var form = document.getElementById("f1");
