@@ -376,4 +376,29 @@ public class AlcoholDAO {
 		}	
 		return result;
 	}
+	
+	public boolean findReview(long memberId, long alcoholId) {
+		String query = "SELECT review_id "
+				+ "FROM REVIEW r JOIN PREFERENCE p ON r.preference_id = p.preference_id "
+				+ "WHERE member_id = ? and alcohol_id = ?";
+		
+		Object[] param = new Object[] { memberId, alcoholId };
+		jdbcUtil.setSqlAndParameters(query, param);
+		ResultSet rs = null;
+		
+		try {
+			rs = jdbcUtil.executeQuery();
+			
+			if (rs.next()) {
+				return true;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {	
+			jdbcUtil.close();
+		}	
+		
+		return false;
+	}
 }

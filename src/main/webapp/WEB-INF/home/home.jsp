@@ -15,7 +15,7 @@
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
 $(document).ready(function($) {
-	// select 선택에 맞게 보여지는 div 변화 (안먹힘ㅠ)
+	// select 선택에 맞게 보여지는 div 변화
     $('#selectBox').change(function() {
         var result = $("select[name=selectBox]").val();
         if (result == 'soju') {

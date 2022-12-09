@@ -181,3 +181,9 @@
 	font-family: "Inter";
 	margin: auto;
 }
+
+.reviewDiv {
+	margin: auto;
+	text-align:center;
+	vertical-align: middle;
+}

@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import controller.diary.*;
 import controller.recommend.*;
-import controller.review.ViewAlcoholController;
+import controller.review.*;
 import controller.user.*;
 
 
@@ -51,7 +51,7 @@ public class RequestMapping {
        
        // 술 정보
        mappings.put("/product/info", new ViewAlcoholController());
-       mappings.put("/alcohol/review", new ViewAlcoholController());
+       mappings.put("/review/create", new ViewAlcoholController());
        
        
        

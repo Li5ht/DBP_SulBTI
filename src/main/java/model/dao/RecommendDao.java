@@ -73,7 +73,6 @@ public class RecommendDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			jdbcUtil.close();
 		}
 		
 		return pId;
@@ -135,7 +134,6 @@ public class RecommendDao {
 			jdbcUtil.rollback();
 			e.printStackTrace();
 		} finally {	
-			jdbcUtil.close();
 		}	
 	}
 		

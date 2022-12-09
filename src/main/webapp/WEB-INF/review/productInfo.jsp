@@ -33,6 +33,14 @@
 	top: 10px;
 	right: 10px;
 }
+
+.modal-content2 {
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid;
+	vertical-align: middle;
+	width: 500px;
+}
 </style>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
@@ -86,14 +94,32 @@ function selectDiv(str) {
     	
       	$('.alcohol1').show();
 	}
+	
+	var existReview = '<c:out value="${detail}"/>';
+	if (existReview == 2) {
+		alert('이미 리뷰가 존재합니다.');
+	}
 }
+
+$(document).ready(function() {
+    $('#content').on('keyup', function() {
+        $('#test_cnt').html("("+$(this).val().length+" / 100)");
+ 
+        if($(this).val().length > 100) {
+            $(this).val($(this).val().substring(0, 100));
+            $('#test_cnt').html("(100 / 100)");
+        }
+    });
+});
+
 </script>
 </head>
 
 <body onload="selectDiv('${alcohol.type}');">  
-<c:if test="${detail eq 1}">
+
+<c:if test="${detail eq 1 || detail eq 2}">
 <div id="myModal" class="modal">
-	<div class="modal-content">	<!-- 모달 안에 들어갈 부분 -->
+	<div class="modal-content">	<!-- 상세정보 -->
 			상세정보 <br>
 			<table>
 				<tr>
@@ -143,7 +169,7 @@ function selectDiv(str) {
 				</tr>
 			</table>
 			<br>
-			<a href="#">리뷰 등록</a>
+			<a href='javascript:void(0);' onclick="createReview('${alcohol.alcoholId}');">리뷰 등록</a>
 			<hr width="100%">
 			<c:forEach var="review" items="${reviewList}">
 				${review.content}<br>
@@ -192,6 +218,51 @@ function selectDiv(str) {
 	</div>
 </div>
 </c:if>
+
+<c:if test="${createReview eq 1}">
+<div id="myModal" class="modal">
+	<div class="modal-content">	<!-- 모달 안에 들어갈 부분 -->
+		<form method="POST" action="<c:url value='/review/create'/>">
+			<input type="hidden" name="alcoholId" id="alcoholId" value="${alcohol.alcoholId }">
+			${alcohol.type }<br>
+			<input type="text" name="alcoholName" id="alcoholName" value="${alcohol.name }" readonly><br>
+			별점 : <select name="rate" id="rate">	<!-- 추후에 드래그오버 식으로 변경해봄.. 시간이 되면 -->
+				<option value="0.5">0.5</option>
+				<option value="1">1</option>
+				<option value="1.5">1.5</option>
+				<option value="2">2</option>
+				<option value="2.5">2.5</option>
+				<option value="3">3.5</option>
+				<option value="4">4</option>
+				<option value="4.5">4.5</option>
+				<option value="5">5</option>
+			</select><br>
+			flavor : <select name="flavor" id="flavor">
+				<option value="0">flavor1</option>
+				<option value="1">flavor2</option>
+			</select>
+			taste : <select name="taste", id="taste">
+				<option value="0">taste1</option>
+				<option value="1">taste2</option>
+			</select>
+			corps : <select name="corps" id="corps">
+				<option value="0">corps1</option>
+				<option value="1">corps2</option>
+			</select><br>
+			
+			리뷰 작성 <br>
+			<textarea id="content" name="content" cols="40" rows="10"></textarea>
+			<div id="test_cnt">(0 / 100)</div><br>
+			
+			<input type="submit" value="리뷰 등록">
+		</form>
+		
+		<div class="modal_close_btn" onclick="close_pop();">
+			닫기
+		</div>
+	</div>
+</div>
+</c:if>
 	
 	<script type="text/javascript">
       
@@ -203,7 +274,34 @@ function selectDiv(str) {
 			hiddenField.setAttribute("name", 'aId');
 			hiddenField.setAttribute("type", "hidden");
 			hiddenField.setAttribute("value", alcoholId);
+			
+			var hiddenField2 = document.createElement('input');
+			hiddenField2.setAttribute("name", 'detail');
+			hiddenField2.setAttribute("type", "hidden");
+			hiddenField2.setAttribute("value", "detail");
+			
 			form.appendChild(hiddenField);
+			form.appendChild(hiddenField2);
+		    document.body.appendChild(form);
+			form.submit();
+			
+        }
+        function createReview(alcoholId) {
+        	var form = document.createElement('form');
+        	form.setAttribute("action", "<c:url value='/product/info'/>");
+        	
+        	var hiddenField = document.createElement('input');
+			hiddenField.setAttribute("name", 'aId');
+			hiddenField.setAttribute("type", "hidden");
+			hiddenField.setAttribute("value", alcoholId);
+			
+			var hiddenField2 = document.createElement('input');
+			hiddenField2.setAttribute("name", 'createReview');
+			hiddenField2.setAttribute("type", "hidden");
+			hiddenField2.setAttribute("value", "createReview");
+			
+			form.appendChild(hiddenField);
+			form.appendChild(hiddenField2);
 		    document.body.appendChild(form);
 			form.submit();
 			

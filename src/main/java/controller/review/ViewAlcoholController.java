@@ -18,6 +18,11 @@ public class ViewAlcoholController implements Controller {
 		if (!UserSessionUtils.hasLogined(request.getSession())) {
 			/* 로그인 X */
             request.setAttribute("noLogin", true);
+            
+            
+            if (request.getParameter("createReview") != null) {
+            	return "redirect:/user/login/form";
+            }
         } else {
         	/* 로그인 O */
         	request.setAttribute("hasLogin", true);
@@ -40,23 +45,98 @@ public class ViewAlcoholController implements Controller {
 		request.setAttribute("spirits", spirits);
 		request.setAttribute("cocktail", cocktail);
 		
-		int detail = 0;
-		if (request.getParameter("aId") != null) {
-			long aId = Long.parseLong(request.getParameter("aId"));
-			HashMap<Alcohol, List<Review>> map = alMan.reviewListByAlcohol(aId);
+		int detail = 0; // 상세 정보
+		if (request.getParameter("detail") != null) {
+			if (request.getParameter("detail").equals("detail")) {
+				long aId = Long.parseLong(request.getParameter("aId"));
+				HashMap<Alcohol, List<Review>> map = alMan.reviewListByAlcohol(aId);
+				Alcohol alcohol = alMan.findAlcoholById(aId);
+				List<Review> reviewList = null;
+				for (Alcohol a : map.keySet()) {
+					reviewList = map.get(a);
+				}
+					
+				detail = 1;
+					
+				request.setAttribute("alcohol", alcohol);
+				request.setAttribute("reviewList", reviewList);
+			}
+			request.setAttribute("detail", detail);
+		}
+		
+		
+		int createReview = 0;	// 리뷰 작성 버튼 클릭 시
+		if (request.getParameter("createReview") != null) {
+			if (request.getParameter("createReview").equals("createReview")) {
+				long aId = Long.parseLong(request.getParameter("aId"));
+				Alcohol alcohol = alMan.findAlcoholById(aId);
+				request.setAttribute("alcohol", alcohol);
+				
+				if (alMan.findReview(UserSessionUtils.getLoginUserPrimaryKey(request.getSession()), alcohol.getAlcoholId())) {
+					/* 이미 사용자의 해당 술에 대한 리뷰가 존재함 -> 그냥 다시 상세정보 보기로 */
+					HashMap<Alcohol, List<Review>> map = alMan.reviewListByAlcohol(aId);
+					alcohol = alMan.findAlcoholById(aId);
+					List<Review> reviewList = null;
+					for (Alcohol a : map.keySet()) {
+						reviewList = map.get(a);
+					}
+						
+					detail = 2;
+					
+					request.setAttribute("alcohol", alcohol);
+					request.setAttribute("reviewList", reviewList);
+					
+					request.setAttribute("detail", detail);
+				} else {
+					createReview = 1;
+					request.setAttribute("createReview", createReview);
+				}
+			}
+		}
+		
+		
+		if (request.getServletPath().equals("/review/create")) {	// 리뷰 등록
+			Review review = new Review();
+			
+			Member member = new Member();
+			member.setId(UserSessionUtils.getLoginUserPrimaryKey(request.getSession()));
+			member.setUserId(UserSessionUtils.getLoginUserId(request.getSession()));
+			member.setNickname(UserSessionUtils.getLoginUserNickname(request.getSession()));
+			review.setMember(member); // 작성자 등록
+			
+			long aId = Long.parseLong(request.getParameter("alcoholId"));
 			Alcohol alcohol = alMan.findAlcoholById(aId);
+			review.setAlcohol(alcohol); // 술 등록
+			
+			review.setRate(Float.parseFloat(request.getParameter("rate"))); // 별점 등록
+			review.setContent(request.getParameter("content")); // 내용 등록
+			
+			int taste = Integer.parseInt(request.getParameter("taste"));
+			int flavor = Integer.parseInt(request.getParameter("flavor"));
+			int corps = Integer.parseInt(request.getParameter("corps"));
+			
+			review.setTaste(taste);
+			review.setFlavor(flavor);
+			review.setCorps(corps);
+			
+			alMan.insertReview(review);
+			
+			
+			// 다시 상세정보 보기로
+			HashMap<Alcohol, List<Review>> map = alMan.reviewListByAlcohol(aId);
+			alcohol = alMan.findAlcoholById(aId);
 			List<Review> reviewList = null;
 			for (Alcohol a : map.keySet()) {
 				reviewList = map.get(a);
 			}
-			
+				
 			detail = 1;
-			
+				
 			request.setAttribute("alcohol", alcohol);
 			request.setAttribute("reviewList", reviewList);
 			
+			request.setAttribute("detail", detail);
 		}
-		request.setAttribute("detail", detail);
 		
 		return "/review/productInfo.jsp";
 	}
