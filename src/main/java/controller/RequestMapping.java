@@ -52,7 +52,7 @@ public class RequestMapping {
        // 술 정보
        mappings.put("/product/info", new ViewAlcoholController());
        mappings.put("/review/create", new ViewAlcoholController());
-       
+       mappings.put("/review/update", new ViewAlcoholController());
        
        
        logger.info("Initialized Request Mapping!");

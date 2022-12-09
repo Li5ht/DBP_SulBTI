@@ -5,8 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Alcohol;
-import model.Rank;
+import model.*;
 
 public class RecommendDao {
 	private JDBCUtil jdbcUtil = null;	// JDBCUtil 참조 변수 선언

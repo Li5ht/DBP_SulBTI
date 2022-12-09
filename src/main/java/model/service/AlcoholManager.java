@@ -67,7 +67,7 @@ public class AlcoholManager {
 	}
 	
 	/* 리뷰 유무 확인 */
-	public boolean findReview(long memberId, long alcoholId) {
+	public Review findReview(long memberId, long alcoholId) {
 		return alDao.findReview(memberId, alcoholId);
 	}
 }

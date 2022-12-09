@@ -329,9 +329,8 @@ public class AlcoholDAO {
 		int result = 0;
 		String query = "UPDATE REVIEW "
 				+ "SET taste=?, flavor=?, corps=?, content=? "
-				+ "WHERE review_id=?";
-		Object[] param = new Object[] { review.getTaste(), review.getFlavor(), review.getCorps(), review.getContent(), review.getReviewId() };
-		jdbcUtil.setSqlAndParameters(query, param);
+				+ "WHERE preference_id=?";
+		
 		
 		RecommendDao rcd = new RecommendDao();
 		
@@ -341,6 +340,9 @@ public class AlcoholDAO {
 			preferenceId = rcd.findPreference(review.getMember().getId(), review.getAlcohol().getAlcoholId());
 			
 			rcd.updatePreferenceByRate(preferenceId, review.getRate());
+			
+			Object[] param = new Object[] { review.getTaste(), review.getFlavor(), review.getCorps(), review.getContent(), preferenceId };
+			jdbcUtil.setSqlAndParameters(query, param);
 			
 			result = jdbcUtil.executeUpdate();
 			
@@ -377,20 +379,31 @@ public class AlcoholDAO {
 		return result;
 	}
 	
-	public boolean findReview(long memberId, long alcoholId) {
-		String query = "SELECT review_id "
+	public Review findReview(long memberId, long alcoholId) {
+		String query = "SELECT alcohol_id, rate, taste, flavor, corps, content "
 				+ "FROM REVIEW r JOIN PREFERENCE p ON r.preference_id = p.preference_id "
 				+ "WHERE member_id = ? and alcohol_id = ?";
 		
 		Object[] param = new Object[] { memberId, alcoholId };
 		jdbcUtil.setSqlAndParameters(query, param);
 		ResultSet rs = null;
+		Review review = null;
 		
 		try {
 			rs = jdbcUtil.executeQuery();
 			
 			if (rs.next()) {
-				return true;
+				review = new Review();
+				Alcohol alcohol = new Alcohol();
+				alcohol.setAlcoholId(rs.getLong("alcohol_id"));
+				review.setAlcohol(alcohol);
+				review.setContent(rs.getString("content"));
+				review.setRate(rs.getFloat("rate"));
+				review.setTaste(rs.getInt("taste"));
+				review.setFlavor(rs.getInt("flavor"));
+				review.setCorps(rs.getInt("corps"));
+				
+				return review;
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -399,6 +412,6 @@ public class AlcoholDAO {
 			jdbcUtil.close();
 		}	
 		
-		return false;
+		return review;
 	}
 }

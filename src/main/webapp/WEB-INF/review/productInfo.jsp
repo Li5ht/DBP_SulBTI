@@ -95,9 +95,25 @@ function selectDiv(str) {
       	$('.alcohol1').show();
 	}
 	
-	var existReview = '<c:out value="${detail}"/>';
-	if (existReview == 2) {
+	var review = '<c:out value="${detail}"/>';
+	if (review == 2) {
 		alert('이미 리뷰가 존재합니다.');
+	} else if (review == 3) {
+		alert('리뷰가 존재하지 않습니다. 먼저 리뷰를 작성해주세요.');
+	}
+
+	var updateReview = '<c:out value="${updateReview}"/>';
+	var rate = '<c:out value="${userRate}"/>';
+	var taste = '<c:out value="${userTaste}"/>';
+	var flavor = '<c:out value="${userFlavor}"/>';
+	var corps = '<c:out value="${userCorps}"/>';
+	if (updateReview == 1) {
+		$("#rate").val(rate).prop("selected", true);
+		$("#taste").val(taste).prop("selected", true);
+		$("#flavor").val(flavor).prop("selected", true);
+		$("#corps").val(corps).prop("selected", true);
+	} else if (updateReview == 2) {
+		alert('수정이 완료되었습니다.');
 	}
 }
 
@@ -117,7 +133,7 @@ $(document).ready(function() {
 
 <body onload="selectDiv('${alcohol.type}');">  
 
-<c:if test="${detail eq 1 || detail eq 2}">
+<c:if test="${detail eq 1 || detail eq 2 || detail eq 3}">
 <div id="myModal" class="modal">
 	<div class="modal-content">	<!-- 상세정보 -->
 			상세정보 <br>
@@ -170,6 +186,7 @@ $(document).ready(function() {
 			</table>
 			<br>
 			<a href='javascript:void(0);' onclick="createReview('${alcohol.alcoholId}');">리뷰 등록</a>
+			<a href='javascript:void(0);' onclick="updateReview('${alcohol.alcoholId}');">리뷰 수정</a>
 			<hr width="100%">
 			<c:forEach var="review" items="${reviewList}">
 				${review.content}<br>
@@ -208,7 +225,7 @@ $(document).ready(function() {
 								<img src="<c:url value='/images/star_5.png' />" width="70px" height="auto">
 							</c:when>
 						</c:choose>
-				#${alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps}<br>
+				#${alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps}
 				<hr width="100%">
 			</c:forEach>
 		
@@ -221,45 +238,94 @@ $(document).ready(function() {
 
 <c:if test="${createReview eq 1}">
 <div id="myModal" class="modal">
-	<div class="modal-content">	<!-- 모달 안에 들어갈 부분 -->
-		<form method="POST" action="<c:url value='/review/create'/>">
-			<input type="hidden" name="alcoholId" id="alcoholId" value="${alcohol.alcoholId }">
-			${alcohol.type }<br>
-			<input type="text" name="alcoholName" id="alcoholName" value="${alcohol.name }" readonly><br>
-			별점 : <select name="rate" id="rate">	<!-- 추후에 드래그오버 식으로 변경해봄.. 시간이 되면 -->
-				<option value="0.5">0.5</option>
-				<option value="1">1</option>
-				<option value="1.5">1.5</option>
-				<option value="2">2</option>
-				<option value="2.5">2.5</option>
-				<option value="3">3.5</option>
-				<option value="4">4</option>
-				<option value="4.5">4.5</option>
-				<option value="5">5</option>
-			</select><br>
-			flavor : <select name="flavor" id="flavor">
-				<option value="0">flavor1</option>
-				<option value="1">flavor2</option>
-			</select>
-			taste : <select name="taste", id="taste">
-				<option value="0">taste1</option>
-				<option value="1">taste2</option>
-			</select>
-			corps : <select name="corps" id="corps">
-				<option value="0">corps1</option>
-				<option value="1">corps2</option>
-			</select><br>
+	<div class="modal-content">	<!-- 리뷰 등록 모달 -->
+			<form method="POST" action="<c:url value='/review/create'/>">
+				<input type="hidden" name="alcoholId" id="alcoholId" value="${alcohol.alcoholId }">
+				${alcohol.type }<br>
+				<input type="text" name="alcoholName" id="alcoholName" value="${alcohol.name }" readonly><br>
+				별점 : <select name="rate" id="rate">	<!-- 추후에 드래그오버 식으로 변경해봄.. 시간이 되면 -->
+					<option value="0.5">0.5</option>
+					<option value="1">1</option>
+					<option value="1.5">1.5</option>
+					<option value="2">2</option>
+					<option value="2.5">2.5</option>
+					<option value="3">3</option>
+					<option value="3.5">3.5</option>
+					<option value="4">4</option>
+					<option value="4.5">4.5</option>
+					<option value="5">5</option>
+				</select><br>
+				flavor : <select name="flavor" id="flavor">
+					<option value="0">flavor1</option>
+					<option value="1">flavor2</option>
+				</select>
+				taste : <select name="taste" id="taste">
+					<option value="0">taste1</option>
+					<option value="1">taste2</option>
+				</select>
+				corps : <select name="corps" id="corps">
+					<option value="0">corps1</option>
+					<option value="1">corps2</option>
+				</select><br>
+				
+				리뷰 작성 <br>
+				<textarea id="content" name="content" cols="40" rows="10"></textarea>
+				<div id="test_cnt">(0 / 100)</div><br>
+				
+				<input type="submit" value="리뷰 등록">
+			</form>
 			
-			리뷰 작성 <br>
-			<textarea id="content" name="content" cols="40" rows="10"></textarea>
-			<div id="test_cnt">(0 / 100)</div><br>
+			<div class="modal_close_btn" onclick="close_pop();">
+				닫기
+			</div>
+
+	</div>
+</div>
+</c:if>
+
+<c:if test="${updateReview eq 1}">
+<div id="myModal" class="modal">
+	<div class="modal-content">	<!-- 리뷰 수정 모달 -->
+			<form method="POST" action="<c:url value='/review/update'/>">
+				<input type="hidden" name="alcoholId" id="alcoholId" value="${alcohol.alcoholId }">
+				${alcohol.type }<br>
+				<input type="text" name="alcoholName" id="alcoholName" value="${alcohol.name }" readonly><br>
+				별점 : <select name="rate" id="rate">	<!-- 추후에 드래그오버 식으로 변경해봄.. 시간이 되면 -->
+					<option value="0.5">0.5</option>
+					<option value="1">1</option>
+					<option value="1.5">1.5</option>
+					<option value="2">2</option>
+					<option value="2.5">2.5</option>
+					<option value="3">3</option>
+					<option value="3.5">3.5</option>
+					<option value="4">4</option>
+					<option value="4.5">4.5</option>
+					<option value="5">5</option>
+				</select><br>
+				flavor : <select name="flavor" id="flavor">
+					<option value="0">flavor1</option>
+					<option value="1">flavor2</option>
+				</select>
+				taste : <select name="taste" id="taste">
+					<option value="0">taste1</option>
+					<option value="1">taste2</option>
+				</select>
+				corps : <select name="corps" id="corps">
+					<option value="0">corps1</option>
+					<option value="1">corps2</option>
+				</select><br>
+				
+				리뷰 작성 <br>
+				<textarea id="content" name="content" cols="40" rows="10" >${userReview.content}</textarea>
+				<div id="test_cnt">(0 / 100)</div><br>
+				
+				<input type="submit" value="리뷰 수정">
+			</form>
 			
-			<input type="submit" value="리뷰 등록">
-		</form>
-		
-		<div class="modal_close_btn" onclick="close_pop();">
-			닫기
-		</div>
+			<div class="modal_close_btn" onclick="close_pop();">
+				닫기
+			</div>
+
 	</div>
 </div>
 </c:if>
@@ -299,6 +365,27 @@ $(document).ready(function() {
 			hiddenField2.setAttribute("name", 'createReview');
 			hiddenField2.setAttribute("type", "hidden");
 			hiddenField2.setAttribute("value", "createReview");
+			
+			form.appendChild(hiddenField);
+			form.appendChild(hiddenField2);
+		    document.body.appendChild(form);
+			form.submit();
+			
+        }
+
+		function updateReview(alcoholId) {
+        	var form = document.createElement('form');
+        	form.setAttribute("action", "<c:url value='/product/info'/>");
+        	
+        	var hiddenField = document.createElement('input');
+			hiddenField.setAttribute("name", 'aId');
+			hiddenField.setAttribute("type", "hidden");
+			hiddenField.setAttribute("value", alcoholId);
+			
+			var hiddenField2 = document.createElement('input');
+			hiddenField2.setAttribute("name", 'updateReview');
+			hiddenField2.setAttribute("type", "hidden");
+			hiddenField2.setAttribute("value", "updateReview");
 			
 			form.appendChild(hiddenField);
 			form.appendChild(hiddenField2);
