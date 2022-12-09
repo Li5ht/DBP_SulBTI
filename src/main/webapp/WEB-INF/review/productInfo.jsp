@@ -101,6 +101,11 @@ function selectDiv(str) {
 	} else if (review == 3) {
 		alert('리뷰가 존재하지 않습니다. 먼저 리뷰를 작성해주세요.');
 	}
+	
+	var register = '<c:out value="${registerReview}"/>';
+	if (register == 1) {
+		alert('리뷰가 작성되었습니다.');
+	}
 
 	var updateReview = '<c:out value="${updateReview}"/>';
 	var rate = '<c:out value="${userRate}"/>';
@@ -114,6 +119,11 @@ function selectDiv(str) {
 		$("#corps").val(corps).prop("selected", true);
 	} else if (updateReview == 2) {
 		alert('수정이 완료되었습니다.');
+	}
+	
+	var deleteReview = '<c:out value="${deleteReview}"/>';
+	if (deleteReview == 1) {
+		alert('리뷰가 삭제되었습니다.');
 	}
 }
 
@@ -145,7 +155,7 @@ $(document).ready(function() {
 					<td>
 						${alcohol.name}<br>
 						${alcohol.type} &nbsp; 도수${alcohol.alcoholLevel}%<br>
-						#${alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps}<br>
+						#${alcohol.taste} #${alcohol.flavor} #${alcohol.corps}<br>
 						<c:choose>
 							<c:when test="${alcohol.rate lt 0.5}"> <!-- 별점이 < 0.5 -->
 								<img src="<c:url value='/images/star_0.png' />">
@@ -225,7 +235,7 @@ $(document).ready(function() {
 								<img src="<c:url value='/images/star_5.png' />" width="70px" height="auto">
 							</c:when>
 						</c:choose>
-				#${alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps}
+				#${review.taste} #${review.flavor} #${review.corps}
 				<hr width="100%">
 			</c:forEach>
 		
@@ -255,13 +265,13 @@ $(document).ready(function() {
 					<option value="4.5">4.5</option>
 					<option value="5">5</option>
 				</select><br>
-				flavor : <select name="flavor" id="flavor">
-					<option value="0">flavor1</option>
-					<option value="1">flavor2</option>
-				</select>
 				taste : <select name="taste" id="taste">
 					<option value="0">taste1</option>
 					<option value="1">taste2</option>
+				</select>
+				flavor : <select name="flavor" id="flavor">
+					<option value="0">flavor1</option>
+					<option value="1">flavor2</option>
 				</select>
 				corps : <select name="corps" id="corps">
 					<option value="0">corps1</option>
@@ -286,7 +296,7 @@ $(document).ready(function() {
 <c:if test="${updateReview eq 1}">
 <div id="myModal" class="modal">
 	<div class="modal-content">	<!-- 리뷰 수정 모달 -->
-			<form method="POST" action="<c:url value='/review/update'/>">
+			<form method="POST" id="reviewModal" action="<c:url value='/review/update'/>">
 				<input type="hidden" name="alcoholId" id="alcoholId" value="${alcohol.alcoholId }">
 				${alcohol.type }<br>
 				<input type="text" name="alcoholName" id="alcoholName" value="${alcohol.name }" readonly><br>
@@ -302,13 +312,13 @@ $(document).ready(function() {
 					<option value="4.5">4.5</option>
 					<option value="5">5</option>
 				</select><br>
-				flavor : <select name="flavor" id="flavor">
-					<option value="0">flavor1</option>
-					<option value="1">flavor2</option>
-				</select>
 				taste : <select name="taste" id="taste">
 					<option value="0">taste1</option>
 					<option value="1">taste2</option>
+				</select>
+				flavor : <select name="flavor" id="flavor">
+					<option value="0">flavor1</option>
+					<option value="1">flavor2</option>
 				</select>
 				corps : <select name="corps" id="corps">
 					<option value="0">corps1</option>
@@ -320,6 +330,7 @@ $(document).ready(function() {
 				<div id="test_cnt">(0 / 100)</div><br>
 				
 				<input type="submit" value="리뷰 수정">
+				<input type="button" onclick="deleteReview(${alcohol.alcoholId})" value="리뷰 삭제">
 			</form>
 			
 			<div class="modal_close_btn" onclick="close_pop();">
@@ -393,6 +404,20 @@ $(document).ready(function() {
 			form.submit();
 			
         }
+		
+		function deleteReview(alcoholId) {
+			var form = document.getElementById("reviewModal");
+			form.action = "<c:url value='/review/delete'/>";
+			
+			var hiddenField = document.createElement('input');
+			hiddenField.setAttribute("name", 'aId');
+			hiddenField.setAttribute("type", "hidden");
+			hiddenField.setAttribute("value", alcoholId);
+			
+			form.appendChild(hiddenField);
+			
+			form.submit();
+		}
         //팝업 Close 기능
         function close_pop(flag) {
              $('#myModal').hide();
@@ -471,7 +496,7 @@ $(document).ready(function() {
 							</c:when>
 						</c:choose>
 						<br>
-						#${alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps}
+						#${alcohol.taste} #${alcohol.flavor} #${alcohol.corps}
 					</div>	
 				</c:forEach>
 			</div>
@@ -518,7 +543,7 @@ $(document).ready(function() {
 							</c:when>
 						</c:choose>
 						<br>
-						#${alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps}
+						#${alcohol.taste} #${alcohol.flavor} #${alcohol.corps}
 					</div>
 				</c:forEach>
 			</div>
@@ -565,7 +590,7 @@ $(document).ready(function() {
 							</c:when>
 						</c:choose>
 						<br>
-						#${alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps}
+						#${alcohol.taste} #${alcohol.flavor} #${alcohol.corps}
 					</div>
 				</c:forEach>
 			</div>
@@ -612,7 +637,7 @@ $(document).ready(function() {
 							</c:when>
 						</c:choose>
 						<br>
-						#${alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps}
+						#${alcohol.taste} #${alcohol.flavor} #${alcohol.corps}
 					</div>
 				</c:forEach>
 			</div>
@@ -659,7 +684,7 @@ $(document).ready(function() {
 							</c:when>
 						</c:choose>
 						<br>
-						#${alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps}
+						#${alcohol.taste} #${alcohol.flavor} #${alcohol.corps}
 					</div>
 				</c:forEach>
 			</div>
@@ -706,7 +731,7 @@ $(document).ready(function() {
 							</c:when>
 						</c:choose>
 						<br>
-						#${alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps}
+						#${alcohol.taste} #${alcohol.flavor} #${alcohol.corps}
 					</div>
 				</c:forEach>
 			</div>

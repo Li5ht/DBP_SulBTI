@@ -53,7 +53,7 @@ public class RequestMapping {
        mappings.put("/product/info", new ViewAlcoholController());
        mappings.put("/review/create", new ViewAlcoholController());
        mappings.put("/review/update", new ViewAlcoholController());
-       
+       mappings.put("/review/delete", new ViewAlcoholController());
        
        logger.info("Initialized Request Mapping!");
     }

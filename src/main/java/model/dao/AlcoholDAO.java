@@ -358,14 +358,20 @@ public class AlcoholDAO {
 	}
 	
 	// 리뷰 삭제 (delete)
-	public int deleteReview(long reviewId) {
+	public int deleteReview(long memberId, long alcoholId) {
 		int result = 0;
 		
-		String query = "DELETE FROM REVIEW WHERE review_id=?";
-		Object[] param = new Object[] { reviewId };
-		jdbcUtil.setSqlAndParameters(query, param);
+		RecommendDao rcd = new RecommendDao();
+		
+		long preferenceId;
+		
+		String query = "DELETE FROM REVIEW WHERE preference_id=?";
 		
 		try {
+			preferenceId = rcd.findPreference(memberId, alcoholId);
+			Object[] param = new Object[] { preferenceId };
+			jdbcUtil.setSqlAndParameters(query, param);
+			
 			result = jdbcUtil.executeUpdate();
 			
 			jdbcUtil.commit();
@@ -413,5 +419,142 @@ public class AlcoholDAO {
 		}	
 		
 		return review;
+	}
+	
+	/* 술 별점, 해시태그 수정 */
+	public int updateAlcohol(long alcoholId, float rate, int taste, int flavor, int corps) {
+		int result = 0;
+		String query = "UPDATE Alcohol "
+				+ "SET rate=?, taste=?, flavor=?, corps=? "
+				+ "WHERE alcohol_id=?";
+		Object[] param = new Object[] { rate, taste, flavor, corps, alcoholId };
+		jdbcUtil.setSqlAndParameters(query, param);
+		
+		try {
+			result = jdbcUtil.executeUpdate();
+			
+			jdbcUtil.commit();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			jdbcUtil.rollback();
+			e.printStackTrace();
+		} finally {	
+			jdbcUtil.close();
+		}	
+		return result;
+	}
+	
+	/* 리뷰 개수 */
+	public int numberOfReview(long alcoholId) {
+		String query = "select count(review_id) AS \"num\" "
+				+ "from review r join preference p on r.preference_id = p.preference_id "
+				+ "where alcohol_id = ?";
+		Object[] param = new Object[] { alcoholId };
+		jdbcUtil.setSqlAndParameters(query, param);
+		ResultSet rs = null;
+		
+		try {
+			rs = jdbcUtil.executeQuery();
+			
+			if (rs.next()) {
+				int num = rs.getInt("num");
+				
+				return num;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			jdbcUtil.rollback();
+			e.printStackTrace();
+		} finally {	
+			jdbcUtil.close();
+		}	
+		return 0;
+	}
+	
+	public int[] numberOfTaste(long alcoholId) {
+		String query = "select taste, count(taste) AS \"tasteC\" "
+				+ "from review r join preference p on r.preference_id = p.preference_id "
+				+ "where alcohol_id = ?"
+				+ "group by taste";
+		Object[] param = new Object[] { alcoholId };
+		jdbcUtil.setSqlAndParameters(query, param);
+		ResultSet rs = null;
+		int[] num = {0, 0, 0, 0, 0};
+		
+		try {
+			rs = jdbcUtil.executeQuery();
+			
+			if (rs.next()) {
+				int taste = rs.getInt("taste");
+				int count = rs.getInt("tasteC");
+				num[taste] = count;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			jdbcUtil.rollback();
+			e.printStackTrace();
+		} finally {	
+			jdbcUtil.close();
+		}	
+		return num;
+	}
+	
+	public int[] numberOfFlavor(long alcoholId) {
+		String query = "select flavor, count(flavor) AS \"flavorC\" "
+				+ "from review r join preference p on r.preference_id = p.preference_id "
+				+ "where alcohol_id = ?"
+				+ "group by flavor";
+		Object[] param = new Object[] { alcoholId };
+		jdbcUtil.setSqlAndParameters(query, param);
+		ResultSet rs = null;
+		int[] num = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+		
+		try {
+			rs = jdbcUtil.executeQuery();
+			
+			if (rs.next()) {
+				int flavor = rs.getInt("flavor");
+				int count = rs.getInt("flavorC");
+				num[flavor] = count;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			jdbcUtil.rollback();
+			e.printStackTrace();
+		} finally {	
+			jdbcUtil.close();
+		}	
+		return num;
+	}
+	
+	public int[] numberOfCorps(long alcoholId) {
+		String query = "select corps, count(corps) AS \"corpsC\" "
+				+ "from review r join preference p on r.preference_id = p.preference_id "
+				+ "where alcohol_id = ?"
+				+ "group by corps";
+		Object[] param = new Object[] { alcoholId };
+		jdbcUtil.setSqlAndParameters(query, param);
+		ResultSet rs = null;
+		int[] num = new int[91];
+		for (int i = 0; i < 91; i++) {
+			num[i] = 0;
+		}
+		
+		try {
+			rs = jdbcUtil.executeQuery();
+			
+			if (rs.next()) {
+				int corps = rs.getInt("corps");
+				int count = rs.getInt("corpsC");
+				num[corps] = count;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			jdbcUtil.rollback();
+			e.printStackTrace();
+		} finally {	
+			jdbcUtil.close();
+		}	
+		return num;
 	}
 }

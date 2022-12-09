@@ -62,12 +62,34 @@ public class AlcoholManager {
 	}
 	
 	/* 리뷰 삭제 */
-	public int deleteReview(long reviewId) {
-		return alDao.deleteReview(reviewId);
+	public int deleteReview(long memberId, long alcoholId) {
+		return alDao.deleteReview(memberId, alcoholId);
 	}
 	
 	/* 리뷰 유무 확인 */
 	public Review findReview(long memberId, long alcoholId) {
 		return alDao.findReview(memberId, alcoholId);
+	}
+	
+	/* 술 별점, 해시태그 수정 */
+	public int updateAlcohol(long alcoholId, float rate, int taste, int flavor, int corps) {
+		return alDao.updateAlcohol(alcoholId, rate, taste, flavor, corps);
+	}
+	
+	/* 리뷰 개수 */
+	public int numberOfReview(long alcoholId) {
+		return alDao.numberOfReview(alcoholId);
+	}
+	
+	public int[] numberOfTaste(long alcoholId) {
+		return alDao.numberOfTaste(alcoholId);
+	}
+	
+	public int[] numberOfFlavor(long alcoholId) {
+		return alDao.numberOfFlavor(alcoholId);
+	}
+	
+	public int[] numberOfCorps(long alcoholId) {
+		return alDao.numberOfCorps(alcoholId);
 	}
 }
