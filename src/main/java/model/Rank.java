@@ -9,10 +9,10 @@ public class Rank {
 		super();
 	}
 
-	public Rank(int ranking, String name, String imageUrl, int numberOfMention) {
+	public Rank(int ranking, String name, String imageUrl, int taste, int flavor, int corps, int numberOfMention) {
 		super();
 		this.ranking = ranking;
-		this.alcohol = new Alcohol(name, imageUrl);
+		this.alcohol = new Alcohol(name, imageUrl, taste, flavor, corps);
 		this.numberOfMention = numberOfMention;
 	}
 	

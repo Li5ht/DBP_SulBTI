@@ -92,4 +92,11 @@ public class AlcoholManager {
 	public int[] numberOfCorps(long alcoholId) {
 		return alDao.numberOfCorps(alcoholId);
 	}
+	
+	/* 술 이름 목록 (자바스크립트에서 사용하기 위해 배열로 전달) */
+	public String[] nameListByType(String type) {
+		List<String> alcohol = alDao.nameListByType(type);
+		
+		return alcohol.toArray(new String[alcohol.size()]);
+	}
 }

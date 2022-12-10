@@ -39,7 +39,10 @@ var count = 0;
 				<option value="0">주종 선택</option>
 				<option value="소주" selected="selected">소주</option>
 				<option value="맥주">맥주</option>
+				<option value="전통주">전통주</option>
 				<option value="와인">와인</option>
+				<option value="양주">양주</option>
+				<option value="칵테일">칵테일</option>
 			</select>&nbsp;&nbsp;
 			
 			<select id="sel2_1" name="sel2_1">
@@ -62,7 +65,10 @@ var count = 0;
 				<option value="0">주종 선택</option>
 				<option value="소주">소주</option>
 				<option value="맥주">맥주</option>
+				<option value="전통주">전통주</option>
 				<option value="와인">와인</option>
+				<option value="양주">양주</option>
+				<option value="칵테일">칵테일</option>
 			</select>&nbsp;&nbsp;
 			
 			<select id="sel2_1" name="sel2_1">
@@ -77,85 +83,198 @@ var count = 0;
 		<!-- 마실 양 -->
 		마실 양(ml) &nbsp;&nbsp;&nbsp;
 		<select id="sel1_2" onchange="categorychange(this, 2)">
-			<option>주종 선택</option>
+			<option value="0">주종 선택</option>
 			<option value="소주">소주</option>
 			<option value="맥주">맥주</option>
+			<option value="전통주">전통주</option>
 			<option value="와인">와인</option>
+			<option value="양주">양주</option>
+			<option value="칵테일">칵테일</option>
 		</select>&nbsp;&nbsp;
 		<select id="sel2_2">
-			<option>술 선택</option>
+			<option value="0">술 선택</option>
 		</select>
 		<input type="text" width="30" id="amount2"> 
 		<a href="#" onclick="plus()"> + </a>
 		<br><br><br><br><br><br>
+		<%
+			String sojuStr = "";
+			String beerStr = "";
+			String traditionalStr = "";
+			String wineStr = "";
+			String spiritsStr = "";
+			String cocktailStr = "";
+			
+			String[] aSoju = (String[]) (request.getAttribute("aSoju"));
+			String[] aBeer = (String[]) (request.getAttribute("aBeer"));
+			String[] aTraditional = (String[]) (request.getAttribute("aTraditional"));
+			String[] aWine = (String[]) (request.getAttribute("aWine"));
+			String[] aSpirits = (String[]) (request.getAttribute("aSpirits"));
+			String[] aCocktail = (String[]) (request.getAttribute("aCocktail"));
+			
+			for( int i = 0; i < aSoju.length; i++ ){
+				if (i != (aSoju.length - 1)) {
+					sojuStr = sojuStr + aSoju[i] + "/";
+				} else {
+					sojuStr = sojuStr + aSoju[i];
+				}
+			}
+			
+			for( int i = 0; i < aBeer.length; i++ ){
+				if (i != (aBeer.length - 1)) {
+					beerStr = beerStr + aBeer[i] + "/";
+				} else {
+					beerStr = beerStr + aBeer[i];
+				}
+			}
+			
+			for( int i = 0; i < aTraditional.length; i++ ){
+				if (i != (aTraditional.length - 1)) {
+					traditionalStr = traditionalStr + aTraditional[i] + "/";
+				} else {
+					traditionalStr = traditionalStr + aTraditional[i];
+				}
+			}
+			
+			for( int i = 0; i < aWine.length; i++ ){
+				if (i != (aWine.length - 1)) {
+					wineStr = wineStr + aWine[i] + "/";
+				} else {
+					wineStr = wineStr + aWine[i];
+				}
+			}
+			
+			for( int i = 0; i < aSpirits.length; i++ ){
+				if (i != (aSpirits.length - 1)) {
+					spiritsStr = spiritsStr + aSpirits[i] + "/";
+				} else {
+					spiritsStr = spiritsStr + aSpirits[i];
+				}
+			}
+			
+			for( int i = 0; i < aCocktail.length; i++ ){
+				if (i != (aCocktail.length - 1)) {
+					cocktailStr = cocktailStr + aCocktail[i] + "/";
+				} else {
+					cocktailStr = cocktailStr + aCocktail[i];
+				}
+			}
+		%>
+		
 		
 		<script>
     		function categorychange(e, num) {
-    			var soju = ['참이슬 오리지널', '참이슬 후레쉬', '진로'];
-        		var beer = ['카스', '테라'];
-        		var wine = ['와인1', '와인2'];
+    			var alcohol;
+    			var aLength;
+    			var strSplit;
+    			var arrSplit;
+        		
+        		
         		var i = "sel2_" + num.toString();
         		var target = document.getElementById(i);
         		
-        		if (e.value == "소주") var d = soju;
-        		else if (e.value == "맥주") var d = beer;
-        		else if (e.value == "와인") var d = wine;
+        		if (e.value == "소주") { 
+        			var sojuStr = '<%=sojuStr%>';
+        			alcohol = sojuStr.split("/");
+        			aLength = alcohol.length;
+        		}
+        		else if (e.value == "맥주") {
+        			var beerStr = '<%=beerStr%>';
+        			alcohol = beerStr.split("/");
+        			aLength = alcohol.length;
+        		}
+        		else if (e.value == "전통주") {
+        			var traditionalStr = '<%=traditionalStr%>';
+        			alcohol = traditionalStr.split("/");
+        			aLength = alcohol.length;
+        		}
+        		else if (e.value == "와인") {
+        			var wineStr = '<%=wineStr%>';
+        			alcohol = wineStr.split("/");
+        			aLength = alcohol.length;
+        		}
+        		else if (e.value == "양주") {
+        			var spiritsStr = '<%=spiritsStr%>';
+        			alcohol = spiritsStr.split("/");
+        			aLength = alcohol.length;
+        		}
+        		else if (e.value == "칵테일") {
+        			var cocktailStr = '<%=cocktailStr%>';
+        			alcohol = cocktailStr.split("/");
+        			aLength = alcohol.length;
+        		}
         		
         		target.options.length = 0;
         		
-        		for (x in d) {
-        			var opt = document.createElement("option");
-        			opt.value = d[x];
-        			opt.innerHTML = d[x];
+        		for (var i = 0; i < aLength; i++) {
+        		    var opt = document.createElement("option");
+        			opt.value = alcohol[i];
+        			opt.innerHTML = alcohol[i];
         			target.appendChild(opt);
         		}
     		}
     		
     		function plus() {
-    			count++;
-    			
-    			var form = document.getElementById("f1");
-    			
     			var type = $("#sel1_2").val();
     			var name = $("#sel2_2").val();
     			var amount = $("#amount2").val();
+    			var amountInt = parseInt(amount);
     			
-    			var str = "drink" + count.toString();
-    			var drinkStr = type + "/" + name + "/" + amount;
-    			
-    			var hiddenField = document.createElement('input');
-    			hiddenField.setAttribute("name", str);
-    			hiddenField.setAttribute("type", "hidden");
-    			hiddenField.setAttribute("value", drinkStr);
-    			form.appendChild(hiddenField);
-    			
-    			$("#sel1_2").val("0").prop("selected", true);
-    			$("#sel2_2").val("0").prop("selected", true);
-    			$("#amount2").val("");
-    			
-    			
-    			var target = document.getElementById("simulDiv2");
-    			
-    			var c = count.toString();
-    			var textBox = c + ". " + type + " " + name + " " + amount + "ml";
-    			var newDiv = document.createElement('div');
-    			var newText = document.createTextNode(textBox);
-    			newDiv.className = "simulDiv4";
-    			newDiv.appendChild(newText);
-    			
-    			target.appendChild(newDiv);
+    			if (type != null && name != null && amountInt > 0 && type != '0' && name != '0') {
+	    			count++;
+	    			
+	    			var form = document.getElementById("f1");
+	    			
+	    			
+	    			
+	    			var str = "drink" + count.toString();
+	    			var drinkStr = type + "/" + name + "/" + amount;
+	    			
+	    			var hiddenField = document.createElement('input');
+	    			hiddenField.setAttribute("name", str);
+	    			hiddenField.setAttribute("type", "hidden");
+	    			hiddenField.setAttribute("value", drinkStr);
+	    			form.appendChild(hiddenField);
+	    			
+	    			$("#sel1_2").val("0").prop("selected", true);
+	    			$("#sel2_2").val("0").prop("selected", true);
+	    			$("#amount2").val("");
+	    			
+	    			
+	    			var target = document.getElementById("simulDiv2");
+	    			
+	    			var c = count.toString();
+	    			var textBox = c + ". " + type + " " + name + " " + amount + "ml";
+	    			var newDiv = document.createElement('div');
+	    			var newText = document.createTextNode(textBox);
+	    			newDiv.className = "simulDiv4";
+	    			newDiv.appendChild(newText);
+	    			
+	    			target.appendChild(newDiv);
+    			} else {
+    				alert('다시 입력해주세요.');
+    			}
     		}
     		
     		function simulSubmit() {
-    			var form = document.getElementById("f1");
+    			var type = $("#sel1_1").val();
+    			var name = $("#sel2_1").val();
+    			var amount = $("#amount1").val();
+    			var amountInt = parseInt(amount);
     			
-    			var hiddenField = document.createElement('input');
-    			hiddenField.setAttribute("name", "count");
-    			hiddenField.setAttribute("type", "hidden");
-    			hiddenField.setAttribute("value", count);
-    			form.appendChild(hiddenField);
-    			
-    			form.submit();
+    			if (type != null && name != null && amountInt > 0 && type != '0' && name != '0' && count > 0) {
+	    			var form = document.getElementById("f1");
+	    			
+	    			var hiddenField = document.createElement('input');
+	    			hiddenField.setAttribute("name", "count");
+	    			hiddenField.setAttribute("type", "hidden");
+	    			hiddenField.setAttribute("value", count);
+	    			form.appendChild(hiddenField);
+	    			
+	    			form.submit();
+    			} else {
+    				alert ('주량 또는 마실 양을 다시 입력해주세요.');
+    			}
     		}
     	</script>
 		</div>

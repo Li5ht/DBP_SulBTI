@@ -161,19 +161,12 @@ public class RecommendDao {
 	
 	// 최근 언급량 증가 랭킹
 	public List<Rank> rankByRecentIncrease() {
-		/* 	SELECT name, image, count(drink.alcohol_id) AS "numOfAlcohol"
-			from diary, drink, alcohol
-			where diary.diary_id = drink.diary_id
-    		and drink.alcohol_id = alcohol.alcohol_id
-    		and MONTHS_BETWEEN(SYSDATE, drinking_date) <= 1
-			group by name, image
-			order by count(drink.alcohol_id) DESC; */
-		String query = "SELECT name, image, count(drink.alcohol_id) AS \"numOfAlcohol\" "
+		String query = "SELECT name, image, count(drink.alcohol_id) AS \"numOfAlcohol\", taste, flavor, corps "
 				+ "from diary, drink, alcohol "
 				+ "where diary.diary_id = drink.diary_id "
 				+ "and drink.alcohol_id = alcohol.alcohol_id "
 				+ "and MONTHS_BETWEEN(SYSDATE, drinking_date) <= 1 "
-				+ "group by name, image "
+				+ "group by name, image, taste, flavor, corps "
 				+ "order by count(drink.alcohol_id) DESC";
 		jdbcUtil.setSqlAndParameters(query, null);
 		ResultSet rs = null;
@@ -187,9 +180,12 @@ public class RecommendDao {
 			while (rs.next() && count <= 5) {
 				String name = rs.getString("name");
 				String imageUrl = rs.getString("image");
+				int taste = rs.getInt("taste");
+				int flavor = rs.getInt("flavor");
+				int corps = rs.getInt("corps");
 				int numberOfMention = rs.getInt("numOfAlcohol");
 				
-				Rank rank = new Rank(count, name, imageUrl, numberOfMention);
+				Rank rank = new Rank(count, name, imageUrl, taste, flavor, corps, numberOfMention);
 				rankList.add(rank);
 				
 				count++;
@@ -205,17 +201,11 @@ public class RecommendDao {
 	
 	// 꾸준히 인기많은
 	public List<Rank> rankByPopularity() {
-		/* 	SELECT name, image, count(drink.alcohol_id) AS "numOfAlcohol"
-    		from diary, drink, alcohol
-    		where diary.diary_id = drink.diary_id
-        	and drink.alcohol_id = alcohol.alcohol_id
-    		group by name, image
-    		order by count(drink.alcohol_id) DESC; */
-		String query = "SELECT name, image, count(drink.alcohol_id) AS \"numOfAlcohol\" "
+		String query = "SELECT name, image, count(drink.alcohol_id) AS \"numOfAlcohol\", taste, flavor, corps "
 				+ "from diary, drink, alcohol "
 				+ "where diary.diary_id = drink.diary_id "
 				+ "and drink.alcohol_id = alcohol.alcohol_id "
-				+ "group by name, image "
+				+ "group by name, image, taste, flavor, corps "
 				+ "order by count(drink.alcohol_id) DESC";
 		jdbcUtil.setSqlAndParameters(query, null);
 		ResultSet rs = null;
@@ -229,9 +219,12 @@ public class RecommendDao {
 			while (rs.next() && count <= 5) {
 				String name = rs.getString("name");
 				String imageUrl = rs.getString("image");
+				int taste = rs.getInt("taste");
+				int flavor = rs.getInt("flavor");
+				int corps = rs.getInt("corps");
 				int numberOfMention = rs.getInt("numOfAlcohol");
 				
-				Rank rank = new Rank(count, name, imageUrl, numberOfMention);
+				Rank rank = new Rank(count, name, imageUrl, taste, flavor, corps, numberOfMention);
 				rankList.add(rank);
 				
 				count++;
@@ -247,12 +240,12 @@ public class RecommendDao {
 	
 	// 주종별 랭킹
 	public List<Rank> rankByType(String type) {
-		String query = "SELECT name, image, count(drink.alcohol_id) AS \"numOfAlcohol\" "
+		String query = "SELECT name, image, count(drink.alcohol_id) AS \"numOfAlcohol\", taste, flavor, corps "
 				+ "from diary, drink, alcohol "
 				+ "where diary.diary_id = drink.diary_id "
 				+ "and drink.alcohol_id = alcohol.alcohol_id "
 				+ "and alcohol.type = ?"
-				+ "group by name, image "
+				+ "group by name, image, taste, flavor, corps "
 				+ "order by count(drink.alcohol_id) DESC";
 		Object[] param = new Object[] { type };
 		jdbcUtil.setSqlAndParameters(query, param);
@@ -267,9 +260,12 @@ public class RecommendDao {
 			while (rs.next() && count <= 5) {
 				String name = rs.getString("name");
 				String imageUrl = rs.getString("image");
+				int taste = rs.getInt("taste");
+				int flavor = rs.getInt("flavor");
+				int corps = rs.getInt("corps");
 				int numberOfMention = rs.getInt("numOfAlcohol");
 				
-				Rank rank = new Rank(count, name, imageUrl, numberOfMention);
+				Rank rank = new Rank(count, name, imageUrl, taste, flavor, corps, numberOfMention);
 				
 				rankList.add(rank);
 				

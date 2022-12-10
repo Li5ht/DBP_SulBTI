@@ -15,7 +15,6 @@ public class RecommendController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
 		String userId = null; /* 사용자 아이디 */
-		long id = -1; /* 사용자 primary key */
 		
 		/* 로그인 여부 확인 */
 		if (!UserSessionUtils.hasLogined(request.getSession())) {
@@ -23,7 +22,6 @@ public class RecommendController implements Controller {
         } else {
         	request.setAttribute("hasLogin", true);
         	userId = UserSessionUtils.getLoginUserId(request.getSession());
-        	id = UserSessionUtils.getLoginUserPrimaryKey(request.getSession());
         	request.setAttribute("nickname", UserSessionUtils.getLoginUserNickname(request.getSession()));
         }
 

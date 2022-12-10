@@ -557,4 +557,29 @@ public class AlcoholDAO {
 		}	
 		return num;
 	}
+	
+	// 술 이름만 가져오는 (주종별)
+	public List<String> nameListByType(String type) {
+		String query = "SELECT name FROM alcohol WHERE type = ?";
+		jdbcUtil.setSqlAndParameters(query, new Object[] { type  });
+		ResultSet rs = null;
+		ArrayList<String> nameList = null;
+			
+		try {
+			rs = jdbcUtil.executeQuery();
+			nameList = new ArrayList<String>();
+				
+			while (rs.next()) {
+				String name = rs.getString("name");
+					
+				nameList.add(name);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {	
+			jdbcUtil.close();
+		}	
+	    return nameList;
+	}
 }
