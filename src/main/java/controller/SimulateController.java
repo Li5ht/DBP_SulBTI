@@ -72,7 +72,7 @@ public class SimulateController implements Controller {
 			CalcDrinkingCapacity calcDC = new CalcDrinkingCapacity(userDC, drinkingList);
 			int condition = calcDC.calculate();
 			
-			request.setAttribute("condition", Integer.toString(condition));
+			request.setAttribute("condition", condition);
 			
 			return "/simulate/result.jsp";
 		}

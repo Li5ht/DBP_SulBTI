@@ -26,22 +26,26 @@
 	<div class="simulDiv">
 	
 		<c:choose>
-			<c:when test="${condition eq '1'}">
+			<c:when test="${condition eq 0}">
+			
+			</c:when>
+			
+			<c:when test="${condition eq 1}">
 			
 			</c:when>
 			
 			
-			<c:when test="${condition eq '2'}">
+			<c:when test="${condition eq 2}">
 			
 			</c:when>
 			
 			
-			<c:when test="${condition eq '3'}">
+			<c:when test="${condition eq 3}">
 			
 			</c:when>
 			
 			
-			<c:when test="${condition eq '4'}">
+			<c:when test="${condition eq 4}">
 			
 			</c:when>
 			
