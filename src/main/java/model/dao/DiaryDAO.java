@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import model.*;
+import model.service.UserManager;
 
 public class DiaryDAO {
 	private JDBCUtil jdbcUtil = null;
@@ -58,18 +59,20 @@ public class DiaryDAO {
 						diary.setDrinkingList(drinkingList);
 						diaryList.add(diary);
 						diary = null;
+						drinkingList = new ArrayList<Drink>();
 					}
 
-					diaryId = rs.getLong("diary_id");
-					diary = new Diary();
-					diary.setDiaryId(diaryId);
-					Member member = new Member();
-					member.setId(memberId);
-					diary.setMember(member);
-					diary.setDrinkingDate(rs.getDate("drinking_date"));
-					diary.setCondition(rs.getInt("condition"));
-					diary.setContent(rs.getString("content"));
-
+					if (diary == null) {
+						diaryId = rs.getLong("diary_id");
+						diary = new Diary();
+						diary.setDiaryId(diaryId);
+						Member member = new Member();
+						member.setId(memberId);
+						diary.setMember(member);
+						diary.setDrinkingDate(new java.util.Date(rs.getDate("drinking_date").getTime()));
+						diary.setCondition(rs.getInt("condition"));
+						diary.setContent(rs.getString("content"));
+					}
 					alcohol = new Alcohol();
 					alcohol.setAlcoholId(rs.getLong("alcohol_id"));
 					alcohol.setName(rs.getString("name"));
@@ -92,17 +95,17 @@ public class DiaryDAO {
 					drinkingList.add(drink);
 				}
 			}
+		
 			if (diary != null) { // 그 전의 diaryId에 해당하는 diary 정보를 저장함
 				diary.setDrinkingList(drinkingList);
 				diaryList.add(diary);
-				diary = null;
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.close(); // resource 반환
 		}
-
+		
 		return diaryList;
 	}
 
