@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="model.*"%>
 <%@page contentType="text/html; charset=utf-8" %>
@@ -164,14 +166,15 @@ public class MyCalendar {
 	
 	/* 1일부터 달력을 출력한 달의 마지막 날짜까지 반복하며 날짜를 출력 */
 			List<Diary> diaryList = (List<Diary>) request.getAttribute("diaryList");
-			
+	
 			String[] list = new String[32];
 			for (int i = 0; i < 32; i++) {
 				list[i] = "";
 			}
 			if (diaryList != null) {
 				for (Diary diary : diaryList) {
-					String str = diary.getDrinkingDate().toString();;
+					DateFormat df = new SimpleDateFormat("yyyyMMdd");
+					String str = df.format(diary.getDrinkingDate());
 					int day = Integer.parseInt(str.substring(str.length() - 2, str.length()));
 					for (Drink drink : diary.getDrinkingList()) {
 						list[day] += "<br>" + drink.toCalendarString() + "\n";
