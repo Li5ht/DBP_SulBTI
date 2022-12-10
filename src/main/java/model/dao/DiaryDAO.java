@@ -108,6 +108,81 @@ public class DiaryDAO {
 		
 		return diaryList;
 	}
+	
+	public List<Diary> getDiaryListByMemberId(long memberId) throws SQLException {
+		
+		String sql = "SELECT di.diary_id, drinking_date, condition, content, a.alcohol_id, name, type, amount "
+					+ "FROM diary di JOIN drink dr ON di.diary_id = dr.diary_id JOIN alcohol a ON dr.alcohol_id = a.alcohol_id "
+					+ "WHERE member_id=? "
+					+ "ORDER BY di.diary_id ";
+
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { memberId }); // JDBCUtil에 query문과 매개 변수 설정
+		
+		// diary id를 기준으로 drinkingList에 정보 저장 -> diary.setDrinkingList() 호출 ->
+		// diaryList에 diary 저장
+		List<Diary> diaryList = new ArrayList<Diary>();
+		List<Drink> drinkingList = new ArrayList<Drink>();
+		Diary diary = null;
+		Alcohol alcohol = null;
+		Drink drink = null;
+		long diaryId = -1;
+		try {
+			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
+			while (rs.next()) {
+				if (diaryId != rs.getLong("diary_id")) { // 새로운 diaryId가 왔을 떄, drinkingList에 drink 추가해야 함
+					if (diary != null) { // 새로운 diaryId가 왔을 떄, 그 전 diaryId에 해당하는 diary 정보를 저장함
+						diary.setDrinkingList(drinkingList);
+						diaryList.add(diary);
+						diary = null;
+						drinkingList = new ArrayList<Drink>();
+					}
+
+					if (diary == null) {
+						diaryId = rs.getLong("diary_id");
+						diary = new Diary();
+						diary.setDiaryId(diaryId);
+						Member member = new Member();
+						member.setId(memberId);
+						diary.setMember(member);
+						diary.setDrinkingDate(new java.util.Date(rs.getDate("drinking_date").getTime()));
+						diary.setCondition(rs.getInt("condition"));
+						diary.setContent(rs.getString("content"));
+					}
+					alcohol = new Alcohol();
+					alcohol.setAlcoholId(rs.getLong("alcohol_id"));
+					alcohol.setName(rs.getString("name"));
+					alcohol.setType(rs.getString("type"));
+
+					drink = new Drink();
+					drink.setAlcohol(alcohol);
+					drink.setAmount(rs.getInt("amount"));
+
+					drinkingList.add(drink);
+				} else { // diaryId 같을 떄.. drinkingList에 drink 추가
+					alcohol = new Alcohol();
+					alcohol.setAlcoholId(rs.getLong("alcohol_id"));
+					alcohol.setName(rs.getString("name"));
+					alcohol.setType(rs.getString("type"));
+
+					drink = new Drink();
+					drink.setAlcohol(alcohol);
+					drink.setAmount(rs.getInt("amount"));
+					drinkingList.add(drink);
+				}
+			}
+		
+			if (diary != null) { // 그 전의 diaryId에 해당하는 diary 정보를 저장함
+				diary.setDrinkingList(drinkingList);
+				diaryList.add(diary);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close(); // resource 반환
+		}
+		
+		return diaryList;
+	}
 
 	public Diary getDiary(long diaryId) throws SQLException {
 		String sql = "SELECT di.diary_id, drinking_date, condition, content, a.alcohol_id, name, type, amount "

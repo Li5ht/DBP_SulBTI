@@ -57,6 +57,20 @@ public class DiaryManager {
 	}
 
 	/*
+	 * memberId를 기준으로 해당하는 구간의 기록 탐색
+	 */
+	public List<Diary> findDiaryListByMemberId(long memberId) throws SQLException {
+		List<Diary> diaryList = null;
+		diaryList = diaryDAO.getDiaryListByMemberId(memberId);
+		
+		if (diaryList == null || diaryList.size() == 0) {
+			diaryList = null;
+		}
+		
+		return diaryList;
+	}
+	
+	/*
 	 * memberId와 날짜를 기준으로 해당하는 일자 기록 탐색
 	 */
 	public Diary findDiaryBydate(long memberId, String date) throws SQLException {

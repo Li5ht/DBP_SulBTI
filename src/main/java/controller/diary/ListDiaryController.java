@@ -27,7 +27,7 @@ public class ListDiaryController implements Controller {
         }
 		
 		DiaryManager dManager = DiaryManager.getInstance();
-		List<Diary> diaryList = dManager.findDiaryListBydate(id, "20221201", "20230101");
+		List<Diary> diaryList = dManager.findDiaryListByMemberId(id);
 		
 		// diaryList 객체를 request에 저장하여 음주 기록 리스트 화면으로 이동(forwarding)
 		request.setAttribute("diaryList", diaryList);				
