@@ -1,4 +1,7 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="model.*"%>
 <%@page contentType="text/html; charset=utf-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -58,11 +61,11 @@ public class MyCalendar {
 	td.etcday{ text-align: center; font-weight: bold; color: black; font-family: D2coding; }
 
 /* 날짜 스타일 */
-	td.sun{ text-align: right; font-size: 15pt; color: red; font-family: D2coding; vertical-align: top;}
-	td.sat{ text-align: right; font-size: 15pt; color: blue; font-family: D2coding; vertical-align: top;}
+	td.sun{ text-align: right; font-size: 15pt; color: black; font-family: D2coding; vertical-align: top;}
+	td.sat{ text-align: right; font-size: 15pt; color: black; font-family: D2coding; vertical-align: top;}
 	td.etc{ text-align: right; font-size: 15pt; color: black; font-family: D2coding; vertical-align: top;}
 	
-	td.redbefore{ text-align: right; font-size: 12pt; color: red; font-family: D2coding; vertical-align: top;}
+	td.redbefore{ text-align: right; font-size: 12pt; color: gray; font-family: D2coding; vertical-align: top;}
 	td.before{ text-align: right; font-size: 12pt; color: gray; font-family: D2coding; vertical-align: top;}
 	
 	input {border:0; outline:0; color:#79bd9a; background-color:transparent;}
@@ -94,8 +97,23 @@ public class MyCalendar {
 	
 		//	오류사항 걸러주기	
 		try{
+			List<Diary> tmpList = (List<Diary>) request.getAttribute("diaryList");
+			List<Diary> diaryList = new ArrayList<Diary>();
+			
 			year = Integer.parseInt(request.getParameter("year"));
 			month = Integer.parseInt(request.getParameter("month"));
+			
+			for (Diary diary : tmpList) {
+				DateFormat df = new SimpleDateFormat("yyyyMMdd");
+				String str = df.format(diary.getDrinkingDate());
+				int tmpYear = Integer.parseInt(str.substring(0, 4));
+				int tmpMonth = Integer.parseInt(str.substring(str.length() - 4, str.length() - 2));
+				
+				if (tmpYear == year && tmpMonth == month) {
+					diaryList.add(diary);
+				}
+			}
+			request.setAttribute("list", diaryList);
 			
 			if(month>=13){
 				year++;
@@ -163,15 +181,16 @@ public class MyCalendar {
 			}
 	
 	/* 1일부터 달력을 출력한 달의 마지막 날짜까지 반복하며 날짜를 출력 */
-			List<Diary> diaryList = (List<Diary>) request.getAttribute("diaryList");
-			
+			List<Diary> diaryList = (List<Diary>) request.getAttribute("list");
+	
 			String[] list = new String[32];
 			for (int i = 0; i < 32; i++) {
 				list[i] = "";
 			}
 			if (diaryList != null) {
 				for (Diary diary : diaryList) {
-					String str = diary.getDrinkingDate().toString();;
+					DateFormat df = new SimpleDateFormat("yyyyMMdd");
+					String str = df.format(diary.getDrinkingDate());
 					int day = Integer.parseInt(str.substring(str.length() - 2, str.length()));
 					for (Drink drink : diary.getDrinkingList()) {
 						list[day] += "<br>" + drink.toCalendarString() + "\n";
