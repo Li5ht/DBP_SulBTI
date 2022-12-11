@@ -188,8 +188,10 @@ public class MyCalendar {
 			}
 			
 			String[] list = new String[32];
+			long[] idList = new long[32];
 			for (int i = 0; i < 32; i++) {
 				list[i] = "";
+				idList[i] = -1;
 			}
 			if (diaryList != null) {
 				for (Diary diary : diaryList) {
@@ -199,20 +201,23 @@ public class MyCalendar {
 					for (Drink drink : diary.getDrinkingList()) {
 						list[day] += "<br>" + drink.toCalendarString() + "\n";
 					}
+					idList[day] = diary.getDiaryId();
 				}
 			}
 			
+			
 			for(int i = 1; i <= MyCalendar.lastDay(year, month); i++){
+				String url = "<br><a href='view?diaryId=" + idList[i] + "' " + list[i] + "</a>";
 				/* 요일별로 색깔 다르게 해주기위해 td에 class 태그걸어주기 */
 				switch(MyCalendar.weekDay(year, month, i)){
 					case 0 :
-						out.println("<td class ='sun'>" + i + list[i] + "</td>");
+						out.println("<td class ='sun'>" + i + url + "</td>");
 						break;
 					case 6 :
-						out.println("<td class ='sat'>" + i + list[i] + "</td>");
+						out.println("<td class ='sat'>" + i + url + "</td>");
 						break;
 					default :
-						out.println("<td class ='etc'>" + i + list[i] + "</td>");
+						out.println("<td class ='etc'>" + i + url + "</td>");
 						break;
 				}
 				

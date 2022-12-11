@@ -7,7 +7,24 @@
 <link rel=stylesheet href="<c:url value='/css/common.css' />" type="text/css">
 <link rel=stylesheet href="<c:url value='/css/diary.css' />" type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<title>음주 기록 수정</title>
+<script>
+function diaryUpdate() {
+	// 폼 내용 확인
+	form.submit();
+}
+
+function changeFn(){
+	var alcohol = document.getElementById("alcohol");
+	var v = (alcohol.options[alcohol.selectedIndex].value);
+	document.getElementById("selectedAlcohol").value = v;
+	
+	/* 		
+	var selectedindex = city.selectedIndex;
+	alert("value = "+value+" , selectedindex = "+selectedindex); 
+	*/
+}
+</script>
+<title>음주 기록 추가</title>
 </head>
 <body>
 	<!-- 네비게이션 바 -->
@@ -26,24 +43,30 @@
 	</div>	  
 	
 	<!-- registration form  -->
-	<form name="form" method="POST" action="<c:url value='/diary/create' />">
+	<form name="form" method="POST" action="<c:url value='/diary/update' />">
+		<div class="form-group row">   
+	        <label for="diaryId" class="col-lg-2 col-form-label">id</label>
+	        <div class="col-lg-10">
+	            <input type="text" name="diaryId" class="form-control" value="${diary.diaryId}" readonly
+	            	<c:if test="${creationFailed}">value="${diaryId}"</c:if>>	            	
+	        </div>
+	    </div>  
     	<div class="form-group row">   
 	        <label for="date" class="col-lg-2 col-form-label">날짜</label>
 	        <div class="col-lg-10">
-	            <input type="text" name="date" class="form-control" value="${diary.drinkingDate}"
+	            <input type="text" name="date" class="form-control" value="${drinkingDate}"
 	            	<c:if test="${creationFailed}">value="${diary.drinkingDate}"</c:if>>	            	
 	        </div>
 	    </div>       
 	    <div class="form-group row">   
-	        <label for="" class="col-lg-2 col-form-label">마신 술 목록</label>
+	        <label for="alcohol" class="col-lg-2 col-form-label">마신 술 목록</label>
 	        <div class="col-lg-10">
-	        	<select name="alcohol" form="myForm">
+	        	<select id="alcohol" name="alcohol" form="myForm" onchange="changeFn()">
 		        	<c:forEach var="alcohol" items="${alcoholList}">
-		        		<option value=${alcohol.name}>
-		        		<c:if test="${alcohol.name eq diary.drinkingList[0].name}">selected="selected"</c:if>
-							>${alcohol.name}</option>
+		        		<option value=${alcohol.name}>${alcohol.name}</option>
 		        	</c:forEach>
 		        </select>
+		        <input type="text" id ="selectedAlcohol" class="form-control" name="selectedAlcohol"  value="${diary.drinkingList[0].alcohol.name}" readonly>
 	            <input type="number" name="amount" class="form-control" value="${diary.drinkingList[0].amount}"
 					<c:if test="${creationFailed}">value="${diary.drinkingList[0].amount}"</c:if>>
 	        </div>
@@ -51,20 +74,20 @@
 	    <div class="form-group row">   
 	        <label for="condition" class="col-lg-2 col-form-label">상태</label>
 	        <div class="col-lg-10">
-	            <input type="number" name="condition" class="form-control" placeholder="컨디션" 
+	            <input type="number" name="condition" class="form-control" value="${diary.condition}"
 					<c:if test="${creationFailed}">value="${diary.condition}"</c:if>>
 	        </div>
 	    </div>   
 	    <div class="form-group row">   
 	        <label for="content" class="col-lg-2 col-form-label">오늘의 일기</label>
 	        <div class="col-lg-10">
-	            <input type="text" name="content" class="form-control" placeholder="오늘의 일기" 
+	            <input type="text" name="content" class="form-control" value="${diary.content}"
 					<c:if test="${creationFailed}">value="${diary.content}"</c:if>>
 	        </div>
 	    </div>      
 	    <br>
 	    <div class="form-group">        
-			<input type="button" class="btn btn-success" value="생성" onClick="diaryCreate()"> 
+			<input type="button" class="btn btn-success" value="수정" onClick="diaryUpdate()"> 
 			<a href="<c:url value='/diary/list' />" class="btn btn-outline-success">음주 기록 목록</a>    		     
 		</div>   
 	</form>

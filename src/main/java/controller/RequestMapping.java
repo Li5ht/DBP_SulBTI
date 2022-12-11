@@ -47,7 +47,7 @@ public class RequestMapping {
        mappings.put("/diary/view", new ViewDiaryController());
        mappings.put("/diary/create", new CreateDiaryController());
        mappings.put("/diary/update", new UpdateDiaryController());
-       
+       mappings.put("/diary/delete", new DeleteDiaryController());
        
        // 술 정보
        mappings.put("/product/info", new ViewAlcoholController());
