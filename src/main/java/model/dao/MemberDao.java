@@ -111,6 +111,38 @@ public class MemberDao {
 		}
 		return null;
 	}
+	
+	// 회원의 primary key로 회원정보를 검색하여 해당회원의 정보를 갖고 있는 Member 객체를 반환하는 메소드
+		public Member getMemberByPrimaryKey(long id) {
+			String searchQuery = query +  "FROM member " +
+			  							  "WHERE member.id = ? ";	 
+			
+			Object[] param = new Object[] { id };
+			jdbcUtil.setSqlAndParameters(searchQuery, param);
+
+			try {
+				ResultSet rs = jdbcUtil.executeQuery();
+				Member dto = null;
+				if (rs.next()) {
+					dto = new Member();
+					dto.setId(rs.getLong("id"));
+					dto.setUserId(rs.getString("user_id"));
+					dto.setNickname(rs.getString("nickname"));
+					dto.setPassword(rs.getString("password"));
+					dto.setEmail(rs.getString("email"));
+					dto.setBirth(rs.getDate("birth"));
+					dto.setGender(rs.getInt("gender"));
+					dto.setTestType(rs.getString("test_type"));
+					dto.setDrinkingCapacity(rs.getFloat("drinking_capacity"));
+				}
+				return dto;
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			} finally {
+				jdbcUtil.close();
+			}
+			return null;
+		}
 
 	// Member 객체에 담겨 있는 회원의 정보를 기반으로 회원정보를 member 테이블에 삽입하는 메소드
 	public int insertMember(Member mem) {

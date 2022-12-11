@@ -46,6 +46,17 @@ public class UserManager {
 			return user;
 		}
 	
+	public Member findUserByPrimaryKey(long id)
+			throws SQLException, UserNotFoundException {
+			Member user = userDAO.getMemberByPrimaryKey(id);
+			
+			if (user == null) {
+				throw new UserNotFoundException(id + "는 존재하지 않는 아이디입니다.");
+			}		
+			return user;
+		}
+	
+	
 	public Member login(String userId, String password)
 			throws SQLException, UserNotFoundException, PasswordMismatchException {
 			Member user = findUser(userId);

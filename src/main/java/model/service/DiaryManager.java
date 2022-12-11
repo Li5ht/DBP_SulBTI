@@ -99,5 +99,13 @@ public class DiaryManager {
 	public DiaryDAO getDiaryDAO() {
 		return this.diaryDAO;
 	}
+	
+	public int updateDiary(Diary diary) throws SQLException, DiaryNotFoundException {
+		return diaryDAO.updateDiary(diary);
+	}
+	
+	public int deleteDiary(Diary diary) throws SQLException, DiaryNotFoundException {
+		return diaryDAO.removeDiary(diary);
+	}
 
 }

@@ -185,7 +185,7 @@ public class DiaryDAO {
 	}
 
 	public Diary getDiary(long diaryId) throws SQLException {
-		String sql = "SELECT di.diary_id, drinking_date, condition, content, a.alcohol_id, name, type, amount "
+		String sql = "SELECT di.diary_id, drinking_date, member_id, condition, content, a.alcohol_id, name, type, amount "
 				+ "FROM diary di JOIN drink dr ON di.diary_id = dr.diary_id JOIN alcohol a ON dr.alcohol_id = a.alcohol_id "
 				+ "WHERE di.diary_id = ?";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { diaryId }); // JDBCUtil에 query문과 매개 변수 설정
@@ -208,6 +208,10 @@ public class DiaryDAO {
 					diary.setCondition(rs.getInt("condition"));
 					diary.setContent(rs.getString("content"));
 
+					Member member = new Member();
+					member.setId(rs.getLong("member_id"));
+					diary.setMember(member);
+					
 					alcohol = new Alcohol();
 					alcohol.setAlcoholId(rs.getLong("alcohol_id"));
 					alcohol.setName(rs.getString("name"));
@@ -296,10 +300,11 @@ public class DiaryDAO {
 		try {
 			// diary 테이블 수정
 			String sql1 = "UPDATE Diary " + "SET condition=?, content=? " + "WHERE diary_id=?";
-			Object[] param1 = new Object[] { diary.getCondition(), diary.getContent() };
+			Object[] param1 = new Object[] { diary.getCondition(), diary.getContent(), diary.getDiaryId() };
 			jdbcUtil.setSqlAndParameters(sql1, param1); // JDBCUtil에 update문과 매개 변수 설정
 			int result = jdbcUtil.executeUpdate(); // update 문 실행
 
+			/*
 			// drink 삭제 전 preference 테이블 해당 양만큼 감소
 			RecommendDao rcd = new RecommendDao();
 			long preferenceId = -1;
@@ -309,6 +314,7 @@ public class DiaryDAO {
 				rcd.updatePreferenceByAmount(preferenceId, amount);
 			}
 
+			
 			// drink 테이블에서 해당 diary id 모두 삭제 후, 추가
 			String sql2 = "DELETE FROM Diary WHERE diary_id=?";
 			jdbcUtil.setSqlAndParameters(sql2, new Object[] { diary.getDiaryId() }); // JDBCUtil에 delete문과 매개 변수 설정
@@ -326,7 +332,7 @@ public class DiaryDAO {
 				preferenceId = rcd.findPreference(diary.getMember().getId(), dr.getAlcohol().getAlcoholId());
 				rcd.updatePreferenceByAmount(preferenceId, dr.getAmount());
 			}
-
+			 */
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -349,13 +355,9 @@ public class DiaryDAO {
 				rcd.updatePreferenceByAmount(preferenceId, amount);
 			}
 
-			String sql1 = "DELETE FROM Drink WHERE diary_id=?";
-			jdbcUtil.setSqlAndParameters(sql1, new Object[] { diary.getDiaryId() }); // JDBCUtil에 delete문과 매개 변수 설정
+			String sql = "DELETE FROM Diary WHERE diary_id=?";
+			jdbcUtil.setSqlAndParameters(sql, new Object[] { diary.getDiaryId() }); // JDBCUtil에 delete문과 매개 변수 설정
 			int result = jdbcUtil.executeUpdate(); // delete 문 실행
-
-			String sql2 = "DELETE FROM Diary WHERE diary_id=?";
-			jdbcUtil.setSqlAndParameters(sql2, new Object[] { diary.getDiaryId() }); // JDBCUtil에 delete문과 매개 변수 설정
-			result += jdbcUtil.executeUpdate(); // delete 문 실행
 
 			return result;
 		} catch (Exception ex) {
