@@ -103,6 +103,14 @@ public class MyCalendar {
 			year = Integer.parseInt(request.getParameter("year"));
 			month = Integer.parseInt(request.getParameter("month"));
 			
+			if (month >= 13){
+				year++;
+				month = 1;
+			} else if(month <= 0){
+				year--;
+				month = 12;
+			}
+			
 			for (Diary diary : tmpList) {
 				DateFormat df = new SimpleDateFormat("yyyyMMdd");
 				String str = df.format(diary.getDrinkingDate());
@@ -115,13 +123,6 @@ public class MyCalendar {
 			}
 			request.setAttribute("list", diaryList);
 			
-			if(month>=13){
-				year++;
-				month =1;
-			}else if(month <=0){
-				year--;
-				month =12;
-			}
 		}catch(Exception e){
 			
 		}
@@ -182,7 +183,10 @@ public class MyCalendar {
 	
 	/* 1일부터 달력을 출력한 달의 마지막 날짜까지 반복하며 날짜를 출력 */
 			List<Diary> diaryList = (List<Diary>) request.getAttribute("list");
-	
+			if (diaryList == null) {
+				diaryList = (List<Diary>) request.getAttribute("currentDiaryList");
+			}
+			
 			String[] list = new String[32];
 			for (int i = 0; i < 32; i++) {
 				list[i] = "";
