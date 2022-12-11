@@ -27,6 +27,7 @@ public class ViewAlcoholController implements Controller {
         } else {
         	/* 로그인 O */
         	request.setAttribute("hasLogin", true);
+        	request.setAttribute("id", UserSessionUtils.getLoginUserPrimaryKey(request.getSession()));
 			request.setAttribute("userId", UserSessionUtils.getLoginUserId(request.getSession()));
         	request.setAttribute("nickname", UserSessionUtils.getLoginUserNickname(request.getSession()));
         }
@@ -263,6 +264,10 @@ public class ViewAlcoholController implements Controller {
 			long aId = Long.parseLong(request.getParameter("alcoholId"));
 			Review oldReview = alMan.findReview(UserSessionUtils.getLoginUserPrimaryKey(request.getSession()), aId);
 			Alcohol alcohol = alMan.findAlcoholById(aId);
+			int num = alMan.numberOfReview(aId);	// 현재 등록되어 있는 리뷰 개수 (술의 별점 수정을 위해)
+			int[] tasteH = alMan.numberOfTaste(aId);
+			int[] flavorH = alMan.numberOfFlavor(aId);
+			int[] corpsH = alMan.numberOfCorps(aId);	// 현재 등록되어 있는 해시태그..
 			int result = alMan.deleteReview(UserSessionUtils.getLoginUserPrimaryKey(request.getSession()), aId);
 			
 			if (result > 0) {
@@ -270,14 +275,10 @@ public class ViewAlcoholController implements Controller {
 				
 				request.setAttribute("deleteReview", deleteReview);
 				
-				int num = alMan.numberOfReview(aId);	// 현재 등록되어 있는 리뷰 개수 (술의 별점 수정을 위해)
-				int[] tasteH = alMan.numberOfTaste(aId);
-				int[] flavorH = alMan.numberOfFlavor(aId);
-				int[] corpsH = alMan.numberOfCorps(aId);	// 현재 등록되어 있는 해시태그..
 				float newRate = alcohol.calRate(2, alcohol.getRate(), oldReview.getRate(), num, 0);
-				int updateTaste = alcohol.calTaste(1, tasteH, oldReview.getTaste(), -1);
-				int updateFlavor = alcohol.calFlavor(1, flavorH, oldReview.getFlavor(), -1);
-				int updateCorps = alcohol.calCorps(1, corpsH, oldReview.getCorps(), -1);
+				int updateTaste = alcohol.calTaste(2, tasteH, oldReview.getTaste(), -1);
+				int updateFlavor = alcohol.calFlavor(2, flavorH, oldReview.getFlavor(), -1);
+				int updateCorps = alcohol.calCorps(2, corpsH, oldReview.getCorps(), -1);
 				alMan.updateAlcohol(aId, newRate, updateTaste, updateFlavor, updateCorps);
 			}
 			

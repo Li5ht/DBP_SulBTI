@@ -149,10 +149,13 @@ public class Alcohol {
 	public float calRate(int flag, float rate, float oldRate, int num, float newRate) {
 		if (flag == 0) {	// 리뷰 추가
 			return (rate * num + newRate) / (num+1);
-		} else if (flag == 1) {	// 리뷰 수정 (rate * 3 - oldRate + newRate)/3
+		} else if (flag == 1) {	// 리뷰 수정
 			return (rate * num - oldRate + newRate) / num;
-		} else {	// 리뷰 삭제 (rate * 3 - oldRate)/2
-			return (rate * num - oldRate) / (num-1);
+		} else {	// 리뷰 삭제
+			if (num -1 == 0)
+				return 0;
+			else 
+				return (rate * num - oldRate) / (num-1);
 		}
 		
 	}
@@ -166,6 +169,7 @@ public class Alcohol {
 		} else {
 			num[oldTaste]--;
 		}
+		
 		
 		int max = num[0];
 		int maxIndex = 0;
