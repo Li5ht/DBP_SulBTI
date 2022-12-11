@@ -299,6 +299,18 @@ public class ViewAlcoholController implements Controller {
 		}
 		
 		
+		/* 술 검색 */
+		int search = 1;
+		if (request.getServletPath().equals("/product/search")) {
+			String searchWord = request.getParameter("searchWord");
+			List<Alcohol> searchList = alMan.searchAlcohol(searchWord);
+			request.setAttribute("searchList", searchList);
+
+			search = 0;
+		}request.setAttribute("search", search);
+		
+		
+		
 		return "/review/productInfo.jsp";
 	}
 }

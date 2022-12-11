@@ -44,55 +44,70 @@
 </style>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
+var search = '<c:out value="${search}"/>';
 function selectDiv(str) {
-	if (str == '맥주') {
+	if (search == 0) {
 		$('.alcohol1').hide();
-		$('.alcohol3').hide();
-		$('.alcohol4').hide();
-		$('.alcohol5').hide();
-		$('.alcohol6').hide();
-    	
-      	$('.alcohol2').show();
-	} else if (str == '전통주') {
-		$('.alcohol2').hide();
-		$('.alcohol1').hide();
-		$('.alcohol4').hide();
-		$('.alcohol5').hide();
-		$('.alcohol6').hide();
-    	
-      	$('.alcohol3').show();
-	} else if (str == '와인') {
-		$('.alcohol2').hide();
-		$('.alcohol3').hide();
-		$('.alcohol1').hide();
-		$('.alcohol5').hide();
-		$('.alcohol6').hide();
-    	
-      	$('.alcohol4').show();
-	} else if (str == '양주') {
-		$('.alcohol2').hide();
-		$('.alcohol3').hide();
-		$('.alcohol4').hide();
-		$('.alcohol1').hide();
-		$('.alcohol6').hide();
-    	
-      	$('.alcohol5').show();
-	} else if (str == '칵테일') {
 		$('.alcohol2').hide();
 		$('.alcohol3').hide();
 		$('.alcohol4').hide();
 		$('.alcohol5').hide();
-		$('.alcohol1').hide();
-    	
-      	$('.alcohol6').show();
+		$('.alcohol6').hide();
+		
+		$('.searchDiv').show();
+		
+		search = search + 1;
 	} else {
-		$('.alcohol2').hide();
-		$('.alcohol3').hide();
-		$('.alcohol4').hide();
-		$('.alcohol5').hide();
-		$('.alcohol6').hide();
-    	
-      	$('.alcohol1').show();
+		$('.searchDiv').hide();
+		if (str == '맥주') {
+			$('.alcohol1').hide();
+			$('.alcohol3').hide();
+			$('.alcohol4').hide();
+			$('.alcohol5').hide();
+			$('.alcohol6').hide();
+	    	
+	      	$('.alcohol2').show();
+		} else if (str == '전통주') {
+			$('.alcohol2').hide();
+			$('.alcohol1').hide();
+			$('.alcohol4').hide();
+			$('.alcohol5').hide();
+			$('.alcohol6').hide();
+	    	
+	      	$('.alcohol3').show();
+		} else if (str == '와인') {
+			$('.alcohol2').hide();
+			$('.alcohol3').hide();
+			$('.alcohol1').hide();
+			$('.alcohol5').hide();
+			$('.alcohol6').hide();
+	    	
+	      	$('.alcohol4').show();
+		} else if (str == '양주') {
+			$('.alcohol2').hide();
+			$('.alcohol3').hide();
+			$('.alcohol4').hide();
+			$('.alcohol1').hide();
+			$('.alcohol6').hide();
+	    	
+	      	$('.alcohol5').show();
+		} else if (str == '칵테일') {
+			$('.alcohol2').hide();
+			$('.alcohol3').hide();
+			$('.alcohol4').hide();
+			$('.alcohol5').hide();
+			$('.alcohol1').hide();
+	    	
+	      	$('.alcohol6').show();
+		} else {
+			$('.alcohol2').hide();
+			$('.alcohol3').hide();
+			$('.alcohol4').hide();
+			$('.alcohol5').hide();
+			$('.alcohol6').hide();
+	    	
+	      	$('.alcohol1').show();
+		}
 	}
 	
 	var review = '<c:out value="${detail}"/>';
@@ -125,6 +140,7 @@ function selectDiv(str) {
 	if (deleteReview == 1) {
 		alert('리뷰가 삭제되었습니다.');
 	}
+	
 }
 
 $(document).ready(function() {
@@ -407,6 +423,15 @@ $(document).ready(function() {
 			form.submit();
 		}
 		
+		function searchAlcohol() {
+			var form = document.getElementById("searchAlcohol");
+			if($("#searchWord").val().trim().length < 1) {
+    			alert("검색어를 입력해주세요.");
+    			return; 
+			}
+			form.submit();
+		}
+		
         //팝업 Close 기능
         function close_pop(flag) {
              $('#myModal').hide();
@@ -423,7 +448,12 @@ $(document).ready(function() {
 		</div>
 		
 		
-		<br>
+		
+		<form id="searchAlcohol" method="post" action="<c:url value='/product/search'/>"> 
+			<input type="text" width="15" name="searchWord" id="searchWord" placeholder="검색어를 입력해주세요.">
+			<a href='javascript:void(0);' onclick="searchAlcohol();"><img src="<c:url value='/images/q.png' />" alt="search"/></a>
+		</form>
+		
 		<table class="banner"><tr class="tr1">
 			<td class="td1"><hr width="80%" ></td>
 			<td> P R O D U C T </td>
@@ -724,12 +754,58 @@ $(document).ready(function() {
 					</div>
 				</c:forEach>
 			</div>
+			
+			
+			
+			<div id="searchDiv" class="searchDiv">
+				<c:forEach var="alcohol" items="${searchList}">
+					<div class="alDiv" onclick="openAlcoholInfo('${alcohol.alcoholId}');">
+						<img src='${alcohol.imageUrl}'  width="auto" height="150px"> <br>
+						${alcohol.name} <br>
+						${alcohol.type} <br>
+						<c:choose>
+							<c:when test="${alcohol.rate lt 0.5}"> <!-- 별점이 < 0.5 -->
+								<img src="<c:url value='/images/star_0.png' />">
+							</c:when>
+							<c:when test="${alcohol.rate lt 1}"> <!-- 별점이 0.5 <= < 1 -->
+								<img src="<c:url value='/images/star_05.png' />">
+							</c:when>
+							<c:when test="${alcohol.rate lt 1.5}"> <!-- 별점이 1 <= < 1.5 -->
+								<img src="<c:url value='/images/star_1.png' />">
+							</c:when>
+							<c:when test="${alcohol.rate lt 2}"> <!-- 별점이 1.5 <= < 2 -->
+								<img src="<c:url value='/images/star_15.png' />">
+							</c:when>
+							<c:when test="${alcohol.rate lt 2.5}"> <!-- 별점이 2 <= < 2.5 -->
+								<img src="<c:url value='/images/star_2.png' />">
+							</c:when>
+							<c:when test="${alcohol.rate lt 3}"> <!-- 별점이 2.5 <= < 3 -->
+								<img src="<c:url value='/images/star_25.png' />">
+							</c:when>
+							<c:when test="${alcohol.rate lt 3.5}"> <!-- 별점이 3 <= < 3.5 -->
+								<img src="<c:url value='/images/star_3.png' />">
+							</c:when>
+							<c:when test="${alcohol.rate lt 4}"> <!-- 별점이 3.5 <= < 4 -->
+								<img src="<c:url value='/images/star_35.png' />">
+							</c:when>
+							<c:when test="${alcohol.rate lt 4.5}"> <!-- 별점이 4 <= < 4.5 -->
+								<img src="<c:url value='/images/star_4.png' />">
+							</c:when>
+							<c:when test="${alcohol.rate lt 5}"> <!-- 별점이 4.5 <= < 5 -->
+								<img src="<c:url value='/images/star_45.png' />">
+							</c:when>
+							<c:when test="${alcohol.rate ge 5}"> <!-- 별점이 5 이상 -->
+								<img src="<c:url value='/images/star_5.png' />">
+							</c:when>
+						</c:choose>
+						<br>
+						#${alcohol.taste} #${alcohol.flavor} #${alcohol.corps}
+					</div>
+				</c:forEach>
+			</div>
 		</div>
 		
 	<br><br>
-	<div id="alsldlfl">
-	
-	</div>
 	
 </body>
 </html>

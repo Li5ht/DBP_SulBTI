@@ -163,6 +163,7 @@
 .alcohol4 { display: none; }
 .alcohol5 { display: none; }
 .alcohol6 { display: none; }
+.searchDiv { display: none; }
 
 .alDiv {
 	text-align:center;
@@ -187,6 +188,7 @@
 	text-align:center;
 	vertical-align: middle;
 }
+
 
 
 .testDiv {
