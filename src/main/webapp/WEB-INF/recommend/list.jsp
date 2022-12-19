@@ -118,7 +118,7 @@ $(document).ready(function($) {
 						<td class="recTd2">
 							술 이름 : ${drink.alcohol.name} <br>
 							이미지 링크 : ${drink.alcohol.imageUrl} <br>
-							#${drink.alcohol.taste} #${drink.alcohol.flavor} #${rank.alcohol.corps} <br>
+							#${drink.alcohol.tasteString} #${drink.alcohol.flavorString} #${rank.alcohol.corpsString} <br>
 							마셔도 되는 양 : ${drink.amount} <br>
 						</td>
 					</c:forEach>
@@ -134,7 +134,7 @@ $(document).ready(function($) {
 					<td class="recTd2">
 						<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
 						${rank.alcohol.name} <br>
-						#${rank.alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps} <br>
+						#${rank.alcohol.tasteString} #${rank.alcohol.flavorString} #${rank.alcohol.corpsString} <br>
 					</td>
 				</c:forEach>
 			</tr></table>
@@ -148,7 +148,7 @@ $(document).ready(function($) {
 					<td class="recTd2">
 						<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
 						${rank.alcohol.name} <br>
-						#${rank.alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps} <br>
+						#${rank.alcohol.tasteString} #${rank.alcohol.flavorString} #${rank.alcohol.corpsString} <br>
 					</td>
 				</c:forEach>
 			</tr></table>
@@ -171,7 +171,7 @@ $(document).ready(function($) {
 					<td class="recTd2">
 						<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
 						${rank.alcohol.name} <br>
-						#${rank.alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps} <br>
+						#${rank.alcohol.tasteString} #${rank.alcohol.flavorString} #${rank.alcohol.corpsString} <br>
 					</td>
 				</c:forEach>
 			</tr></table>
@@ -183,7 +183,7 @@ $(document).ready(function($) {
 					<td class="recTd2">
 						<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
 						${rank.alcohol.name} <br>
-						#${rank.alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps} <br>
+						#${rank.alcohol.tasteString} #${rank.alcohol.flavorString} #${rank.alcohol.corpsString} <br>
 					</td>
 				</c:forEach>
 			</tr></table>
@@ -195,7 +195,7 @@ $(document).ready(function($) {
 					<td class="recTd2">
 						<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
 						${rank.alcohol.name} <br>
-						#${rank.alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps} <br>
+						#${rank.alcohol.tasteString} #${rank.alcohol.flavorString} #${rank.alcohol.corpsString} <br>
 					</td>
 				</c:forEach>
 			</tr></table>
@@ -207,7 +207,7 @@ $(document).ready(function($) {
 					<td class="recTd2">
 						<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
 						${rank.alcohol.name} <br>
-						#${rank.alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps} <br>
+						#${rank.alcohol.tasteString} #${rank.alcohol.flavorString} #${rank.alcohol.corpsString} <br>
 					</td>
 				</c:forEach>
 			</tr></table>
@@ -219,7 +219,7 @@ $(document).ready(function($) {
 					<td class="recTd2">
 						<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
 						${rank.alcohol.name} <br>
-						#${rank.alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps} <br>
+						#${rank.alcohol.tasteString} #${rank.alcohol.flavorString} #${rank.alcohol.corpsString} <br>
 					</td>
 				</c:forEach>
 			</tr></table>
@@ -231,7 +231,7 @@ $(document).ready(function($) {
 					<td class="recTd2">
 						<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
 						${rank.alcohol.name} <br>
-						#${rank.alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps} <br>
+						#${rank.alcohol.tasteString} #${rank.alcohol.flavorString} #${rank.alcohol.corpsString} <br>
 					</td>
 				</c:forEach>
 			</tr></table>

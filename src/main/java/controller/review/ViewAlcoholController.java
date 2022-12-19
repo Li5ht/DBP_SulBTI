@@ -49,6 +49,7 @@ public class ViewAlcoholController implements Controller {
 		request.setAttribute("cocktail", cocktail);
 		
 		
+		
 		/* 해당 술 상세 정보 */
 		int detail = 0;
 		if (request.getParameter("detail") != null) {
@@ -97,6 +98,12 @@ public class ViewAlcoholController implements Controller {
 				} else {
 					createReview = 1;
 					request.setAttribute("createReview", createReview);
+					String[] tasteHashTag = soju.get(0).getTasteHashTag();
+					String[] flavorHashTag = soju.get(0).getFlavorHashTag();
+					String[] corpsHashTag = soju.get(0).getCorpsHashTag();
+					request.setAttribute("tasteHashTag", tasteHashTag);
+					request.setAttribute("flavorHashTag", flavorHashTag);
+					request.setAttribute("corpsHashTag", corpsHashTag);
 				}
 			}
 		}
@@ -120,13 +127,14 @@ public class ViewAlcoholController implements Controller {
 			review.setRate(rate); // 별점 등록
 			review.setContent(request.getParameter("content")); // 내용 등록
 			
-			int taste = Integer.parseInt(request.getParameter("taste"));
-			int flavor = Integer.parseInt(request.getParameter("flavor"));
-			int corps = Integer.parseInt(request.getParameter("corps"));
+			String tasteStr = request.getParameter("taste");
+			String flavorStr = request.getParameter("flavor");
+			String corpsStr = request.getParameter("corps");
 			
-			review.setTaste(taste);
-			review.setFlavor(flavor);
-			review.setCorps(corps);
+			review.setTasteString(tasteStr);
+			review.setFlavorString(flavorStr);
+			review.setCorpsString(corpsStr);
+			
 			
 			
 			int num = alMan.numberOfReview(aId);	// 현재 등록되어 있는 리뷰 개수 (술의 별점 수정을 위해)
@@ -135,9 +143,9 @@ public class ViewAlcoholController implements Controller {
 			int[] corpsH = alMan.numberOfCorps(aId);	// 현재 등록되어 있는 해시태그..
 			alMan.insertReview(review);
 			float updateRate = alcohol.calRate(0, alcohol.getRate(), 0, num, rate);	// 기존 별점, 기존 인원, 추가할 별점
-			int updateTaste = alcohol.calTaste(0, tasteH, -1, taste);
-			int updateFlavor = alcohol.calFlavor(0, flavorH, -1, flavor);
-			int updateCorps = alcohol.calCorps(0, corpsH, -1, corps);
+			int updateTaste = alcohol.calTaste(0, tasteH, -1, review.getTaste());
+			int updateFlavor = alcohol.calFlavor(0, flavorH, -1, review.getFlavor());
+			int updateCorps = alcohol.calCorps(0, corpsH, -1, review.getCorps());
 			alMan.updateAlcohol(aId, updateRate, updateTaste, updateFlavor, updateCorps);	// 술의 별점, 해시태그 변경
 			
 			request.setAttribute("registerReview", 1);
@@ -177,11 +185,18 @@ public class ViewAlcoholController implements Controller {
 					userRate = String.valueOf(Math.round(rate));
 				}
 				request.setAttribute("userRate", userRate);
-				request.setAttribute("userTaste", String.valueOf(review.getTaste()));
-				request.setAttribute("userFlavor", String.valueOf(review.getFlavor()));
-				request.setAttribute("userCorps", String.valueOf(review.getCorps()));
+				request.setAttribute("userTaste", review.getTasteString());
+				request.setAttribute("userFlavor", review.getFlavorString());
+				request.setAttribute("userCorps", review.getCorpsString());
 				updateReview = 1;
 				request.setAttribute("updateReview", updateReview);
+				
+				String[] tasteHashTag = soju.get(0).getTasteHashTag();
+				String[] flavorHashTag = soju.get(0).getFlavorHashTag();
+				String[] corpsHashTag = soju.get(0).getCorpsHashTag();
+				request.setAttribute("tasteHashTag", tasteHashTag);
+				request.setAttribute("flavorHashTag", flavorHashTag);
+				request.setAttribute("corpsHashTag", corpsHashTag);
 				
 			} else {
 				/* 사용자의 리뷰가 존재하지 않음 */
@@ -220,13 +235,14 @@ public class ViewAlcoholController implements Controller {
 			review.setRate(newRate); // 별점 등록
 			review.setContent(request.getParameter("content")); // 내용 등록
 			
-			int newTaste = Integer.parseInt(request.getParameter("taste"));
-			int newFlavor = Integer.parseInt(request.getParameter("flavor"));
-			int newCorps = Integer.parseInt(request.getParameter("corps"));
+			String newTasteStr = request.getParameter("taste");
+			String newFlavorStr = request.getParameter("flavor");
+			String newCorpsStr = request.getParameter("corps");
 			
-			review.setTaste(newTaste);
-			review.setFlavor(newFlavor);
-			review.setCorps(newCorps);
+			review.setTasteString(newTasteStr);
+			review.setFlavorString(newFlavorStr);
+			review.setCorpsString(newCorpsStr);
+			
 			
 			
 			int num = alMan.numberOfReview(aId);	// 현재 등록되어 있는 리뷰 개수 (술의 별점 수정을 위해)
@@ -234,9 +250,9 @@ public class ViewAlcoholController implements Controller {
 			int[] flavorH = alMan.numberOfFlavor(aId);
 			int[] corpsH = alMan.numberOfCorps(aId);	// 현재 등록되어 있는 해시태그..
 			alcohol.calRate(1, alcohol.getRate(), oldReview.getRate(), num, newRate);
-			int updateTaste = alcohol.calTaste(1, tasteH, oldReview.getTaste(), newTaste);
-			int updateFlavor = alcohol.calFlavor(1, flavorH, oldReview.getFlavor(), newFlavor);
-			int updateCorps = alcohol.calCorps(1, corpsH, oldReview.getCorps(), newCorps);
+			int updateTaste = alcohol.calTaste(1, tasteH, oldReview.getTaste(), review.getTaste());
+			int updateFlavor = alcohol.calFlavor(1, flavorH, oldReview.getFlavor(), review.getFlavor());
+			int updateCorps = alcohol.calCorps(1, corpsH, oldReview.getCorps(), review.getCorps());
 			alMan.updateReview(review);
 			alMan.updateAlcohol(aId, newRate, updateTaste, updateFlavor, updateCorps);  // 술의 별점, 해시태그 변경
 			

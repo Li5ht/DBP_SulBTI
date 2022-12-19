@@ -166,8 +166,6 @@ var count = 0;
     		function categorychange(e, num) {
     			var alcohol;
     			var aLength;
-    			var strSplit;
-    			var arrSplit;
         		
         		
         		var i = "sel2_" + num.toString();

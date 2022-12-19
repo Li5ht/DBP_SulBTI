@@ -39,6 +39,7 @@ public class AlcoholDAO {
 				alcohol.setTaste(rs.getInt("taste"));
 				alcohol.setFlavor(rs.getInt("flavor"));
 				alcohol.setCorps(rs.getInt("corps"));
+				
 				alcoholList.add(alcohol);
 			}
 		} catch(Exception e) {
@@ -507,7 +508,10 @@ public class AlcoholDAO {
 		Object[] param = new Object[] { alcoholId };
 		jdbcUtil.setSqlAndParameters(query, param);
 		ResultSet rs = null;
-		int[] num = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+		int[] num = new int[91];
+		for (int i = 0; i < 91; i++) {
+			num[i] = 0;
+		}
 		
 		try {
 			rs = jdbcUtil.executeQuery();
@@ -535,10 +539,7 @@ public class AlcoholDAO {
 		Object[] param = new Object[] { alcoholId };
 		jdbcUtil.setSqlAndParameters(query, param);
 		ResultSet rs = null;
-		int[] num = new int[91];
-		for (int i = 0; i < 91; i++) {
-			num[i] = 0;
-		}
+		int[] num = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 		
 		try {
 			rs = jdbcUtil.executeQuery();

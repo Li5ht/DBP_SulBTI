@@ -4,6 +4,9 @@
 <head>
 <title>술 정보</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<%
+	
+%>
 <link rel=stylesheet href="<c:url value='/css/common.css' />" type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
@@ -123,6 +126,7 @@ function selectDiv(str) {
 	}
 
 	var updateReview = '<c:out value="${updateReview}"/>';
+	
 	var rate = '<c:out value="${userRate}"/>';
 	var taste = '<c:out value="${userTaste}"/>';
 	var flavor = '<c:out value="${userFlavor}"/>';
@@ -141,6 +145,8 @@ function selectDiv(str) {
 		alert('리뷰가 삭제되었습니다.');
 	}
 	
+	
+	
 }
 
 $(document).ready(function() {
@@ -153,6 +159,7 @@ $(document).ready(function() {
         }
     });
 });
+
 
 </script>
 </head>
@@ -171,7 +178,7 @@ $(document).ready(function() {
 					<td>
 						${alcohol.name}<br>
 						${alcohol.type} &nbsp; 도수${alcohol.alcoholLevel}%<br>
-						#${alcohol.taste} #${alcohol.flavor} #${alcohol.corps}<br>
+						#${alcohol.tasteString} #${alcohol.flavorString} #${alcohol.corpsString}<br>
 						<c:choose>
 							<c:when test="${alcohol.rate lt 0.5}"> <!-- 별점이 < 0.5 -->
 								<img src="<c:url value='/images/star_0.png' />">
@@ -251,7 +258,7 @@ $(document).ready(function() {
 								<img src="<c:url value='/images/star_5.png' />" width="70px" height="auto">
 							</c:when>
 						</c:choose>
-				#${review.taste} #${review.flavor} #${review.corps}
+				#${review.tasteString} #${review.flavorString} #${review.corpsString}
 				<c:if test="${review.member.id eq id}">
 					<a href='javascript:void(0);' onclick="updateReview('${alcohol.alcoholId}');">리뷰 수정</a>
 				</c:if>
@@ -285,17 +292,21 @@ $(document).ready(function() {
 					<option value="5">5</option>
 				</select><br>
 				taste : <select name="taste" id="taste">
-					<option value="1">taste1</option>
-					<option value="2">taste2</option>
+					<c:forEach var="taste" items="${tasteHashTag}">
+						<option value="${taste}">${taste}</option>
+        			</c:forEach>
 				</select>
 				flavor : <select name="flavor" id="flavor">
-					<option value="1">flavor1</option>
-					<option value="2">flavor2</option>
+					<c:forEach var="flavor" items="${flavorHashTag}">
+						<option value="${flavor}">${flavor}</option>
+        			</c:forEach>
 				</select>
 				corps : <select name="corps" id="corps">
-					<option value="1">corps1</option>
-					<option value="2">corps2</option>
+					<c:forEach var="corps" items="${corpsHashTag}">
+						<option value="${corps}">${corps}</option>
+        			</c:forEach>
 				</select><br>
+				
 				
 				리뷰 작성 <br>
 				
@@ -515,7 +526,7 @@ $(document).ready(function() {
 							</c:when>
 						</c:choose>
 						<br>
-						#${alcohol.taste} #${alcohol.flavor} #${alcohol.corps}
+						#${alcohol.tasteString} #${alcohol.flavorString} #${alcohol.corpsString}
 					</div>	
 				</c:forEach>
 			</div>
@@ -562,7 +573,7 @@ $(document).ready(function() {
 							</c:when>
 						</c:choose>
 						<br>
-						#${alcohol.taste} #${alcohol.flavor} #${alcohol.corps}
+						#${alcohol.tasteString} #${alcohol.flavorString} #${alcohol.corpsString}
 					</div>
 				</c:forEach>
 			</div>
@@ -609,7 +620,7 @@ $(document).ready(function() {
 							</c:when>
 						</c:choose>
 						<br>
-						#${alcohol.taste} #${alcohol.flavor} #${alcohol.corps}
+						#${alcohol.tasteString} #${alcohol.flavorString} #${alcohol.corpsString}
 					</div>
 				</c:forEach>
 			</div>
@@ -656,7 +667,7 @@ $(document).ready(function() {
 							</c:when>
 						</c:choose>
 						<br>
-						#${alcohol.taste} #${alcohol.flavor} #${alcohol.corps}
+						#${alcohol.tasteString} #${alcohol.flavorString} #${alcohol.corpsString}
 					</div>
 				</c:forEach>
 			</div>
@@ -703,7 +714,7 @@ $(document).ready(function() {
 							</c:when>
 						</c:choose>
 						<br>
-						#${alcohol.taste} #${alcohol.flavor} #${alcohol.corps}
+						#${alcohol.tasteString} #${alcohol.flavorString} #${alcohol.corpsString}
 					</div>
 				</c:forEach>
 			</div>
@@ -750,7 +761,7 @@ $(document).ready(function() {
 							</c:when>
 						</c:choose>
 						<br>
-						#${alcohol.taste} #${alcohol.flavor} #${alcohol.corps}
+						#${alcohol.tasteString} #${alcohol.flavorString} #${alcohol.corpsString}
 					</div>
 				</c:forEach>
 			</div>
@@ -799,7 +810,7 @@ $(document).ready(function() {
 							</c:when>
 						</c:choose>
 						<br>
-						#${alcohol.taste} #${alcohol.flavor} #${alcohol.corps}
+						#${alcohol.tasteString} #${alcohol.flavorString} #${alcohol.corpsString}
 					</div>
 				</c:forEach>
 			</div>
