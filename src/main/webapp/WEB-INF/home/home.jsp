@@ -20,12 +20,52 @@ $(document).ready(function($) {
         var result = $("select[name=selectBox]").val();
         if (result == 'soju') {
         	$('.beer').hide();
+        	$('.traditional').hide();
+        	$('.wine').hide();
+        	$('.spirits').hide();
+        	$('.cocktail').hide();
         	
           	$('.soju').show();
-        } else {
+        } else if (result == 'beer') {
           	$('.soju').hide();
+          	$('.traditional').hide();
+        	$('.wine').hide();
+        	$('.spirits').hide();
+        	$('.cocktail').hide();
           	
           	$('.beer').show();
+        } else if (result == 'traditional') {
+          	$('.soju').hide();
+          	$('.beer').hide();
+        	$('.wine').hide();
+        	$('.spirits').hide();
+        	$('.cocktail').hide();
+          	
+          	$('.traditional').show();
+        } else if (result == 'wine') {
+          	$('.soju').hide();
+          	$('.traditional').hide();
+        	$('.beer').hide();
+        	$('.spirits').hide();
+        	$('.cocktail').hide();
+          	
+          	$('.wine').show();
+        } else if (result == 'spirits') {
+          	$('.soju').hide();
+          	$('.traditional').hide();
+        	$('.wine').hide();
+        	$('.beer').hide();
+        	$('.cocktail').hide();
+          	
+          	$('.spirits').show();
+        } else if (result == 'cocktail') {
+          	$('.soju').hide();
+          	$('.traditional').hide();
+        	$('.wine').hide();
+        	$('.spirits').hide();
+        	$('.beer').hide();
+          	
+          	$('.cocktail').show();
         }
       }); 
 });
@@ -68,9 +108,13 @@ $(document).ready(function($) {
 				<select id="selectBox" name="selectBox">
 					<option value="soju" selected="selected">소주</option>
 					<option value="beer">맥주</option>
+					<option value="traditional">전통주</option>
+					<option value="wine">와인</option>
+					<option value="spirits">양주</option>
+					<option value="cocktail">칵테일</option>
 				</select><br><br>
 				
-				<div class="soju" id="soju">
+				<div class="soju" id="soju"> <!-- 소주 -->
 					<c:forEach var="rank" items="${soju}">
 						${rank.ranking}. 
 						<img src='${rank.alcohol.imageUrl}' width="auto" height="60px">
@@ -79,8 +123,44 @@ $(document).ready(function($) {
 					</c:forEach>
 				</div>
 				
-				<div class="beer" id="beer">
+				<div class="beer" id="beer"> <!-- 맥주 -->
 					<c:forEach var="rank" items="${beer}">
+						${rank.ranking}. 
+						<img src='${rank.alcohol.imageUrl}' width="auto" height="60px">
+						&nbsp;&nbsp;&nbsp; ${rank.alcohol.name}
+						+${rank.numberOfMention}<br><br>
+					</c:forEach>
+				</div>
+				
+				<div class="traditional" id="traditional"> <!-- 전통주 -->
+					<c:forEach var="rank" items="${traditional}">
+						${rank.ranking}. 
+						<img src='${rank.alcohol.imageUrl}' width="auto" height="60px">
+						&nbsp;&nbsp;&nbsp; ${rank.alcohol.name}
+						+${rank.numberOfMention}<br><br>
+					</c:forEach>
+				</div>
+				
+				<div class="wine" id="wine"> <!-- 와인 -->
+					<c:forEach var="rank" items="${wine}">
+						${rank.ranking}. 
+						<img src='${rank.alcohol.imageUrl}' width="auto" height="60px">
+						&nbsp;&nbsp;&nbsp; ${rank.alcohol.name}
+						+${rank.numberOfMention}<br><br>
+					</c:forEach>
+				</div>
+				
+				<div class="spirits" id="spirits"> <!-- 양주 -->
+					<c:forEach var="rank" items="${spirits}">
+						${rank.ranking}. 
+						<img src='${rank.alcohol.imageUrl}' width="auto" height="60px">
+						&nbsp;&nbsp;&nbsp; ${rank.alcohol.name}
+						+${rank.numberOfMention}<br><br>
+					</c:forEach>
+				</div>
+				
+				<div class="cocktail" id="cocktail"> <!-- 칵테일 -->
+					<c:forEach var="rank" items="${cocktail}">
 						${rank.ranking}. 
 						<img src='${rank.alcohol.imageUrl}' width="auto" height="60px">
 						&nbsp;&nbsp;&nbsp; ${rank.alcohol.name}

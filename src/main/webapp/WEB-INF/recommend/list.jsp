@@ -20,12 +20,52 @@ $(document).ready(function($) {
         var result = $("select[name=selectBox]").val();
         if (result == 'soju') {
         	$('.beer').hide();
+        	$('.traditional').hide();
+        	$('.wine').hide();
+        	$('.spirits').hide();
+        	$('.cocktail').hide();
         	
           	$('.soju').show();
-        } else {
+        } else if (result == 'beer') {
           	$('.soju').hide();
+          	$('.traditional').hide();
+        	$('.wine').hide();
+        	$('.spirits').hide();
+        	$('.cocktail').hide();
           	
           	$('.beer').show();
+        } else if (result == 'traditional') {
+          	$('.soju').hide();
+          	$('.beer').hide();
+        	$('.wine').hide();
+        	$('.spirits').hide();
+        	$('.cocktail').hide();
+          	
+          	$('.traditional').show();
+        } else if (result == 'wine') {
+          	$('.soju').hide();
+          	$('.traditional').hide();
+        	$('.beer').hide();
+        	$('.spirits').hide();
+        	$('.cocktail').hide();
+          	
+          	$('.wine').show();
+        } else if (result == 'spirits') {
+          	$('.soju').hide();
+          	$('.traditional').hide();
+        	$('.wine').hide();
+        	$('.beer').hide();
+        	$('.cocktail').hide();
+          	
+          	$('.spirits').show();
+        } else if (result == 'cocktail') {
+          	$('.soju').hide();
+          	$('.traditional').hide();
+        	$('.wine').hide();
+        	$('.spirits').hide();
+        	$('.beer').hide();
+          	
+          	$('.cocktail').show();
         }
       }); 
 });
@@ -119,9 +159,13 @@ $(document).ready(function($) {
 		<select id="selectBox" name="selectBox">
 			<option value="soju" selected="selected">소주</option>
 			<option value="beer">맥주</option>
+			<option value="traditional">전통주</option>
+			<option value="wine">와인</option>
+			<option value="spirits">양주</option>
+			<option value="cocktail">칵테일</option>
 		</select> <h3>주종별 랭킹</h3><br>
 		
-		<div id="soju" class="soju">
+		<div id="soju" class="soju"> <!-- 소주 -->
 			<table class="recTable2"><tr>
 				<c:forEach var="rank" items="${soju}">
 					<td class="recTd2">
@@ -133,9 +177,57 @@ $(document).ready(function($) {
 			</tr></table>
 		</div>
 		
-		<div id="beer" class="beer">
+		<div id="beer" class="beer"> <!-- 맥주 -->
 			<table class="recTable2"><tr>
 				<c:forEach var="rank" items="${beer}">
+					<td class="recTd2">
+						<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
+						${rank.alcohol.name} <br>
+						#${rank.alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps} <br>
+					</td>
+				</c:forEach>
+			</tr></table>
+		</div>
+		
+		<div id="traditional" class="traditional"> <!-- 전통주 -->
+			<table class="recTable2"><tr>
+				<c:forEach var="rank" items="${traditional}">
+					<td class="recTd2">
+						<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
+						${rank.alcohol.name} <br>
+						#${rank.alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps} <br>
+					</td>
+				</c:forEach>
+			</tr></table>
+		</div>
+		
+		<div id="wine" class="wine"> <!-- 와인 -->
+			<table class="recTable2"><tr>
+				<c:forEach var="rank" items="${wine}">
+					<td class="recTd2">
+						<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
+						${rank.alcohol.name} <br>
+						#${rank.alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps} <br>
+					</td>
+				</c:forEach>
+			</tr></table>
+		</div>
+		
+		<div id="spirits" class="spirits"> <!-- 양주 -->
+			<table class="recTable2"><tr>
+				<c:forEach var="rank" items="${spirits}">
+					<td class="recTd2">
+						<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
+						${rank.alcohol.name} <br>
+						#${rank.alcohol.taste} #${rank.alcohol.flavor} #${rank.alcohol.corps} <br>
+					</td>
+				</c:forEach>
+			</tr></table>
+		</div>
+		
+		<div id="cocktail" class="cocktail"> <!-- 칵테일 -->
+			<table class="recTable2"><tr>
+				<c:forEach var="rank" items="${cocktail}">
 					<td class="recTd2">
 						<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
 						${rank.alcohol.name} <br>

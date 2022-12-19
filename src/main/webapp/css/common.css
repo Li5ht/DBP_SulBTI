@@ -120,6 +120,10 @@
 
 .soju { display: block; }
 .beer { display: none;	} 
+.traditional { display: none;	} 
+.wine { display: none;	} 
+.spirits { display: none;	} 
+.cocktail { display: none;	} 
 
 .f1 { text-align:center;
 	vertical-align: middle; }
