@@ -85,25 +85,25 @@ public class RecommendManager {
 							if (hashTag3 == null) {
 								hashTag3 = new ArrayList<Alcohol>();
 							}
-							hashTag3.add(userList);
+							hashTag3.add(alcohol);
 						} else if (userList.getTaste() == alcohol.getTaste() &&
 								userList.getCorps() == alcohol.getCorps()) {
 							if (hashTag2_1 == null) {
 								hashTag2_1 = new ArrayList<Alcohol>();
 							}
-							hashTag2_1.add(userList);
+							hashTag2_1.add(alcohol);
 						} else if (userList.getTaste() == alcohol.getTaste() &&
 								userList.getFlavor() == alcohol.getFlavor()) {
 							if (hashTag2_2 == null) {
 								hashTag2_2 = new ArrayList<Alcohol>();
 							}
-							hashTag2_2.add(userList);
+							hashTag2_2.add(alcohol);
 						} else if (userList.getFlavor() == alcohol.getFlavor() &&
 								userList.getCorps() == alcohol.getCorps()) {
 							if (hashTag2_3 == null) {
 								hashTag2_3 = new ArrayList<Alcohol>();
 							}
-							hashTag2_3.add(userList);
+							hashTag2_3.add(alcohol);
 						} 
 					}
 				}
@@ -321,6 +321,15 @@ public class RecommendManager {
 		} else {
 			// data가 amount일 경우
 			recDao.updatePreferenceByAmount(preId, data);
+		}
+	}
+	
+	/* 리뷰 삭제 시 사용 (totalAmount가 0 이하일 땐 삭제) */
+	public void deletePreference(long memberId, long alcoholId) {
+		int result = recDao.deletePreference(memberId, alcoholId);
+		if (result == 0) {
+			long preferenceId = recDao.findPreference(memberId, alcoholId);
+			recDao.updatePreferenceByRate(preferenceId, 0);
 		}
 	}
 

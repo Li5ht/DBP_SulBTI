@@ -9,6 +9,7 @@ import controller.Controller;
 import controller.user.UserSessionUtils;
 import model.*;
 import model.service.AlcoholManager;
+import model.service.RecommendManager;
 
 public class ViewAlcoholController implements Controller {
 	@Override
@@ -285,6 +286,9 @@ public class ViewAlcoholController implements Controller {
 			int[] flavorH = alMan.numberOfFlavor(aId);
 			int[] corpsH = alMan.numberOfCorps(aId);	// 현재 등록되어 있는 해시태그..
 			int result = alMan.deleteReview(UserSessionUtils.getLoginUserPrimaryKey(request.getSession()), aId);
+			
+			RecommendManager recMan = RecommendManager.getInstance();
+			recMan.deletePreference(UserSessionUtils.getLoginUserPrimaryKey(request.getSession()), aId);
 			
 			if (result > 0) {
 				int deleteReview = 1;

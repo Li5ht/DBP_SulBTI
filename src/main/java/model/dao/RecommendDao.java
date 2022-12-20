@@ -42,7 +42,7 @@ public class RecommendDao {
 	/* preference 테이블에 존재하고, rate 혹은 totalAmount 둘 중 하나가 null, 0이 아닐 경우 (맞춤형 추천에서 사용) */
 	public long findPreference2(long memberId, long alcoholId) {
 		String query = "SELECT preference_id FROM preference "
-				+ "WHERE (rate != null or totalAmount != 0) AND member_id = ? and alcohol_id = ?";
+				+ "WHERE (rate > 0 or totalAmount != 0) AND member_id = ? and alcohol_id = ?";
 		Object[] param = new Object[] { memberId, alcoholId };
 		
 		jdbcUtil.setSqlAndParameters(query, param);
@@ -142,8 +142,13 @@ public class RecommendDao {
 	public void updatePreferenceByRate(long preferenceId, float rate) {
 		String query = "UPDATE preference SET rate = ? "
 				+ "WHERE preference_id = ?";
-			
-		Object[] param = new Object[] { rate, preferenceId };
+		Object[] param;
+		
+		if (rate == 0) {
+			param = new Object[] { null, preferenceId };
+		} else {
+			param = new Object[] { rate, preferenceId };
+		}
 			
 		try {
 			jdbcUtil.setSqlAndParameters(query, param);
@@ -184,6 +189,29 @@ public class RecommendDao {
 			e.printStackTrace();
 		} finally {	
 		}	
+	}
+	
+	/* 리뷰 삭제 시 사용 (totalAmount가 0 이하일 땐 삭제) */
+	public int deletePreference(long memberId, long alcoholId) {
+		String query = "delete from preference where totalAmount <= 0 AND member_id = ? and alcohol_id = ?";
+		jdbcUtil.setSqlAndParameters(query, new Object[] { memberId, alcoholId });
+		int result = 0;
+		try {
+			result = jdbcUtil.executeUpdate();
+			
+			jdbcUtil.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			jdbcUtil.rollback();
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			jdbcUtil.rollback();
+			e.printStackTrace();
+		} finally {	
+			jdbcUtil.close();
+		}	
+		return result;
 	}
 	
 	// 최근 언급량 증가 랭킹
