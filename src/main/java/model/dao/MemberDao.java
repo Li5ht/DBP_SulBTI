@@ -210,10 +210,10 @@ public class MemberDao {
 //			updateQuery += "test_type = ?, ";		
 //			tempParam[index++] = mem.getTestType();		
 //		}
-//		if (Float.valueOf(mem.getDrinkingCapacity()) != null) {		
-//			updateQuery += "drinking_capacity = ?, ";		
-//			tempParam[index++] = mem.getDrinkingCapacity();		
-//		}
+		if (Float.valueOf(mem.getDrinkingCapacity()) != null) {		
+			updateQuery += "drinking_capacity = ?, ";		
+			tempParam[index++] = mem.getDrinkingCapacity();		
+		}
 		updateQuery += "WHERE user_id = ? ";
 		updateQuery = updateQuery.replace(", WHERE", " WHERE");
 		

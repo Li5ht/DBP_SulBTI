@@ -39,10 +39,7 @@ public class UserManager {
 	public Member findUser(String userId)
 			throws SQLException, UserNotFoundException {
 			Member user = userDAO.getMemberById(userId);
-			
-			if (user == null) {
-				throw new UserNotFoundException(userId + "는 존재하지 않는 아이디입니다.");
-			}		
+				
 			return user;
 		}
 	

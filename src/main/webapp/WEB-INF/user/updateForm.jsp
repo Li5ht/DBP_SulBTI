@@ -27,6 +27,16 @@ function userModify() {
 		form.name.focus();
 		return false;
 	}
+	var type = $("#sel1").val();
+	var name = $("#sel2").val();
+	var amount = $("#amount").val();
+	var amountInt = parseInt(amount);
+	if (!(type != null && name != null && amountInt > 0 && type != '0' && name != '0')) {
+		alert("주랑을 입력하십시오.");
+		form.sel1.focus();
+		return false;
+	}
+	
 	form.submit();
 }
 </script>
@@ -102,6 +112,141 @@ function userModify() {
    				<input type="radio" name="gender" value="1" checked="checked"> 여자<br><br>
 	        </div>
 	    </div> 
+	    <div class="form-group row">  
+	    	<label for="email" class="col-lg-2 col-form-label">주량</label>
+	    	<div class="col-lg-10">
+	    		<select id="sel1" name="sel1" onchange="categorychange(this, 1)">
+					<option value="0">주종 선택</option>
+					<option value="소주">소주</option>
+					<option value="맥주">맥주</option>
+					<option value="전통주">전통주</option>
+					<option value="와인">와인</option>
+					<option value="양주">양주</option>
+					<option value="칵테일">칵테일</option>
+				</select>&nbsp;&nbsp;
+			
+				<select id="sel2" name="sel2">
+					<option value="0">술 선택</option>
+				</select>&nbsp;&nbsp;
+			
+				<input type="text" name="amount" width="30" id="amount">
+	    	</div>
+	    </div>
+	    <%
+			String sojuStr = "";
+			String beerStr = "";
+			String traditionalStr = "";
+			String wineStr = "";
+			String spiritsStr = "";
+			String cocktailStr = "";
+			
+			String[] aSoju = (String[]) (request.getAttribute("aSoju"));
+			String[] aBeer = (String[]) (request.getAttribute("aBeer"));
+			String[] aTraditional = (String[]) (request.getAttribute("aTraditional"));
+			String[] aWine = (String[]) (request.getAttribute("aWine"));
+			String[] aSpirits = (String[]) (request.getAttribute("aSpirits"));
+			String[] aCocktail = (String[]) (request.getAttribute("aCocktail"));
+			
+			for( int i = 0; i < aSoju.length; i++ ){
+				if (i != (aSoju.length - 1)) {
+					sojuStr = sojuStr + aSoju[i] + "/";
+				} else {
+					sojuStr = sojuStr + aSoju[i];
+				}
+			}
+			
+			for( int i = 0; i < aBeer.length; i++ ){
+				if (i != (aBeer.length - 1)) {
+					beerStr = beerStr + aBeer[i] + "/";
+				} else {
+					beerStr = beerStr + aBeer[i];
+				}
+			}
+			
+			for( int i = 0; i < aTraditional.length; i++ ){
+				if (i != (aTraditional.length - 1)) {
+					traditionalStr = traditionalStr + aTraditional[i] + "/";
+				} else {
+					traditionalStr = traditionalStr + aTraditional[i];
+				}
+			}
+			
+			for( int i = 0; i < aWine.length; i++ ){
+				if (i != (aWine.length - 1)) {
+					wineStr = wineStr + aWine[i] + "/";
+				} else {
+					wineStr = wineStr + aWine[i];
+				}
+			}
+			
+			for( int i = 0; i < aSpirits.length; i++ ){
+				if (i != (aSpirits.length - 1)) {
+					spiritsStr = spiritsStr + aSpirits[i] + "/";
+				} else {
+					spiritsStr = spiritsStr + aSpirits[i];
+				}
+			}
+			
+			for( int i = 0; i < aCocktail.length; i++ ){
+				if (i != (aCocktail.length - 1)) {
+					cocktailStr = cocktailStr + aCocktail[i] + "/";
+				} else {
+					cocktailStr = cocktailStr + aCocktail[i];
+				}
+			}
+		%>
+		
+		
+		<script>
+    		function categorychange(e) {
+    			var alcohol;
+    			var aLength;
+        		
+        		
+        		var i = "sel2";
+        		var target = document.getElementById(i);
+        		
+        		if (e.value == "소주") { 
+        			var sojuStr = '<%=sojuStr%>';
+        			alcohol = sojuStr.split("/");
+        			aLength = alcohol.length;
+        		}
+        		else if (e.value == "맥주") {
+        			var beerStr = '<%=beerStr%>';
+        			alcohol = beerStr.split("/");
+        			aLength = alcohol.length;
+        		}
+        		else if (e.value == "전통주") {
+        			var traditionalStr = '<%=traditionalStr%>';
+        			alcohol = traditionalStr.split("/");
+        			aLength = alcohol.length;
+        		}
+        		else if (e.value == "와인") {
+        			var wineStr = '<%=wineStr%>';
+        			alcohol = wineStr.split("/");
+        			aLength = alcohol.length;
+        		}
+        		else if (e.value == "양주") {
+        			var spiritsStr = '<%=spiritsStr%>';
+        			alcohol = spiritsStr.split("/");
+        			aLength = alcohol.length;
+        		}
+        		else if (e.value == "칵테일") {
+        			var cocktailStr = '<%=cocktailStr%>';
+        			alcohol = cocktailStr.split("/");
+        			aLength = alcohol.length;
+        		}
+        		
+        		target.options.length = 0;
+        		
+        		for (var i = 0; i < aLength; i++) {
+        		    var opt = document.createElement("option");
+        			opt.value = alcohol[i];
+        			opt.innerHTML = alcohol[i];
+        			target.appendChild(opt);
+        		}
+    		}
+    	</script>
 		<div class="form-group">       
 			<input type="button" class="btn btn-outline-success" value="수정" onClick="userModify()">
 		</div>   

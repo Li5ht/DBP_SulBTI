@@ -36,8 +36,16 @@ public class RegisterUserController implements Controller {
 	    }	
 
     	// POST request (회원정보가 parameter로 전송됨)
-       	Member user = new Member();
-       	user.setUserId(request.getParameter("userId"));
+    	UserManager manager = UserManager.getInstance();
+    	String userId = request.getParameter("userId");
+       	Member user = manager.findUser(userId);
+       	if (user != null) { // 이미 존재하는 아이디일 경우
+       		request.setAttribute("registerFailed", true);
+			request.setAttribute("user", user);
+			return "/user/registerForm.jsp";
+       	}
+       	user = new Member();
+       	user.setUserId(userId);
        	user.setPassword(request.getParameter("password"));
        	user.setNickname(request.getParameter("nickname"));
        	user.setEmail(request.getParameter("email"));
@@ -52,7 +60,7 @@ public class RegisterUserController implements Controller {
         log.debug("Create User : {}", user);
 
 		try {
-			UserManager manager = UserManager.getInstance();
+			
 			manager.create(user);
 	        return "redirect:/home/home";
 	        

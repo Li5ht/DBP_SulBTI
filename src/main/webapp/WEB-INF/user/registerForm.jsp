@@ -34,9 +34,15 @@ function userCreate() {
 	}
 	form.submit();
 }
+function registerFail() {
+	var registerFailed = '<c:out value="${registerFailed}"/>';
+	if (registerFailed) {
+		alert("이미 존재하는 아이디입니다.");
+	}
+}
 </script>
 </head>
-<body>
+<body onload="registerFail();">
 
 
 <%@include file="/WEB-INF/navbar.jsp" %>

@@ -42,9 +42,13 @@
 			<td>
 				<c:choose>
 				<c:when test="${user.gender eq 0}">남자</c:when>
-				<c:otherwise>여</c:otherwise>
+				<c:otherwise>여자</c:otherwise>
 				</c:choose>
 			</td>
+		  </tr>
+		  <tr>
+		  	<th>주량(알콜량, 단위 : g)</th>
+		  	<td>${user.drinkingCapacity }</td>
 		  </tr>
 		</tbody>
 	</table>
