@@ -41,6 +41,11 @@ public class CalcDrinkingCapacity {
 		return drink.getAmount() * (float) (drink.getAlcohol().getAlcoholLevel() * 0.01);
 	}
 	
+	/* 알콜량에 따른 마실 수 있는 술의 양 */
+	public int drinkableAmount(float amount, float alcoholLevel) { // 알콜량, 도수
+		return (int) (amount / (alcoholLevel * 0.01));
+	}
+	
 	/* 최종 계산 */
 	public int calculate() {
 		/* 상태에 따른 정수 결과 반환   

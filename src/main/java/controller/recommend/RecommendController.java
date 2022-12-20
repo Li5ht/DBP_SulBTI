@@ -14,20 +14,20 @@ public class RecommendController implements Controller {
 	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
-		String userId = null; /* 사용자 아이디 */
+		long userPrimaryKey = -1; /* 사용자 PK */
 		
 		/* 로그인 여부 확인 */
 		if (!UserSessionUtils.hasLogined(request.getSession())) {
 			request.setAttribute("noLogin", true);
         } else {
         	request.setAttribute("hasLogin", true);
-        	userId = UserSessionUtils.getLoginUserId(request.getSession());
+        	userPrimaryKey = UserSessionUtils.getLoginUserPrimaryKey(request.getSession());
         	request.setAttribute("nickname", UserSessionUtils.getLoginUserNickname(request.getSession()));
         }
 
 
 		RecommendManager manager = RecommendManager.getInstance();
-		List<Drink> userRecList = manager.userRecommendList(userId);
+		List<Drink> userRecList = manager.userRecommendList(userPrimaryKey);
 		List<Rank> hotRank = manager.hotRank();
 		List<Rank> overallRank = manager.overallRank();
 		

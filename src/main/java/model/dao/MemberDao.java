@@ -26,7 +26,7 @@ public class MemberDao {
 								         "member.gender, " +
 								         "member.test_type, " +
 								         "member.drinking_capacity ";	
-	public long getDrinking(long id) {
+	public float getDrinking(long id) {
 		String searchQuery = "SELECT member.drinking_capacity  "
 				+ "FROM member "
 				+ "WHERE member.id = ? ";
@@ -34,7 +34,7 @@ public class MemberDao {
 		Object[] param = new Object[] { id };
 		jdbcUtil.setSqlAndParameters(searchQuery, param);
 
-		long drinkingCapacity = -1;
+		float drinkingCapacity = -1;
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		

@@ -247,10 +247,11 @@ public class Alcohol {
 
 	@Override
 	public String toString() {
-		return "name=" + name + ", type=" + type + ", rate=" + rate + ", alcoholLevel=" + alcoholLevel
-				+ ", imageUrl=" + imageUrl + ", taste=" + taste + ", flavor=" + flavor + ", corps=" + corps;
+		return "Alcohol [alcoholId=" + alcoholId + ", name=" + name + ", type=" + type + ", rate=" + rate
+				+ ", alcoholLevel=" + alcoholLevel + ", tasteString=" + tasteString + ", flavorString=" + flavorString
+				+ ", corpsString=" + corpsString + "]";
 	}
-	
+
 	public String toCalendarString() {
 		return name + " ";
 	}

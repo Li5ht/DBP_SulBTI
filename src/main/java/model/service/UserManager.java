@@ -68,7 +68,7 @@ public class UserManager {
 		return this.userDAO;
 	}
 	
-	public long getDrinking(long id) {
+	public float getDrinking(long id) {
 		return userDAO.getDrinking(id);
 	}
 	

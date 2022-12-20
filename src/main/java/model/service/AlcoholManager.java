@@ -99,4 +99,19 @@ public class AlcoholManager {
 		
 		return alcohol.toArray(new String[alcohol.size()]);
 	}
+	
+	/* 사용자가 자주 마시는 술 탑 5 */
+	public List<Alcohol> userFavorite(long id) {
+		return alDao.userFavorite(id);
+	}
+	
+	/* 사용자가 자주 마시는 술 주종 */
+	public String userFavoriteType(long id) {
+		return alDao.userFavoriteType(id);
+	}
+	
+	/* 사용자가 높게 평가한 술 TOP 5 */
+	public List<Alcohol> userFavoriteByRate(long id) {
+		return alDao.userFavoriteByRate(id);
+	}
 }

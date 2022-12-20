@@ -39,6 +39,33 @@ public class RecommendDao {
 		return preferenceId;
 	}
 	
+	/* preference 테이블에 존재하고, rate 혹은 totalAmount 둘 중 하나가 null, 0이 아닐 경우 (맞춤형 추천에서 사용) */
+	public long findPreference2(long memberId, long alcoholId) {
+		String query = "SELECT preference_id FROM preference "
+				+ "WHERE (rate != null or totalAmount != 0) AND member_id = ? and alcohol_id = ?";
+		Object[] param = new Object[] { memberId, alcoholId };
+		
+		jdbcUtil.setSqlAndParameters(query, param);
+		
+		ResultSet rs = null;
+		
+		long preferenceId = -1;
+		
+		try {
+			rs = jdbcUtil.executeQuery();
+			
+			if (rs.next()) {
+				preferenceId = rs.getInt("preference_id");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {	
+		}	
+		
+		return preferenceId;
+	}
+	
 	
 	public long createPreferenceByRate(long memberId, long alcoholId, float rate) {
 		String query = "INSERT INTO preference (preference_id, member_id, alcohol_id, rate) "

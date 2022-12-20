@@ -18,12 +18,12 @@ public class AlcoholDAO {
 	}
 	
 	// 술 목록 보여주기 (read)
-	public List<Alcohol> viewAlcoholList() throws SQLException{
+	public List<Alcohol> viewAlcoholList() {
 		List<Alcohol> alcoholList = new ArrayList<Alcohol>();
 		Alcohol alcohol = null;
 		ResultSet rs = null;
 		
-		String query = "SELECT name, type, rate, alcohol_level, image, taste, flavor, corps FROM alcohol";
+		String query = "SELECT alcohol_id, name, type, rate, alcohol_level, image, taste, flavor, corps FROM alcohol";
 		jdbcUtil.setSqlAndParameters(query, null);
 		
 		try {
@@ -31,6 +31,7 @@ public class AlcoholDAO {
 			
 			while (rs.next()) {
 				alcohol = new Alcohol();
+				alcohol.setAlcoholId(rs.getLong("alcohol_id"));
 				alcohol.setName(rs.getString("name"));
 				alcohol.setType(rs.getString("type"));
 				alcohol.setRate(rs.getFloat("rate"));
@@ -582,5 +583,101 @@ public class AlcoholDAO {
 			jdbcUtil.close();
 		}	
 	    return nameList;
+	}
+	
+	/* 사용자가 자주 마시는 술 TOP 5 */
+	public List<Alcohol> userFavorite(long id) {
+		String query = "select a.alcohol_id AS \"alcohol_id\", totalAmount, taste, flavor, corps "
+				+ "from preference p, alcohol a "
+				+ "where p.alcohol_id = a.alcohol_id AND totalAmount > 0 AND p.member_id = ? "
+				+ "order by totalAmount DESC";
+		jdbcUtil.setSqlAndParameters(query, new Object[] { id });
+		ResultSet rs = null;
+		List<Alcohol> alcoholList = null;
+		try {
+			rs = jdbcUtil.executeQuery();
+			
+			alcoholList = new ArrayList<Alcohol>();
+			int count = 0;
+			
+			while (rs.next()) {
+				if (count < 5) {
+					Alcohol alcohol = new Alcohol();
+					alcohol.setAlcoholId(rs.getLong("alcohol_id"));
+					alcohol.setTaste(rs.getInt("taste"));
+					alcohol.setFlavor(rs.getInt("flavor"));
+					alcohol.setCorps(rs.getInt("corps"));
+					
+					alcoholList.add(alcohol);
+				}
+				count++;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {	
+			jdbcUtil.close();
+		}	
+		return alcoholList;
+	}
+	
+	/* 사용자가 자주 마시는 술 주종 */
+	public String userFavoriteType(long id) {
+		String query = "select type, sum(totalAmount) AS \"amount\" "
+				+ "from preference p, alcohol a "
+				+ "where p.alcohol_id = a.alcohol_id AND totalAmount > 0 AND p.member_id = ? "
+				+ "group by type order by sum(totalAmount) DESC";
+		jdbcUtil.setSqlAndParameters(query, new Object[] { id });
+		ResultSet rs = null;
+		String type = null;
+		try {
+			rs = jdbcUtil.executeQuery();
+			
+			if (rs.next()) {
+				type = rs.getString("type");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {	
+			jdbcUtil.close();
+		}	
+		return type;
+	}
+	
+	/* 사용자가 높게 평가한 술 TOP 5 */
+	public List<Alcohol> userFavoriteByRate(long id) {
+		String query = "select p.rate AS \"rate\", a.alcohol_id AS \"alcohol_id\", a.taste AS \"taste\", a.flavor AS \"flavor\", a.corps AS \"corps\" "
+				+ "from preference p, alcohol a "
+				+ "where p.alcohol_id = a.alcohol_id AND p.member_id = ? "
+				+ "order by p.rate DESC";
+		jdbcUtil.setSqlAndParameters(query, new Object[] { id });
+		ResultSet rs = null;
+		List<Alcohol> alcoholList = null;
+		try {
+			rs = jdbcUtil.executeQuery();
+			
+			alcoholList = new ArrayList<Alcohol>();
+			int count = 0;
+			
+			while (rs.next()) {
+				if (count < 5) {
+					Alcohol alcohol = new Alcohol();
+					alcohol.setAlcoholId(rs.getLong("alcohol_id"));
+					alcohol.setTaste(rs.getInt("taste"));
+					alcohol.setFlavor(rs.getInt("flavor"));
+					alcohol.setCorps(rs.getInt("corps"));
+					
+					alcoholList.add(alcohol);
+				}
+				count++;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {	
+			jdbcUtil.close();
+		}	
+		return alcoholList;
 	}
 }

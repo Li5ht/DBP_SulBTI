@@ -116,10 +116,10 @@ $(document).ready(function($) {
 				<table class="recTable2"><tr>
 					<c:forEach var="drink" items="${userRecList}">
 						<td class="recTd2">
-							술 이름 : ${drink.alcohol.name} <br>
-							이미지 링크 : ${drink.alcohol.imageUrl} <br>
-							#${drink.alcohol.tasteString} #${drink.alcohol.flavorString} #${rank.alcohol.corpsString} <br>
-							마셔도 되는 양 : ${drink.amount} <br>
+							<img src='${drink.alcohol.imageUrl}'  width="auto" height="100px"> <br>
+							${drink.alcohol.name} <br>
+							#${drink.alcohol.tasteString} #${drink.alcohol.flavorString} #${drink.alcohol.corpsString} <br>
+							추천하는 양 : ${drink.amount}ml <br>
 						</td>
 					</c:forEach>
 				</tr></table>
