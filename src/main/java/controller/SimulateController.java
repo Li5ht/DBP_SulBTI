@@ -25,7 +25,9 @@ public class SimulateController implements Controller {
         	request.setAttribute("hasLogin", true);
         	id = UserSessionUtils.getLoginUserPrimaryKey(request.getSession());
         	drinkingCapacity = userMan.getDrinking(id);
-        	drinkingCapacity = (float) (drinkingCapacity / 0.201);
+        	if (drinkingCapacity != -1) {
+        		drinkingCapacity = (float) (drinkingCapacity / 0.201);
+        	}
         	
         	request.setAttribute("nickname", UserSessionUtils.getLoginUserNickname(request.getSession()));
         	

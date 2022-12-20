@@ -48,11 +48,11 @@ var count = 0;
 			<select id="sel2_1" name="sel2_1">
 				<option value="0">술 선택</option>
 				<c:forEach var="alcohol" items="${aSoju}">
-					<c:if test="${alcohol.name eq '참이슬 오리지널'}">
-						<option value="${alcohol.name}" selected="selected">${alcohol.name}</option>
+					<c:if test="${alcohol eq '참이슬 오리지널'}">
+						<option value="${alcohol}" selected="selected">${alcohol}</option>
 					</c:if>
-					<c:if test="${alcohol.name ne '참이슬 오리지널'}">
-						<option value="${alcohol.name}">${alcohol.name}</option>
+					<c:if test="${alcohol ne '참이슬 오리지널'}">
+						<option value="${alcohol}">${alcohol}</option>
 					</c:if>
 				</c:forEach>
 			</select>&nbsp;&nbsp;

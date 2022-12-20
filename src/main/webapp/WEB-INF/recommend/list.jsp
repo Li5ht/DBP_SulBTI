@@ -119,7 +119,9 @@ $(document).ready(function($) {
 							<img src='${drink.alcohol.imageUrl}'  width="auto" height="100px"> <br>
 							${drink.alcohol.name} <br>
 							#${drink.alcohol.tasteString} #${drink.alcohol.flavorString} #${drink.alcohol.corpsString} <br>
-							추천하는 양 : ${drink.amount}ml <br>
+							<c:if test="${drink.amount ne 0}">
+								추천하는 양 : ${drink.amount}ml
+							</c:if>
 						</td>
 					</c:forEach>
 				</tr></table>

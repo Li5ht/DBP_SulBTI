@@ -129,7 +129,7 @@ function userModify() {
 					<option value="0">술 선택</option>
 				</select>&nbsp;&nbsp;
 			
-				<input type="text" name="amount" width="30" id="amount">
+				<input type="text" name="amount" width="30" id="amount">&nbsp;ml
 	    	</div>
 	    </div>
 	    <%
