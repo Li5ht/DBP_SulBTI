@@ -66,6 +66,12 @@ public class AlcoholManager {
 		return alDao.deleteReview(memberId, alcoholId);
 	}
 	
+	public void deleteAllReview(List<Long> preferenceIdList) {
+		for (Long l : preferenceIdList) {
+			alDao.deleteAllReview(l);
+		}
+	}
+	
 	/* 리뷰 유무 확인 */
 	public Review findReview(long memberId, long alcoholId) {
 		return alDao.findReview(memberId, alcoholId);

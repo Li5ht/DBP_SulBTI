@@ -427,5 +427,13 @@ public class RecommendManager {
 			recDao.updatePreferenceByRate(preferenceId, 0);
 		}
 	}
+	
+	public List<Long> findAllPreference(long id) {
+		return recDao.findAllPreference(id);
+	}
+	
+	public void deleteAllPreference(long id) {
+		recDao.deleteAllPreference(id);
+	}
 
 }

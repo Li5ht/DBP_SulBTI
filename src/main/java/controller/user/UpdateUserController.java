@@ -1,6 +1,7 @@
 package controller.user;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +12,8 @@ import org.slf4j.LoggerFactory;
 
 import controller.Controller;
 import model.service.AlcoholManager;
+import model.service.DiaryManager;
+import model.service.RecommendManager;
 import model.service.UserManager;
 import model.*;
 
@@ -27,6 +30,24 @@ public class UpdateUserController implements Controller {
         	request.setAttribute("hasLogin", true);
         	request.setAttribute("nickname", UserSessionUtils.getLoginUserNickname(request.getSession()));
         }
+    	
+    	/* 회원정보 삭제 */
+    	if (request.getServletPath().equals("/user/delete")) {
+    		UserManager manager = UserManager.getInstance();
+    		DiaryManager diaryManager = DiaryManager.getInstance();
+    		RecommendManager recManager = RecommendManager.getInstance();
+    		AlcoholManager alManager = AlcoholManager.getInstance();
+    		
+    		diaryManager.deleteAllDiary(UserSessionUtils.getLoginUserPrimaryKey(request.getSession())); // 다이어리 삭제
+    		List<Long> preferenceIdList = recManager.findAllPreference(UserSessionUtils.getLoginUserPrimaryKey(request.getSession()));
+    		alManager.deleteAllReview(preferenceIdList); // 리뷰 삭제
+    		recManager.deleteAllPreference(UserSessionUtils.getLoginUserPrimaryKey(request.getSession())); // preference 삭제
+    		
+    		manager.remove(UserSessionUtils.getLoginUserId(request.getSession())); // 계정 삭제
+    		
+    		request.setAttribute("noLogin", true);
+    		return "redirect:/user/logout";
+    	}
     	
     	if (request.getMethod().equals("GET")) {	
     		// GET request: 회원정보 수정 form 요청	
