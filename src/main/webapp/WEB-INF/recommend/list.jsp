@@ -25,7 +25,6 @@ $(document).ready(function($) {
         	$('.traditional').hide();
         	$('.wine').hide();
         	$('.spirits').hide();
-        	$('.cocktail').hide();
         	
           	$('.soju').show();
         } else if (result == 'beer') {
@@ -33,7 +32,6 @@ $(document).ready(function($) {
           	$('.traditional').hide();
         	$('.wine').hide();
         	$('.spirits').hide();
-        	$('.cocktail').hide();
           	
           	$('.beer').show();
         } else if (result == 'traditional') {
@@ -41,7 +39,6 @@ $(document).ready(function($) {
           	$('.beer').hide();
         	$('.wine').hide();
         	$('.spirits').hide();
-        	$('.cocktail').hide();
           	
           	$('.traditional').show();
         } else if (result == 'wine') {
@@ -49,7 +46,6 @@ $(document).ready(function($) {
           	$('.traditional').hide();
         	$('.beer').hide();
         	$('.spirits').hide();
-        	$('.cocktail').hide();
           	
           	$('.wine').show();
         } else if (result == 'spirits') {
@@ -57,18 +53,9 @@ $(document).ready(function($) {
           	$('.traditional').hide();
         	$('.wine').hide();
         	$('.beer').hide();
-        	$('.cocktail').hide();
           	
           	$('.spirits').show();
-        } else if (result == 'cocktail') {
-          	$('.soju').hide();
-          	$('.traditional').hide();
-        	$('.wine').hide();
-        	$('.spirits').hide();
-        	$('.beer').hide();
-          	
-          	$('.cocktail').show();
-        }
+        } 
       }); 
 });
 
@@ -166,7 +153,6 @@ $(document).ready(function($) {
 			<option value="traditional">전통주</option>
 			<option value="wine">와인</option>
 			<option value="spirits">양주</option>
-			<option value="cocktail">칵테일</option>
 		</select> <h3>주종별 랭킹</h3><br>
 		
 		<div id="soju" class="soju"> <!-- 소주 -->
@@ -220,18 +206,6 @@ $(document).ready(function($) {
 		<div id="spirits" class="spirits"> <!-- 양주 -->
 			<table class="recTable2"><tr>
 				<c:forEach var="rank" items="${spirits}">
-					<td class="recTd2">
-						<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
-						${rank.alcohol.name} <br>
-						#${rank.alcohol.tasteString} #${rank.alcohol.flavorString} #${rank.alcohol.corpsString} <br>
-					</td>
-				</c:forEach>
-			</tr></table>
-		</div>
-		
-		<div id="cocktail" class="cocktail"> <!-- 칵테일 -->
-			<table class="recTable2"><tr>
-				<c:forEach var="rank" items="${cocktail}">
 					<td class="recTd2">
 						<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
 						${rank.alcohol.name} <br>

@@ -57,7 +57,6 @@ function selectDiv(str) {
 		$('.alcohol3').hide();
 		$('.alcohol4').hide();
 		$('.alcohol5').hide();
-		$('.alcohol6').hide();
 		
 		$('.searchDiv').show();
 		
@@ -69,7 +68,6 @@ function selectDiv(str) {
 			$('.alcohol3').hide();
 			$('.alcohol4').hide();
 			$('.alcohol5').hide();
-			$('.alcohol6').hide();
 	    	
 	      	$('.alcohol2').show();
 		} else if (str == '전통주') {
@@ -77,7 +75,6 @@ function selectDiv(str) {
 			$('.alcohol1').hide();
 			$('.alcohol4').hide();
 			$('.alcohol5').hide();
-			$('.alcohol6').hide();
 	    	
 	      	$('.alcohol3').show();
 		} else if (str == '와인') {
@@ -85,7 +82,6 @@ function selectDiv(str) {
 			$('.alcohol3').hide();
 			$('.alcohol1').hide();
 			$('.alcohol5').hide();
-			$('.alcohol6').hide();
 	    	
 	      	$('.alcohol4').show();
 		} else if (str == '양주') {
@@ -93,23 +89,13 @@ function selectDiv(str) {
 			$('.alcohol3').hide();
 			$('.alcohol4').hide();
 			$('.alcohol1').hide();
-			$('.alcohol6').hide();
 	    	
 	      	$('.alcohol5').show();
-		} else if (str == '칵테일') {
-			$('.alcohol2').hide();
-			$('.alcohol3').hide();
-			$('.alcohol4').hide();
-			$('.alcohol5').hide();
-			$('.alcohol1').hide();
-	    	
-	      	$('.alcohol6').show();
 		} else {
 			$('.alcohol2').hide();
 			$('.alcohol3').hide();
 			$('.alcohol4').hide();
 			$('.alcohol5').hide();
-			$('.alcohol6').hide();
 	    	
 	      	$('.alcohol1').show();
 		}
@@ -481,7 +467,6 @@ $(document).ready(function() {
 				<td class="recTd"><a href='javascript:void(0);' onclick="selectDiv('전통주');">전통주</a></td>
 				<td class="recTd"><a href='javascript:void(0);' onclick="selectDiv('와인');">와인</a></td>
 				<td class="recTd"><a href='javascript:void(0);' onclick="selectDiv('양주');">양주</a></td>
-				<td class="recTd"><a href='javascript:void(0);' onclick="selectDiv('칵테일');">칵테일</a></td>
 			</tr>
 		</table><br><br>
 		
@@ -676,53 +661,6 @@ $(document).ready(function() {
 			
 			<div id="alcohol5" class="alcohol5">	<!-- 양주 -->
 				<c:forEach var="alcohol" items="${spirits}">
-					<div class="alDiv" onclick="openAlcoholInfo('${alcohol.alcoholId}');">
-						<img src='${alcohol.imageUrl}'  width="auto" height="150px"> <br>
-						${alcohol.name} <br>
-						${alcohol.type} <br>
-						<c:choose>
-							<c:when test="${alcohol.rate lt 0.5}"> <!-- 별점이 < 0.5 -->
-								<img src="<c:url value='/images/star_0.png' />">
-							</c:when>
-							<c:when test="${alcohol.rate lt 1}"> <!-- 별점이 0.5 <= < 1 -->
-								<img src="<c:url value='/images/star_05.png' />">
-							</c:when>
-							<c:when test="${alcohol.rate lt 1.5}"> <!-- 별점이 1 <= < 1.5 -->
-								<img src="<c:url value='/images/star_1.png' />">
-							</c:when>
-							<c:when test="${alcohol.rate lt 2}"> <!-- 별점이 1.5 <= < 2 -->
-								<img src="<c:url value='/images/star_15.png' />">
-							</c:when>
-							<c:when test="${alcohol.rate lt 2.5}"> <!-- 별점이 2 <= < 2.5 -->
-								<img src="<c:url value='/images/star_2.png' />">
-							</c:when>
-							<c:when test="${alcohol.rate lt 3}"> <!-- 별점이 2.5 <= < 3 -->
-								<img src="<c:url value='/images/star_25.png' />">
-							</c:when>
-							<c:when test="${alcohol.rate lt 3.5}"> <!-- 별점이 3 <= < 3.5 -->
-								<img src="<c:url value='/images/star_3.png' />">
-							</c:when>
-							<c:when test="${alcohol.rate lt 4}"> <!-- 별점이 3.5 <= < 4 -->
-								<img src="<c:url value='/images/star_35.png' />">
-							</c:when>
-							<c:when test="${alcohol.rate lt 4.5}"> <!-- 별점이 4 <= < 4.5 -->
-								<img src="<c:url value='/images/star_4.png' />">
-							</c:when>
-							<c:when test="${alcohol.rate lt 5}"> <!-- 별점이 4.5 <= < 5 -->
-								<img src="<c:url value='/images/star_45.png' />">
-							</c:when>
-							<c:when test="${alcohol.rate ge 5}"> <!-- 별점이 5 이상 -->
-								<img src="<c:url value='/images/star_5.png' />">
-							</c:when>
-						</c:choose>
-						<br>
-						#${alcohol.tasteString} #${alcohol.flavorString} #${alcohol.corpsString}
-					</div>
-				</c:forEach>
-			</div>
-			
-			<div id="alcohol6" class="alcohol6">	<!-- 칵테일 -->
-				<c:forEach var="alcohol" items="${cocktail}">
 					<div class="alDiv" onclick="openAlcoholInfo('${alcohol.alcoholId}');">
 						<img src='${alcohol.imageUrl}'  width="auto" height="150px"> <br>
 						${alcohol.name} <br>

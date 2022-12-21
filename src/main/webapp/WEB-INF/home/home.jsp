@@ -25,7 +25,6 @@ $(document).ready(function($) {
         	$('.traditional').hide();
         	$('.wine').hide();
         	$('.spirits').hide();
-        	$('.cocktail').hide();
         	
           	$('.soju').show();
         } else if (result == 'beer') {
@@ -33,7 +32,6 @@ $(document).ready(function($) {
           	$('.traditional').hide();
         	$('.wine').hide();
         	$('.spirits').hide();
-        	$('.cocktail').hide();
           	
           	$('.beer').show();
         } else if (result == 'traditional') {
@@ -41,7 +39,6 @@ $(document).ready(function($) {
           	$('.beer').hide();
         	$('.wine').hide();
         	$('.spirits').hide();
-        	$('.cocktail').hide();
           	
           	$('.traditional').show();
         } else if (result == 'wine') {
@@ -49,7 +46,6 @@ $(document).ready(function($) {
           	$('.traditional').hide();
         	$('.beer').hide();
         	$('.spirits').hide();
-        	$('.cocktail').hide();
           	
           	$('.wine').show();
         } else if (result == 'spirits') {
@@ -57,18 +53,9 @@ $(document).ready(function($) {
           	$('.traditional').hide();
         	$('.wine').hide();
         	$('.beer').hide();
-        	$('.cocktail').hide();
           	
           	$('.spirits').show();
-        } else if (result == 'cocktail') {
-          	$('.soju').hide();
-          	$('.traditional').hide();
-        	$('.wine').hide();
-        	$('.spirits').hide();
-        	$('.beer').hide();
-          	
-          	$('.cocktail').show();
-        }
+        } 
       }); 
 });
 </script>
@@ -113,7 +100,6 @@ $(document).ready(function($) {
 					<option value="traditional">전통주</option>
 					<option value="wine">와인</option>
 					<option value="spirits">양주</option>
-					<option value="cocktail">칵테일</option>
 				</select><br><br>
 				
 				<div class="soju" id="soju"> <!-- 소주 -->
@@ -161,14 +147,6 @@ $(document).ready(function($) {
 					</c:forEach>
 				</div>
 				
-				<div class="cocktail" id="cocktail"> <!-- 칵테일 -->
-					<c:forEach var="rank" items="${cocktail}">
-						${rank.ranking}. 
-						<img src='${rank.alcohol.imageUrl}' width="auto" height="60px">
-						&nbsp;&nbsp;&nbsp; ${rank.alcohol.name}
-						+${rank.numberOfMention}<br><br>
-					</c:forEach>
-				</div>
 			</div>
 		</div>
 	

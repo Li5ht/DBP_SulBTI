@@ -44,7 +44,6 @@ var count = 0;
 				<option value="전통주">전통주</option>
 				<option value="와인">와인</option>
 				<option value="양주">양주</option>
-				<option value="칵테일">칵테일</option>
 			</select>&nbsp;&nbsp;
 			
 			<select id="sel2_1" name="sel2_1">
@@ -70,7 +69,6 @@ var count = 0;
 				<option value="전통주">전통주</option>
 				<option value="와인">와인</option>
 				<option value="양주">양주</option>
-				<option value="칵테일">칵테일</option>
 			</select>&nbsp;&nbsp;
 			
 			<select id="sel2_1" name="sel2_1">
@@ -91,7 +89,6 @@ var count = 0;
 			<option value="전통주">전통주</option>
 			<option value="와인">와인</option>
 			<option value="양주">양주</option>
-			<option value="칵테일">칵테일</option>
 		</select>&nbsp;&nbsp;
 		<select id="sel2_2">
 			<option value="0">술 선택</option>
@@ -105,14 +102,12 @@ var count = 0;
 			String traditionalStr = "";
 			String wineStr = "";
 			String spiritsStr = "";
-			String cocktailStr = "";
 			
 			String[] aSoju = (String[]) (request.getAttribute("aSoju"));
 			String[] aBeer = (String[]) (request.getAttribute("aBeer"));
 			String[] aTraditional = (String[]) (request.getAttribute("aTraditional"));
 			String[] aWine = (String[]) (request.getAttribute("aWine"));
 			String[] aSpirits = (String[]) (request.getAttribute("aSpirits"));
-			String[] aCocktail = (String[]) (request.getAttribute("aCocktail"));
 			
 			for( int i = 0; i < aSoju.length; i++ ){
 				if (i != (aSoju.length - 1)) {
@@ -153,14 +148,6 @@ var count = 0;
 					spiritsStr = spiritsStr + aSpirits[i];
 				}
 			}
-			
-			for( int i = 0; i < aCocktail.length; i++ ){
-				if (i != (aCocktail.length - 1)) {
-					cocktailStr = cocktailStr + aCocktail[i] + "/";
-				} else {
-					cocktailStr = cocktailStr + aCocktail[i];
-				}
-			}
 		%>
 		
 		
@@ -196,11 +183,6 @@ var count = 0;
         		else if (e.value == "양주") {
         			var spiritsStr = '<%=spiritsStr%>';
         			alcohol = spiritsStr.split("/");
-        			aLength = alcohol.length;
-        		}
-        		else if (e.value == "칵테일") {
-        			var cocktailStr = '<%=cocktailStr%>';
-        			alcohol = cocktailStr.split("/");
         			aLength = alcohol.length;
         		}
         		
