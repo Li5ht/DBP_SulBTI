@@ -1,15 +1,14 @@
 <%@page contentType="text/html; charset=utf-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html lang="ko-kr">
+<html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>사용자 관리 - 정보 조회</title>
-<!-- Bootstrap -->
+<title>사용자 정보 조회</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel=stylesheet href="<c:url value='/css/common.css' />" type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 
 </head>
 <body>
