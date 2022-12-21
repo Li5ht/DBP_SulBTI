@@ -15,17 +15,6 @@ public class Test {
 		// TODO Auto-generated method stub
 		Scanner scanner = new Scanner(System.in);
 		
-		RecommendManager recMan = RecommendManager.getInstance();
-		List<Drink> drinkList = recMan.userRecommendList(41);
-		
-		if (drinkList == null) {
-			System.out.println("없어요");
-		}
-		else {
-			for (Drink drink : drinkList) {
-				System.out.println(drink.toString());
-			}
-		}
 		
 		
 		scanner.close();

@@ -589,7 +589,7 @@ public class AlcoholDAO {
 	public List<Alcohol> userFavorite(long id) {
 		String query = "select a.alcohol_id AS \"alcohol_id\", totalAmount, taste, flavor, corps "
 				+ "from preference p, alcohol a "
-				+ "where p.alcohol_id = a.alcohol_id AND totalAmount > 0 AND p.member_id = ? "
+				+ "where p.alcohol_id = a.alcohol_id AND totalAmount >= 1000 AND p.member_id = ? "
 				+ "order by totalAmount DESC";
 		jdbcUtil.setSqlAndParameters(query, new Object[] { id });
 		ResultSet rs = null;
@@ -649,7 +649,7 @@ public class AlcoholDAO {
 	public List<Alcohol> userFavoriteByRate(long id) {
 		String query = "select p.rate AS \"rate\", a.alcohol_id AS \"alcohol_id\", a.taste AS \"taste\", a.flavor AS \"flavor\", a.corps AS \"corps\" "
 				+ "from preference p, alcohol a "
-				+ "where p.alcohol_id = a.alcohol_id AND p.member_id = ? "
+				+ "where p.alcohol_id = a.alcohol_id AND p.member_id = ? AND p.rate >= 4 "
 				+ "order by p.rate DESC";
 		jdbcUtil.setSqlAndParameters(query, new Object[] { id });
 		ResultSet rs = null;
@@ -679,5 +679,34 @@ public class AlcoholDAO {
 			jdbcUtil.close();
 		}	
 		return alcoholList;
+	}
+	
+	/* 그 술에 대한 리뷰 (rate가 5, 4.5, 4.0 준 사용자 조회 (PK 리스트 반환)), 해당 사용자는 제외 */
+	public List<Long> memberListByAlcohol(long id, long alcohol_id) {
+		String query = "SELECT id FROM review r, preference p, member m "
+				+ "WHERE r.preference_id = p.preference_id AND p.member_id = m.id AND "
+				+ "(rate = 4.5 or rate = 5) AND p.alcohol_id = ? AND id != ? "
+				+ "order by rate DESC";
+		jdbcUtil.setSqlAndParameters(query, new Object[] { alcohol_id, id });
+		
+		ResultSet rs = null;
+		List<Long> memberList = null;
+		
+		try {
+			rs = jdbcUtil.executeQuery();
+			
+			memberList = new ArrayList<Long>();
+			
+			while (rs.next()) {
+				memberList.add(rs.getLong("id"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {	
+			jdbcUtil.close();
+		}	
+		
+		return memberList;
 	}
 }

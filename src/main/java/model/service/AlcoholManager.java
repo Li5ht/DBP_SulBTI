@@ -114,4 +114,9 @@ public class AlcoholManager {
 	public List<Alcohol> userFavoriteByRate(long id) {
 		return alDao.userFavoriteByRate(id);
 	}
+	
+	/* 그 술에 대한 리뷰 (rate가 5, 4.5, 4.0 준 사용자 조회 (PK 리스트 반환)) */
+	public List<Long> memberListByAlcohol(long id, long alcohol_id) {
+		return alDao.memberListByAlcohol(id, alcohol_id);
+	}
 }

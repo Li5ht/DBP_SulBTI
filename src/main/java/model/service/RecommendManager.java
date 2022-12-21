@@ -28,13 +28,15 @@ public class RecommendManager {
 		return recMan;
 	}
 	
-	/* 사용자 별 추천 (5가지) */
+	/* 사용자 별 추천 (술 5개 추천) */
 	public List<Drink> userRecommendList(long userPK) {
 		/*
-		 *  사용자가 자주 마시는 술 혹은 별점을 높게 준 술과 해시태그 비교
+		 *  1. 사용자가 자주 마시는 술 혹은 별점을 높게 준 술과 해시태그 비교
 		 *  해시태그 3개 다 같음 -> 2개 같음 {(맛, 바디감) -> (맛, 향) -> (향, 바디감)} 순 (1개만 같은 경우는 X)
-		 *  기존 술에 해시태그 존재 X -> 해시태그 비교 불가능할 경우, 사용자가 자주 마시는 술의 주종에서 랜덤 추천
-		 *  술 추천 시, 사용자가 마신 적 없는 술 위주로 추천 (리뷰와 음주 기록에 없는)
+		 *  2. 기존 술에 해시태그 존재 X -> 해시태그 비교 불가능할 경우, 사용자가 좋아하는 술을 좋아하는 다른 사용자를 찾아 그 사용자가 좋아하는 술로 추천
+		 *  3. 사용자가 자주 마시는 술의 주종에서 랜덤 추천
+		 *  4. 전체 랜덤
+		 *  술 추천 시, 사용자가 마신 적 없는 술 위주로 추천 (리뷰와 음주 기록에 없는) -> 그러고도 없을 경우 all 랜덤
 		 */
 		
 		if (userPK == -1) {	// 로그인 x : return
@@ -205,6 +207,68 @@ public class RecommendManager {
 		}
 		
 		
+		// 사용자가 좋아하는 술을 좋아하는 다른 사용자를 찾아 그 사용자가 좋아하는 술로 추천
+		List <Alcohol> subList = new ArrayList<Alcohol>();
+		for (Alcohol alcohol : userFavoriteList) {
+			List<Long> memberList = alcoholDao.memberListByAlcohol(userPK, alcohol.getAlcoholId());
+			for (Long l : memberList) {
+				List<Alcohol> otherFavoriteList = alcoholDao.userFavorite(l); // 그 사용자가 자주 마시는 술 (TOP 5)
+				List<Alcohol> otherFavoriteByRateList = alcoholDao.userFavoriteByRate(l); // 그 사용자가 높게 평가한 술 (TOP 5)
+				
+				// 술 중복 제거
+				for (Alcohol a : otherFavoriteByRateList) {
+					boolean exist = false;
+					for (Alcohol userList : otherFavoriteList) {
+						if (a.getAlcoholId() == userList.getAlcoholId()) {
+							exist = true;
+							break;
+						}
+					}
+					if (!exist) {
+						otherFavoriteList.add(a);
+					}
+				}
+				
+				for (Alcohol a : otherFavoriteList) {
+					if (recDao.findPreference2(userPK, a.getAlcoholId()) != -1) {
+						continue;
+					}
+					if (userRecList == null) {
+						userRecList = new ArrayList<Drink>();
+					}
+					boolean exist = false;
+					for (Drink recList : userRecList) { // userRecList에 이미 존재하는 술이면 pass
+						if (recList.getAlcohol().getAlcoholId() == a.getAlcoholId()) {
+							exist = true;
+							break;
+						}
+					}
+					if (exist) {
+						continue;
+					}
+					
+					subList.add(a);
+				}
+				
+			}
+		}
+		Collections.shuffle(subList);
+		for (Alcohol a : subList) {
+			if (count < 5) {
+				int amount = 0;
+				if (userDC != -1) {
+					amount = dc.drinkableAmount(userDC, a.getAlcoholLevel());
+				} 
+				Alcohol al = alcoholDao.findAlcoholById(a.getAlcoholId());
+				Drink drink = new Drink(al, amount);
+				
+				userRecList.add(drink);
+				
+				count++;
+			}
+		}
+		
+		
 		// userRecList가 5개가 안 될 때 (해시태그가 같은 경우가 없을 때) -> 사용자가 즐겨 마시는 주종에서 랜덤
 		List<Alcohol> alcoholListByType = alcoholDao.listByType(type);
 		Collections.shuffle(alcoholListByType);
@@ -241,7 +305,7 @@ public class RecommendManager {
 				break;
 			}
 		}
-		
+
 		// 그러고도 없을 때 전체 랜덤
 		Collections.shuffle(alcoholList);
 		for (Alcohol alcohol : alcoholList) {
@@ -264,6 +328,37 @@ public class RecommendManager {
 					continue;
 				}
 				
+				int amount = 0;
+				if (userDC != -1) {
+					amount = dc.drinkableAmount(userDC, alcohol.getAlcoholLevel());
+				} 
+				Drink drink = new Drink(alcohol, amount);
+				userRecList.add(drink);
+				count++;
+			} else {
+				break;
+			}
+		}
+
+		// 그러고도 없을 때 (사용자가 그 술을 경험한 적 있어도) 전체 랜덤
+		Collections.shuffle(alcoholList);
+		for (Alcohol alcohol : alcoholList) {
+			if (count < 5) {
+				if (userRecList == null) {
+					userRecList = new ArrayList<Drink>();
+				}
+						
+				boolean exist = false;
+				for (Drink recList : userRecList) { // userRecList에 이미 존재하는 술이면 pass
+					if (recList.getAlcohol().getAlcoholId() == alcohol.getAlcoholId()) {
+						exist = true;
+						break;
+					}
+				}
+				if (exist) {
+					continue;
+				}
+						
 				int amount = 0;
 				if (userDC != -1) {
 					amount = dc.drinkableAmount(userDC, alcohol.getAlcoholLevel());
