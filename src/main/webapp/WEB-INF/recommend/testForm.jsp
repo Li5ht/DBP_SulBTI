@@ -164,6 +164,8 @@
     </section>
     <section id="result" class="mx-auto my-5 py-5 px-3">
       <h1>당신의 결과는?!</h1>
+      <br>
+      <h4>청하</h4>
       <div class="resultname">
 
       </div>
