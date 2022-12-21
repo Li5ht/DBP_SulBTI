@@ -55,7 +55,6 @@ public class CalcDrinkingCapacity {
 		 * 2 : 말이 꼬이기 시작 & 휘청거림
 		 * 3 : 바닥과 인사 & 구토
 		 * 4 : 기절
-		 * 5 : 사망
 		 *  */
 		
 		float userDC = theAmountOfAlcohol(userDrinkingCapacity);	// 사용자 알콜량
@@ -65,20 +64,18 @@ public class CalcDrinkingCapacity {
 			drinkingListDC += theAmountOfAlcohol(drink);	// 마실 양의 알콜량 계산
 		}
 		
-		float dcGap = userDC - drinkingListDC;		// 사용자 알콜량과 마실 양의 알콜량 차이
+		float value = drinkingListDC / userDC;		// 마실 양의 알콜량 / 주량(알콜량)
 		
-		// 추후 수정!! 아직 안 정함
-		if (dcGap > 0.5)	// 상태 이상 없음 & 나른함
+		
+		if (value <= 0.5271219135)	// 상태 이상 없음 & 나른함
 			return 0;
-		else if (dcGap <= 0.5 && dcGap > -0.5)	// 기분 업 & 말 많아짐
+		else if (0.5271219135 < value && value <= 1)	// 기분 업 & 말 많아짐
 			return 1;
-		else if (dcGap <= 0.5 && dcGap > -0.5)	// 말이 꼬이기 시작 & 휘청거림
+		else if (1 < value && value <= 1.335416667)	// 말이 꼬이기 시작 & 휘청거림
 			return 2;
-		else if (dcGap <= 0.5 && dcGap > -0.5)	// 바닥과 인사 & 구토
+		else if (1.461226852 < value && value <= 1.587037037)	// 바닥과 인사 & 구토
 			return 3;
-		else if (dcGap <= 0.5 && dcGap > -0.5)	// 기절
+		else 	// 기절
 			return 4;
-		else 	// 사망
-			return 5;
 	}
 }
