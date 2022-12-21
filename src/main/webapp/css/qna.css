@@ -1,3 +1,6 @@
+#qna {
+  display: none;
+}
 
 .qBox {
   background-color: whitesmoke;
@@ -32,3 +35,18 @@
   border-radius: 20px;
 }
 
+.statusBar {
+  height: 100%;
+  border-radius: 20px;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#febbbb+0,fe9090+52,ff5c5c+100;Red+3D+%231 */
+  background: #CFF09E;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #CFF09E 0%, #c1ef82 52%, #A8DBA8 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #CFF09E 0%, #c1ef82 52%, #A8DBA8 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #CFF09E 0%, #c1ef82 52%, #A8DBA8 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#CFF09E', endColorstr='#A8DBA8', GradientType=0);
+  /* IE6-9 */
+}

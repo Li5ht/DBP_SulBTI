@@ -1,7 +1,7 @@
 const main = document.querySelector("#main");
 const qna = document.querySelector("#qna");
 
-const endPoint = 12;
+const endPoint = 4;
 
 
 function goResult(){
