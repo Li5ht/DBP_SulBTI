@@ -448,7 +448,9 @@ $(document).ready(function() {
 		
 		
 		
-		<form id="searchAlcohol" method="post" action="<c:url value='/product/search'/>"> 
+		<br style="line-height:5px;">
+		<form id="searchAlcohol" method="post" action="<c:url value='/product/search'/>" style="position: relative; text-align:right;">
+			<p style="text-indent:500px"></p>
 			<input type="text" width="15" name="searchWord" id="searchWord" placeholder="검색어를 입력해주세요.">
 			<a href='javascript:void(0);' onclick="searchAlcohol();"><img src="<c:url value='/images/q.png' />" alt="search"/></a>
 		</form>
