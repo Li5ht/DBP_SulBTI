@@ -472,7 +472,8 @@ $(document).ready(function() {
 				</tr>
 			</table>
 		</div>
-		
+		<br>
+	
 		<div class="alD">
 			<div id="alcohol1" class="alcohol1">	<!-- 소주 -->
 				<c:forEach var="alcohol" items="${soju}">
