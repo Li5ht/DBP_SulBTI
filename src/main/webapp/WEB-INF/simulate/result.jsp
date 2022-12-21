@@ -26,39 +26,10 @@
 	<br><br><br><br>
 	
 	<div class="simulDiv">
-	
-		<c:choose>
-			<c:when test="${condition eq 0}">
-				<img src="<c:url value='/images/simul0.png' />" alt="simul0"/>
-			</c:when>
-			
-			<c:when test="${condition eq 1}">
-				<img src="<c:url value='/images/simul1.png' />" alt="simul1"/>
-			</c:when>
-			
-			
-			<c:when test="${condition eq 2}">
-				<img src="<c:url value='/images/simul2.png' />" alt="simul2"/>
-			</c:when>
-			
-			
-			<c:when test="${condition eq 3}">
-				<img src="<c:url value='/images/simul3.png' />" alt="simul3"/>
-			</c:when>
-			
-			
-			<c:when test="${condition eq 4}">
-				<img src="<c:url value='/images/simul4.png' />" alt="simul4"/>
-			</c:when>
-			
-			<c:otherwise>
-			</c:otherwise>
-		</c:choose>
-		
+		<img src="<c:url value='${con}' />"/>
 		
 		<br><br>
-		
-		
+	
 		<div><a href="<c:url value='/simulate' />" style="color:#28a745;">다시하기</a></div>
 	</div>
 </body>
