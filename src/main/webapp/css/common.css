@@ -43,7 +43,8 @@
 
 .box {
 	display: inline-block;
-	border: 1px solid;
+	border: 3px solid;
+	color: 	gray;
 	margin-left : 20px;
 	margin-right: 20px;
 	border-radius: 10px;
@@ -55,7 +56,8 @@
 
 .box2 {
 	display: inline-block;
-	border: 1px solid;
+	border: 3px solid;
+	color: 	gray;
 	border-radius: 10px;
 	width: 250px;
 	height: 40px;
@@ -78,7 +80,6 @@
 	width: 350px;
 	overflow: auto;
 	margin-left: 60px;
-	border: 1px solid;
 	padding: 10px;
 }
 
@@ -91,9 +92,23 @@
 	vertical-align: middle;
 }
 
+.tableborder {
+	margin: auto;
+	border: 2px solid #66CDAA;
+	width: 900px;
+	border-radius: 10px;
+}
+
+.tableborder2 {
+	border : 2px solid #367E7F;
+	margin: auto;
+	width: 100%;
+	border-radius: 10px;
+}
+
 .recTable {
 	margin: auto;
-	border: 1px solid;
+	border-style: hidden;
 	width: 900px;
 	height: 50px;
 	text-align:center;
@@ -106,15 +121,35 @@
 	height: 200px;
 	text-align:center;
 	vertical-align: middle;
+	border-style: hidden;
+}
+
+.nav-item {
+	width: 180px;
+	text-align : center;
+}
+
+.nav-log {
+	width: 200px;
+	float: right;
+}
+
+.btn-log{
+	margin: auto;
+	width: 120px;
+	background : black;
+	border : 1px solid white;
+	text-align : center;
+	border-radius: 10px;
 }
 
 .recTd {
-	border: 1px solid;
+	border:  2px solid #66CDAA;
 }
 
 .recTd2 {
 	width: 20%;
-	border: 1px solid;
+	border: 2px solid #367E7F;
 }
 
 
