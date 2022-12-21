@@ -155,19 +155,19 @@ $(document).ready(function($) {
 		<div class="goBox">
 			<div class="box">
 				<br style="line-height:5px;">
-				<a href="<c:url value='/diary/list' />">음주 기록하기</a>
+				<a style="color:#48D1CC" href="<c:url value='/diary/list' />">음주 기록하기</a>
 			</div>
 			<div class="box">
 				<br style="line-height:5px;">
-				<a href="<c:url value='/recommend/list' />">술 추천받기</a>
+				<a style="color:#20B2AA" href="<c:url value='/recommend/list' />">술 추천받기</a>
 			</div>
 			<div class="box">
 				<br style="line-height:5px;">
-				<a href="<c:url value='/simulate' />">주량 시뮬레이션하기</a>
+				<a style="color:#3CB371" href="<c:url value='/simulate' />">주량 시뮬레이션하기</a>
 			</div>
 			<div class="box2">
 				<br style="line-height:5px;">
-				<a href="<c:url value='/recommend/test' />">술BTI 테스트 하러가기</a>
+				<a style="color:#008B8B" href="<c:url value='/recommend/test' />">술BTI 테스트 하러가기</a>
 			</div>
 		</div>
 		<br><br>
