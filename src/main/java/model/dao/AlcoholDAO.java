@@ -387,6 +387,21 @@ public class AlcoholDAO {
 		return result;
 	}
 	
+	public void deleteAllReview(long preferenceId) {
+		try {
+			String query = "DELETE FROM review WHERE preference_id = ?";
+			jdbcUtil.setSqlAndParameters(query, new Object[] { preferenceId });
+			jdbcUtil.executeUpdate();
+			
+			jdbcUtil.commit();
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close(); // resource 반환
+		}
+	}
+	
 	public Review findReview(long memberId, long alcoholId) {
 		String query = "SELECT alcohol_id, rate, taste, flavor, corps, content "
 				+ "FROM REVIEW r JOIN PREFERENCE p ON r.preference_id = p.preference_id "

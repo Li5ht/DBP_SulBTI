@@ -370,4 +370,43 @@ public class DiaryDAO {
 		return 0;
 	}
 
+	public List<Long> diaryAllList(long id) {
+		String query = "Select diary_id from diary where member_id = ?";
+		jdbcUtil.setSqlAndParameters(query, new Object[] {id});
+		ResultSet rs = null;
+		List<Long> diaryIdList = null;
+		try {
+			rs = jdbcUtil.executeQuery();
+			
+			diaryIdList = new ArrayList<Long>();
+			
+			while (rs.next()) {
+				diaryIdList.add(rs.getLong("diary_id"));
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close(); // resource 반환
+		}
+		return diaryIdList;
+	}
+	
+	public void deleteAllDiary(long diaryId) {
+		try {
+			String query = "DELETE FROM drink WHERE diary_id = ?";
+			jdbcUtil.setSqlAndParameters(query, new Object[] { diaryId });
+			jdbcUtil.executeUpdate();
+				
+			String query2 = "DELETE FROM diary WHERE diary_id = ?";
+			jdbcUtil.setSqlAndParameters(query2, new Object[] { diaryId });
+			jdbcUtil.executeUpdate();
+				
+			jdbcUtil.commit();
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close(); // resource 반환
+		}
+	}
 }

@@ -31,6 +31,7 @@ public class RequestMapping {
         // 회원가입
         mappings.put("/user/register", new RegisterUserController());
         mappings.put("/user/update", new UpdateUserController());
+        mappings.put("/user/delete", new UpdateUserController());
 
         
        // 추천 관련

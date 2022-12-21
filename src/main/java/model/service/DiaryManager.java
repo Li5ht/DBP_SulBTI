@@ -107,5 +107,12 @@ public class DiaryManager {
 	public int deleteDiary(Diary diary) throws SQLException, DiaryNotFoundException {
 		return diaryDAO.removeDiary(diary);
 	}
+	
+	public void deleteAllDiary(long id) {
+		List<Long> diaryIdList = diaryDAO.diaryAllList(id);
+		for (Long l : diaryIdList) {
+			diaryDAO.deleteAllDiary(l);
+		}
+	}
 
 }

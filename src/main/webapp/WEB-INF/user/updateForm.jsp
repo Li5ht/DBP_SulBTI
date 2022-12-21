@@ -10,6 +10,29 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgba(0,0,0,0.3); /* 검정색 투명도 조절 */
+}
+    
+/* 모달 안에 들어갈 부분 css */
+.modal-content {
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid;
+	vertical-align: middle;
+	width: 500px;
+}
+
+</style>
 <script>
 function userModify() {
 	if (form.password.value == "") {
@@ -39,10 +62,30 @@ function userModify() {
 	
 	form.submit();
 }
+
+function userDelete() {
+	document.getElementById("myModal").style.display="block";
+}
+
+//팝업 Close 기능
+function close_pop(flag) {
+     $('#myModal').hide();
+};
+
 </script>
 </head>
 <body>
 <%@include file="/WEB-INF/navbar.jsp" %>
+
+<div id="myModal" class="modal">
+	<div class="modal-content">	<!-- 회원 탈퇴 확인 모달 -->
+			<form method="POST" action="<c:url value='/user/delete'/>">
+				정말 삭제하시겠습니까? <br><br>
+				<input type="button" class="btn btn-outline-success" value="회원 탈퇴" onClick="location.href='<c:url value='/user/delete' />'">
+				<input type="button" class="btn btn-outline-success" value="아니오" onClick="close_pop();">
+			</form>
+	</div>
+</div>
 
 <div class="container">  
 	<br>
@@ -233,6 +276,7 @@ function userModify() {
     	</script>
 		<div class="form-group">       
 			<input type="button" class="btn btn-outline-success" value="수정" onClick="userModify()">
+			<input type="button" class="btn btn-outline-success" value="회원 탈퇴" onClick="userDelete()">
 		</div>   
 	</form>
 </div>

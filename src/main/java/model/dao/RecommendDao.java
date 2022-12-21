@@ -214,6 +214,42 @@ public class RecommendDao {
 		return result;
 	}
 	
+	public List<Long> findAllPreference(long id) {
+		String query = "Select preference_id from preference where member_id = ?";
+		jdbcUtil.setSqlAndParameters(query, new Object[] {id});
+		ResultSet rs = null;
+		List<Long> preferenceIdList = null;
+		try {
+			rs = jdbcUtil.executeQuery();
+			
+			preferenceIdList = new ArrayList<Long>();
+			
+			while (rs.next()) {
+				preferenceIdList.add(rs.getLong("preference_id"));
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close(); // resource 반환
+		}
+		return preferenceIdList;
+	}
+	
+	public void deleteAllPreference(long id) {
+		try {
+			String query = "DELETE FROM preference WHERE member_id = ?";
+			jdbcUtil.setSqlAndParameters(query, new Object[] { id });
+			jdbcUtil.executeUpdate();
+			
+			jdbcUtil.commit();
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close(); // resource 반환
+		}
+	}
+	
 	// 최근 언급량 증가 랭킹
 	public List<Rank> rankByRecentIncrease() {
 		String query = "SELECT name, image, count(drink.alcohol_id) AS \"numOfAlcohol\", taste, flavor, corps "
