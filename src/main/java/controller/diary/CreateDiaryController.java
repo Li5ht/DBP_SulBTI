@@ -17,6 +17,7 @@ import controller.Controller;
 import controller.user.UserSessionUtils;
 import model.*;
 import model.dao.*;
+import model.service.AlcoholManager;
 import model.service.DiaryManager;
 import model.service.UserManager;
 
@@ -39,12 +40,25 @@ public class CreateDiaryController implements Controller {
         }
     	
     	Diary diary = new Diary();	
-    	// 술 목록 받아오기
-    	AlcoholDAO alcoholDao = new AlcoholDAO();
-		List<Alcohol> alcoholList = alcoholDao.viewAlcoholList();
+    	AlcoholManager alMan = AlcoholManager.getInstance();
+ 
     	if (request.getMethod().equals("GET")) {	
     		// GET request: 음주 기록 등록 form 요청	
-			request.setAttribute("alcoholList", alcoholList);	
+    		
+    		/* 술 목록 받아오기 */
+    		List<Alcohol> alcoholList = alMan.viewAlcoholList();
+    		String[] aSoju = alMan.nameListByType("소주");
+    		String[] aBeer = alMan.nameListByType("맥주");
+    		String[] aTraditional = alMan.nameListByType("전통주");
+    		String[] aWine = alMan.nameListByType("와인");
+    		String[] aSpirits = alMan.nameListByType("양주");
+    		
+    		request.setAttribute("alcoholList", alcoholList);
+    		request.setAttribute("aSoju", aSoju);
+        	request.setAttribute("aBeer", aBeer);
+        	request.setAttribute("aTraditional", aTraditional);
+        	request.setAttribute("aWine", aWine);
+        	request.setAttribute("aSpirits", aSpirits);
 			
 			return "/diary/registerForm.jsp";   // 검색한 정보를 update form으로 전송     
 	    }	
@@ -57,7 +71,7 @@ public class CreateDiaryController implements Controller {
     	// 추후에 반복문으로 수정.. 
     	Drink drink = new Drink();
     	String alcoholName = request.getParameter("selectedAlcohol");
-    	List<Alcohol> alcohol = alcoholDao.searchAlcohol(alcoholName);
+    	List<Alcohol> alcohol = alMan.searchAlcohol(alcoholName);
     	System.out.println(alcohol);
     	if (alcohol.size() != 0) {
     		drink.setAlcohol(alcohol.get(0));

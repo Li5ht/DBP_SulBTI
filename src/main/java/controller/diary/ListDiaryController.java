@@ -11,6 +11,7 @@ import controller.Controller;
 import controller.user.UserSessionUtils;
 import model.*;
 import model.dao.*;
+import model.service.AlcoholManager;
 import model.service.DiaryManager;
 
 public class ListDiaryController implements Controller {
@@ -47,6 +48,23 @@ public class ListDiaryController implements Controller {
 		List<Diary> currentDiaryList = dManager.findDiaryListBydate(id, startDate, endDate);
 		// 전체 음주 기록
 		List<Diary> diaryList = dManager.findDiaryListByMemberId(id);
+		
+		/* 술 목록 받아오기 */
+		AlcoholManager alMan = AlcoholManager.getInstance();
+		List<Alcohol> alcoholList = alMan.viewAlcoholList();
+		String[] aSoju = alMan.nameListByType("소주");
+		String[] aBeer = alMan.nameListByType("맥주");
+		String[] aTraditional = alMan.nameListByType("전통주");
+		String[] aWine = alMan.nameListByType("와인");
+		String[] aSpirits = alMan.nameListByType("양주");
+		
+		request.setAttribute("aSoju", aSoju);
+    	request.setAttribute("aBeer", aBeer);
+    	request.setAttribute("aTraditional", aTraditional);
+    	request.setAttribute("aWine", aWine);
+    	request.setAttribute("aSpirits", aSpirits);
+    	request.setAttribute("alcoholList", alcoholList);
+    	
 		
 		// diaryList 객체를 request에 저장하여 음주 기록 리스트 화면으로 이동(forwarding)
 		request.setAttribute("currentDiaryList", currentDiaryList);

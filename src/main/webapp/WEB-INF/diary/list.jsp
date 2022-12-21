@@ -68,7 +68,8 @@ public class MyCalendar {
 	td.redbefore{ text-align: right; font-size: 12pt; background-color: #F4F5F4; color: #DCDCDF; font-family: D2coding; vertical-align: top;}
 	td.before{ text-align: right; font-size: 12pt; color: #DCDCDF; font-family: D2coding; vertical-align: top;}
 	
-	input {border:0; outline:0; color: #79BD9A; background-color:transparent;}
+	input.title {border:0; outline:0; color: #79BD9A; background-color:transparent;}
+	span.today {background-color: #C1614D; color: white; border-radius: 50%; border:2.5px solid #C1614D;}
 
 </style>
 </head>
@@ -137,9 +138,9 @@ public class MyCalendar {
 	
 	<!-- 날짜 -->
 	<div class="date">
-		<input type="button" value="◁" onclick="location.href='?year=<%=year%>&month=<%=month-1%>'">
+		<input class="title" type="button" value="◁" onclick="location.href='?year=<%=year%>&month=<%=month-1%>'">
 		<strong><%=year%>년  <%=month%>월</strong>
-		<input type="button" value="▷" onclick="location.href='?year=<%=year%>&month=<%=month+1%>'">
+		<input class="title" type="button" value="▷" onclick="location.href='?year=<%=year%>&month=<%=month+1%>'">
 	</div><br/><br/>
 	
 	<table align ="center">
@@ -159,7 +160,7 @@ public class MyCalendar {
 		<%
 	//	1일의 요일을 계산한다(자주 쓰이기 때문에 변수로 선언해두기)
 			int first = MyCalendar.weekDay(year, month, 1);
-		
+			
 	//	1일이 출력될 위치 전에 전달의 마지막 날짜들을 넣어주기위해 전 달날짜의 시작일을 계산한다.
 			int start = 0 ;
 			start = month ==1? MyCalendar.lastDay(year-1, 12)- first : MyCalendar.lastDay(year, month-1)- first;
@@ -199,19 +200,35 @@ public class MyCalendar {
 				}
 			}
 			
+			Date d = new Date();
+			int today = d.getDate();
+			int todayYear = d.getYear() + 1900;
+			int todayMonth = d.getMonth() + 1;
 			
 			for(int i = 1; i <= MyCalendar.lastDay(year, month); i++){
 				String url = "<br><a href='view?diaryId=" + idList[i] + "' " + list[i] + "</a>";
 				/* 요일별로 색깔 다르게 해주기위해 td에 class 태그걸어주기 */
 				switch(MyCalendar.weekDay(year, month, i)){
 					case 0 :
-						out.println("<td class ='sun'>" + i + "일" + url + "</td>");
+						if (today == i && todayYear == year && todayMonth==month) {
+							out.println("<td class ='sun'>" + "<span class='today'>" + i + "</span>" + "일" + url + "</td>");
+						} else {
+							out.println("<td class ='sun'>" + i + "일" + url + "</td>");
+						}
 						break;
 					case 6 :
-						out.println("<td class ='sat'>" + i + "일" + url + "</td>");
+						if (today == i && todayYear == year && todayMonth==month) {
+							out.println("<td class ='sat'>" + "<span class='today'>" + i + "</span>" +  "일" + url + "</td>");
+						} else {
+							out.println("<td class ='sat'>" + i + "일" + url + "</td>");
+						}
 						break;
 					default :
-						out.println("<td class ='etc'>" + i + "일" + url + "</td>");
+						if (today == i && todayYear == year && todayMonth==month) {
+							out.println("<td class ='etc'>" + "<span class='today'>" + i + "</span>" + "일" + url + "</td>");
+						} else {
+							out.println("<td class ='etc'>" + i + "일" + url + "</td>");
+						}
 						break;
 				}
 				
@@ -233,12 +250,24 @@ public class MyCalendar {
 	
 	
 	</div>
-	<!-- 상세보기 -->
-	<!-- 
+	<!-- 음주 기록 추가하기 -->
 	<div class="diaryBox2">
-		여기서 include jsp파일
+		<br><br><br>
+		<jsp:include page="writeForm.jsp">
+			<jsp:param name="tmpYear" value="2022" />
+			<jsp:param name="tmpMonth" value="12" />
+			<jsp:param name="tmpDate" value="22" />
+		</jsp:include>
 	</div>
-	 --> 
+	
+	<!-- 음주 기록 수정 및 삭제하기 -->
+	<div class="diaryBox2" style="display:none;">
+		<jsp:include page="writeForm.jsp">
+			<jsp:param name="email" value="sesok808@naver.com" />
+			<jsp:param name="tel" value="010-1234-5678" />
+		</jsp:include>
+	</div>
+	
 	</div>
 	
 </body>

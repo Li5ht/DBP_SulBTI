@@ -61,3 +61,43 @@
     margin: 0px auto;
     box-sizing: border-box;
 }
+
+
+.drinkingList {
+	display:inline-block;
+	background-color: #A8DBA8;
+	color: white;
+	border: 0px;
+	border-radius: 5px;
+	font-size: 10pt;
+	padding: 5px 20px;
+	margin: 0px 5px 5px 5px;
+}
+
+select {
+	font-size: 10pt; 
+	font-family: D2coding;
+	border: 1px solid lightgray;
+}
+
+input.diaryAmount {
+	font-size: 10pt; 
+	font-family: D2coding;
+	border: 1px solid lightgray;
+	vertical-align: sub;
+}
+
+input.diaryCondition {
+	font-size: 10pt; 
+	font-family: D2coding;
+	border: none;
+	vertical-align: sub;
+	width:30px;
+	background-color:#CFF09E21; 
+	color:#A8DBA8;
+}
+
+textarea {
+	border: none;
+	width: 320px;
+}
