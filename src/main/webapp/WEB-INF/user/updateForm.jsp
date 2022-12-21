@@ -72,9 +72,25 @@ function close_pop(flag) {
      $('#myModal').hide();
 };
 
+function autoSelect() {
+	var year = '<c:out value="${year}"/>';
+	var month = '<c:out value="${month}"/>';
+	var day = '<c:out value="${day}"/>';
+	
+	$("#birth1").val(year).prop("selected", true);
+	$("#birth2").val(month).prop("selected", true);
+	$("#birth3").val(day).prop("selected", true);
+	
+	
+	var drinkingCapacity = '<c:out value="${drinkingCapacity}"/>';
+	if (drinkingCapacity > 0) {
+		$("#sel1").val('소주').prop("selected", true);
+	}
+}
+
 </script>
 </head>
-<body>
+<body onload="autoSelect();">
 <%@include file="/WEB-INF/navbar.jsp" %>
 
 <div id="myModal" class="modal">
@@ -128,19 +144,19 @@ function close_pop(flag) {
 		<div class="form-group row">   
 	        <label for="name" class="col-lg-2 col-form-label">생일</label>
 	        <div class="col-lg-10">
-	        		<select name="birth1">
+	        		<select name="birth1" id="birth1">
 	        			<% java.util.Calendar cal = java.util.Calendar.getInstance(); %>
 
 				    	<%for(int i = cal.get(java.util.Calendar.YEAR) - 19; i>=1900; i--){ %>
 				    	<option value="<%=i %>"><%=i %></option>
 				    	<%} %>
 				    </select>년&nbsp;
-				    <select name="birth2">
+				    <select name="birth2" id="birth2">
 				       <%for(int i=1; i<=12; i++){ %>
 				       <option value="<%=i %>"><%=i %></option>
 				       <%} %>
 				    </select>
-				    <select name="birth3">
+				    <select name="birth3" id="birth3">
 				       <%for(int i=1; i<=31; i++){ %>
 				       <option value="<%=i %>"><%=i %></option>
 				       <%} %>
@@ -158,7 +174,7 @@ function close_pop(flag) {
 	    <div class="form-group row">  
 	    	<label for="email" class="col-lg-2 col-form-label">주량</label>
 	    	<div class="col-lg-10">
-	    		<select id="sel1" name="sel1" onchange="categorychange(this, 1)">
+	    		<select id="sel1" name="sel1" onchange="categorychange(this)">
 					<option value="0">주종 선택</option>
 					<option value="소주">소주</option>
 					<option value="맥주">맥주</option>
@@ -167,11 +183,29 @@ function close_pop(flag) {
 					<option value="양주">양주</option>
 				</select>&nbsp;&nbsp;
 			
-				<select id="sel2" name="sel2">
-					<option value="0">술 선택</option>
-				</select>&nbsp;&nbsp;
-			
-				<input type="text" name="amount" width="30" id="amount">&nbsp;ml
+				<c:if test="${drinkingCapacity gt 0}">
+					<select id="sel2" name="sel2">
+						<c:forEach var="alcohol" items="${aSoju}">
+							<c:if test="${alcohol eq '참이슬 오리지널'}">
+								<option value="${alcohol}" selected="selected">${alcohol}</option>
+							</c:if>
+							<c:if test="${alcohol ne '참이슬 오리지널'}">
+								<option value="${alcohol}">${alcohol}</option>
+							</c:if>
+						</c:forEach>
+					</select>&nbsp;&nbsp;
+				
+					<input type="text" name="amount" width="30" id="amount" value="${drinkingCapacity}">&nbsp;ml
+				</c:if>
+				
+				<c:if test="${drinkingCapacity le 0}">
+					<select id="sel2" name="sel2">
+						<option value="0">술 선택</option>
+					</select>&nbsp;&nbsp;
+				
+					<input type="text" name="amount" width="30" id="amount">&nbsp;ml
+				</c:if>
+				
 	    	</div>
 	    </div>
 	    <%

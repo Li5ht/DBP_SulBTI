@@ -1,6 +1,7 @@
 package controller.user;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -57,12 +58,27 @@ public class UpdateUserController implements Controller {
     		
     		UserManager manager = UserManager.getInstance();
 			Member user = manager.findUser(updateId);	// 수정하려는 사용자 정보 검색
-			request.setAttribute("user", user);			
+			request.setAttribute("user", user);		
+			Date birth = (Date) user.getBirth();
+			SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
+			SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
+			SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
+			int month = Integer.parseInt(monthFormat.format(birth));
+			int day = Integer.parseInt(dayFormat.format(birth));
+			
+			request.setAttribute("year", yearFormat.format(birth));
+			request.setAttribute("month", month);
+			request.setAttribute("day", day);
+			
+			float dc = manager.getDrinking(UserSessionUtils.getLoginUserPrimaryKey(request.getSession()));
+        	if (dc != -1) {
+        		dc = (float) (dc / 0.201);
+        	}int drinkingCapacity = Math.round(dc);
+    		request.setAttribute("drinkingCapacity", drinkingCapacity);
 
 			HttpSession session = request.getSession();
-			if (UserSessionUtils.isLoginUser(updateId, session) ||
-				UserSessionUtils.isLoginUser("admin", session)) {
-				// 현재 로그인한 사용자가 수정 대상 사용자이거나 관리자인 경우 -> 수정 가능
+			if (UserSessionUtils.isLoginUser(updateId, session)) {
+				// 현재 로그인한 사용자가 수정 대상 사용자인 경우 -> 수정 가능
 				
 				/* 술 목록 받아오기 (주량 수정) */
 				AlcoholManager alMan = AlcoholManager.getInstance();

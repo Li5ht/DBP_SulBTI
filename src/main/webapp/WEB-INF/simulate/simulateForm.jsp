@@ -47,7 +47,6 @@ var count = 0;
 			</select>&nbsp;&nbsp;
 			
 			<select id="sel2_1" name="sel2_1">
-				<option value="0">술 선택</option>
 				<c:forEach var="alcohol" items="${aSoju}">
 					<c:if test="${alcohol eq '참이슬 오리지널'}">
 						<option value="${alcohol}" selected="selected">${alcohol}</option>
