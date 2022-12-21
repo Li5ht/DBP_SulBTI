@@ -79,8 +79,13 @@ public class SimulateController implements Controller {
 			/* 주량 계산 (상태 반환) */
 			CalcDrinkingCapacity calcDC = new CalcDrinkingCapacity(userDC, drinkingList);
 			int condition = calcDC.calculate();
+			String con = "/images/simul"+Integer.toString(condition);
+			if (condition == 0 || condition == 3) {
+				con += Integer.toString((int)(Math.random()*2));
+			} con += ".png";
 			
-			request.setAttribute("condition", condition);
+			
+			request.setAttribute("con", con);
 			
 			return "/simulate/result.jsp";
 		}
