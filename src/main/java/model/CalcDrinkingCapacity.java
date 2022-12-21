@@ -73,7 +73,7 @@ public class CalcDrinkingCapacity {
 			return 1;
 		else if (1 < value && value <= 1.335416667)	// 말이 꼬이기 시작 & 휘청거림
 			return 2;
-		else if (1.461226852 < value && value <= 1.587037037)	// 바닥과 인사 & 구토
+		else if (1.335416667 < value && value <= 1.587037037)	// 바닥과 인사 & 구토
 			return 3;
 		else 	// 기절
 			return 4;
