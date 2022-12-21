@@ -51,26 +51,24 @@ public class MyCalendar {
 <!-- 스타일 적용시켜주기 -->
 <style type="text/css">
 /* 기본스타일  */	
-	
-	tr{height: 60px;}
-	td{width: 100px; text-align: right; font-size: 15pt; font-family: D2coding;}
-/* 타이틀 스타일 */
-	th#title {font-size: 20pt; font-weight: bold; font-family: D2coding; }
+	tr{height: 100px;}
+	tr.top {height: 30px;}
+	td{width: 200px; text-align: right; font-size: 12pt; font-family: D2coding; border: 1px solid #DCDCDF;}
 
 /* 요일 스타일 */
-	td.sunday{ text-align: center; font-weight: bold; color: red; font-family: D2coding; }
-	td.saturday{ text-align: center; font-weight: bold; color: blue; font-family: D2coding; }
-	td.etcday{ text-align: center; font-weight: bold; color: black; font-family: D2coding; }
+	th.sunday{text-align: right; font-weight: bold; color: gray; font-family: D2coding; }
+	th.saturday{text-align: right; font-weight: bold; color: gray; font-family: D2coding; }
+	th.etcday{text-align: right; font-weight: bold; color: black; font-family: D2coding; }
 
 /* 날짜 스타일 */
-	td.sun{ text-align: right; font-size: 15pt; color: black; font-family: D2coding; vertical-align: top;}
-	td.sat{ text-align: right; font-size: 15pt; color: black; font-family: D2coding; vertical-align: top;}
-	td.etc{ text-align: right; font-size: 15pt; color: black; font-family: D2coding; vertical-align: top;}
+	td.sun{ text-align: right; font-size: 12pt; background-color: #F4F5F4; color: black; font-family: D2coding; vertical-align: top;}
+	td.sat{ text-align: right; font-size: 12pt; background-color: #F4F5F4; color: black; font-family: D2coding; vertical-align: top;}
+	td.etc{ text-align: right; font-size: 12pt; color: black; font-family: D2coding; vertical-align: top;}
 	
-	td.redbefore{ text-align: right; font-size: 12pt; color: gray; font-family: D2coding; vertical-align: top;}
-	td.before{ text-align: right; font-size: 12pt; color: gray; font-family: D2coding; vertical-align: top;}
+	td.redbefore{ text-align: right; font-size: 12pt; background-color: #F4F5F4; color: #DCDCDF; font-family: D2coding; vertical-align: top;}
+	td.before{ text-align: right; font-size: 12pt; color: #DCDCDF; font-family: D2coding; vertical-align: top;}
 	
-	input {border:0; outline:0; color:#79bd9a; background-color:transparent;}
+	input {border:0; outline:0; color: #79BD9A; background-color:transparent;}
 
 </style>
 </head>
@@ -88,8 +86,9 @@ public class MyCalendar {
 	<!-- <div class="diaryBox1"> -->
 	
 	<!-- 음주 기록 추가 -->
+	<!--  
 	<button type="button" class="btn btn-outline-success" onclick="location.href='create'">음주 기록 추가하기</button>
-	
+	-->
 	<%
 	// 컴퓨터 시스템의 년, 월 받아오기
 		Date date = new Date();
@@ -130,36 +129,29 @@ public class MyCalendar {
 		}
 	
 	%>
+	
+	<br>
 	<!-- 달력 만들기 -->
-	<table width ="700" align ="center" border ="1" cellpadding="5" cellspacing="0">
-		<tr>
-	<!-- 이전달 버튼 만들기 -->
-			<th>
-			<%-- <a href ="?year=<%=year%>&month=<%month-1%>">이전 달</a> --%>
-			<input type="button" value="◀" onclick="location.href='?year=<%=year%>&month=<%=month-1%>'">
-			</th>
-			
-	<!-- 제목 만들기 -->
-			<th id = "title" colspan = "5">
-			<%=year%>년  <%=month%>월
-			</th>
-			
-	<!-- 다음달 버튼 만들기 -->
-			<th>
-			<%-- <a href ="?year=<%=year%>&month=<%month+1%>">다음 달</a> --%>
-			<input type="button" value="▶" onclick="location.href='?year=<%=year%>&month=<%=month+1%>'">
-			
-			</th>
-		</tr>
+	<div class="parent">
+	<div class="diaryBox1">
+	
+	<!-- 날짜 -->
+	<div class="date">
+		<input type="button" value="◁" onclick="location.href='?year=<%=year%>&month=<%=month-1%>'">
+		<strong><%=year%>년  <%=month%>월</strong>
+		<input type="button" value="▷" onclick="location.href='?year=<%=year%>&month=<%=month+1%>'">
+	</div><br/><br/>
+	
+	<table align ="center">
 	<!-- 요일 표시칸 만들어주기(단, 토,일요일은 색을 다르게 하기위해 구분해주기) -->
-		<tr>
-			<td class = "sunday">일</td>
-			<td class = "etcday">월</td>
-			<td class = "etcday">화</td>
-			<td class = "etcday">수</td>
-			<td class = "etcday">목</td>
-			<td class = "etcday">금</td>
-			<td class = "saturday">토</td>
+		<tr class="top">
+			<th class = "sunday">일</th>
+			<th class = "etcday">월</th>
+			<th class = "etcday">화</th>
+			<th class = "etcday">수</th>
+			<th class = "etcday">목</th>
+			<th class = "etcday">금</th>
+			<th class = "saturday">토</th>
 		</tr>
 		
 	<!-- 날짜 집어 넣기 -->
@@ -176,9 +168,9 @@ public class MyCalendar {
 			for(int i= 1; i<= first; i++){
 				if(i==1){
 	/* 일요일(빨간색)과 다른날들의 색을 구별주기  */
-					out.println("<td class = 'redbefore'>"+(month ==1? 12 : month-1)+"/"+ ++start +"</td>");
+					out.println("<td class = 'redbefore'>"+ (++start) +"일</td>");
 				}else{
-					out.println("<td class = 'before'>"+(month ==1? 12 : month-1)+"/"+ ++start +"</td>");
+					out.println("<td class = 'before'>"+ (++start) +"일</td>");
 					
 				}
 			}
@@ -213,13 +205,13 @@ public class MyCalendar {
 				/* 요일별로 색깔 다르게 해주기위해 td에 class 태그걸어주기 */
 				switch(MyCalendar.weekDay(year, month, i)){
 					case 0 :
-						out.println("<td class ='sun'>" + i + url + "</td>");
+						out.println("<td class ='sun'>" + i + "일" + url + "</td>");
 						break;
 					case 6 :
-						out.println("<td class ='sat'>" + i + url + "</td>");
+						out.println("<td class ='sat'>" + i + "일" + url + "</td>");
 						break;
 					default :
-						out.println("<td class ='etc'>" + i + url + "</td>");
+						out.println("<td class ='etc'>" + i + "일" + url + "</td>");
 						break;
 				}
 				
@@ -238,14 +230,16 @@ public class MyCalendar {
 		</tr>
 		
 	</table>
-		
-		<!-- 상세보기 --> 
-		<!-- 시간되면 비동기로 구현.. -->
-		<!--
-		<div class="diaryBox2">
-			<table>
-			</table>
-		</div>
-		  -->	
+	
+	
+	</div>
+	<!-- 상세보기 -->
+	<!-- 
+	<div class="diaryBox2">
+		여기서 include jsp파일
+	</div>
+	 --> 
+	</div>
+	
 </body>
 </html>
