@@ -50,14 +50,12 @@ public class UpdateUserController implements Controller {
 				String[] aTraditional = alMan.nameListByType("전통주");
 				String[] aWine = alMan.nameListByType("와인");
 				String[] aSpirits = alMan.nameListByType("양주");
-				String[] aCocktail = alMan.nameListByType("칵테일");
 				
 				request.setAttribute("aSoju", aSoju);
 		    	request.setAttribute("aBeer", aBeer);
 		    	request.setAttribute("aTraditional", aTraditional);
 		    	request.setAttribute("aWine", aWine);
 		    	request.setAttribute("aSpirits", aSpirits);
-		    	request.setAttribute("aCocktail", aCocktail);
 				
 				return "/user/updateForm.jsp";   // 검색한 사용자 정보를 updateForm으로 전송     
 			}    

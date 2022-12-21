@@ -32,7 +32,6 @@ public class HomeController implements Controller {
 		List<Rank> traditional = manager.typeRank("전통주");
 		List<Rank> wine = manager.typeRank("와인");
 		List<Rank> spirits = manager.typeRank("양주");
-		List<Rank> cocktail = manager.typeRank("칵테일");
 		
 		/* 랭킹 결과 전달 */
 		request.setAttribute("hotRank", hotRank);
@@ -43,7 +42,6 @@ public class HomeController implements Controller {
 		request.setAttribute("traditional", traditional);
 		request.setAttribute("wine", wine);
 		request.setAttribute("spirits", spirits);
-		request.setAttribute("cocktail", cocktail);
 		
 		return "/home/home.jsp";
 	}

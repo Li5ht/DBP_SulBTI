@@ -15,7 +15,7 @@ public class SimulateController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
 		 UserManager userMan = UserManager.getInstance();
-		float drinkingCapacity = -1; /* 사용자의 주량 (-1 : 사용자 주량 모름) */
+		float dc = -1; /* 사용자의 주량 (-1 : 사용자 주량 모름) */
 		long id = -1; /* 사용자의 primary key */
 		
 		/* 로그인 여부 확인 */
@@ -24,15 +24,13 @@ public class SimulateController implements Controller {
         } else {
         	request.setAttribute("hasLogin", true);
         	id = UserSessionUtils.getLoginUserPrimaryKey(request.getSession());
-        	drinkingCapacity = userMan.getDrinking(id);
-        	if (drinkingCapacity != -1) {
-        		drinkingCapacity = (float) (drinkingCapacity / 0.201);
+        	dc = userMan.getDrinking(id);
+        	if (dc != -1) {
+        		dc = (float) (dc / 0.201);
         	}
-        	
         	request.setAttribute("nickname", UserSessionUtils.getLoginUserNickname(request.getSession()));
-        	
         }
-		
+		int drinkingCapacity = Math.round(dc);
 		request.setAttribute("drinkingCapacity", drinkingCapacity);
 		/* 술 목록 받아오기 */
 		AlcoholManager alMan = AlcoholManager.getInstance();
@@ -41,14 +39,12 @@ public class SimulateController implements Controller {
 		String[] aTraditional = alMan.nameListByType("전통주");
 		String[] aWine = alMan.nameListByType("와인");
 		String[] aSpirits = alMan.nameListByType("양주");
-		String[] aCocktail = alMan.nameListByType("칵테일");
 		
 		request.setAttribute("aSoju", aSoju);
     	request.setAttribute("aBeer", aBeer);
     	request.setAttribute("aTraditional", aTraditional);
     	request.setAttribute("aWine", aWine);
     	request.setAttribute("aSpirits", aSpirits);
-    	request.setAttribute("aCocktail", aCocktail);
 	
 		if (request.getServletPath().equals("/simulate/result")) {
 			/* 시뮬레이터 결과 페이지 */

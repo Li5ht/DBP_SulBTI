@@ -36,7 +36,6 @@ public class RecommendController implements Controller {
 		List<Rank> traditional = manager.typeRank("전통주");
 		List<Rank> wine = manager.typeRank("와인");
 		List<Rank> spirits = manager.typeRank("양주");
-		List<Rank> cocktail = manager.typeRank("칵테일");
 		
 		request.setAttribute("userRecList", userRecList);
 		request.setAttribute("hotRank", hotRank);
@@ -47,7 +46,6 @@ public class RecommendController implements Controller {
 		request.setAttribute("traditional", traditional);
 		request.setAttribute("wine", wine);
 		request.setAttribute("spirits", spirits);
-		request.setAttribute("cocktail", cocktail);
 		
 	
 		return "/recommend/list.jsp";

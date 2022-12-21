@@ -29,26 +29,26 @@
 	
 		<c:choose>
 			<c:when test="${condition eq 0}">
-			
+				<img src="<c:url value='/images/simul0.png' />" alt="simul0"/>
 			</c:when>
 			
 			<c:when test="${condition eq 1}">
-			
+				<img src="<c:url value='/images/simul1.png' />" alt="simul1"/>
 			</c:when>
 			
 			
 			<c:when test="${condition eq 2}">
-			
+				<img src="<c:url value='/images/simul2.png' />" alt="simul2"/>
 			</c:when>
 			
 			
 			<c:when test="${condition eq 3}">
-			
+				<img src="<c:url value='/images/simul3.png' />" alt="simul3"/>
 			</c:when>
 			
 			
 			<c:when test="${condition eq 4}">
-			
+				<img src="<c:url value='/images/simul4.png' />" alt="simul4"/>
 			</c:when>
 			
 			<c:otherwise>
@@ -56,15 +56,10 @@
 		</c:choose>
 		
 		
-		사용자 주량 : ${userDC.alcohol.type} ${userDC.alcohol.name} ${userDC.amount}ml <br>
-		<c:forEach var="drink" items="${drinkingList}">
-			마실 양 : ${drink.alcohol.type} ${drink.alcohol.name} ${drink.amount}ml <br>
-		</c:forEach>
-		상태 결과 : ${condition}
 		<br><br>
 		
 		
-		<div><a href="<c:url value='/simulate' />" style="color:#28a745;">다시하기</a></div>	<!-- div에 디자인 적용 -->
+		<div><a href="<c:url value='/simulate' />" style="color:#28a745;">다시하기</a></div>
 	</div>
 </body>
 </html>
