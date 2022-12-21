@@ -460,15 +460,18 @@ $(document).ready(function() {
 		</tr></table>
 		
 		<br>
-		<table class="recTable">
-			<tr>
-				<td class="recTd"><a href='javascript:void(0);' onclick="selectDiv('소주');">소주</a></td>
-				<td class="recTd"><a href='javascript:void(0);' onclick="selectDiv('맥주');">맥주</a></td>
-				<td class="recTd"><a href='javascript:void(0);' onclick="selectDiv('전통주');">전통주</a></td>
-				<td class="recTd"><a href='javascript:void(0);' onclick="selectDiv('와인');">와인</a></td>
-				<td class="recTd"><a href='javascript:void(0);' onclick="selectDiv('양주');">양주</a></td>
-			</tr>
-		</table><br><br>
+		<div class="tableborder">
+			<table class="recTable">
+				<tr>
+					<td class="recTd"><a href='javascript:void(0);' onclick="selectDiv('소주');">소주</a></td>
+					<td class="recTd"><a href='javascript:void(0);' onclick="selectDiv('맥주');">맥주</a></td>
+					<td class="recTd"><a href='javascript:void(0);' onclick="selectDiv('전통주');">전통주</a></td>
+					<td class="recTd"><a href='javascript:void(0);' onclick="selectDiv('와인');">와인</a></td>
+					<td class="recTd"><a href='javascript:void(0);' onclick="selectDiv('양주');">양주</a></td>
+					<td class="recTd"><a href='javascript:void(0);' onclick="selectDiv('칵테일');">칵테일</a></td>
+				</tr>
+			</table>
+		</div>
 		
 		<div class="alD">
 			<div id="alcohol1" class="alcohol1">	<!-- 소주 -->
