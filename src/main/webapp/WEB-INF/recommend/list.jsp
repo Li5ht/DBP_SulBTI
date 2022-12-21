@@ -80,17 +80,20 @@ $(document).ready(function($) {
 		</tr></table>
 		
 		<br>
-		<c:if test="${hasLogin}">
-				<td class="recTd"><a href="#recommend1" class="scroll_move">나만을 위한 추천</a></td>
-			</c:if>
-			<c:if test="${noLogin}">
-				<td class="recTd"><a href="<c:url value='/user/login/form'/>">나만을 위한 추천</a></td>
-			</c:if>
-			
-			<td class="recTd"><a href="#recommend2" class="scroll_move">랭킹 기반 추천</a></td>
-			<td class="recTd"><a href="#recommend3" class="scroll_move">최근 인기 순위 추천</a></td>
-			<td class="recTd"><a href="<c:url value='/recommend/test'/>">테스트 기반 추천</a></td>
-		</tr></table>
+		<div class="tableborder">
+			<table class="recTable"><tr>
+				<c:if test="${hasLogin}">
+					<td class="recTd"><a style = "color : black;" href="#recommend1" class="scroll_move">나만을 위한 추천</a></td>
+				</c:if>
+				<c:if test="${noLogin}">
+					<td class="recTd"><a style = "color : black;" href="<c:url value='/user/login/form'/>">나만을 위한 추천</a></td>
+				</c:if>
+				
+				<td class="recTd"><a style = "color : black;" href="#recommend2" class="scroll_move">랭킹 기반 추천</a></td>
+				<td class="recTd"><a style = "color : black;" href="#recommend3" class="scroll_move">최근 인기 순위 추천</a></td>
+				<td class="recTd"><a style = "color : black;" href="<c:url value='/recommend/test'/>">테스트 기반 추천</a></td>
+			</tr></table>
+		</div>
 		<br><br>
 	
 	
@@ -100,50 +103,57 @@ $(document).ready(function($) {
 		<c:if test="${hasLogin}">
 			<div id="recommend1">
 				<h3>회원님을 위한 추천</h3>
-				<table class="recTable2"><tr>
-					<c:forEach var="drink" items="${userRecList}">
-						<td class="recTd2">
-							<img src='${drink.alcohol.imageUrl}'  width="auto" height="100px"> <br>
-							${drink.alcohol.name} <br>
-							#${drink.alcohol.tasteString} #${drink.alcohol.flavorString} #${drink.alcohol.corpsString} <br>
-							<c:if test="${drink.amount ne 0}">
-								추천하는 양 : ${drink.amount}ml
-							</c:if>
-						</td>
-					</c:forEach>
-				</tr></table>
+				<br>
+				<div class="tableborder2">
+					<table class="recTable2"><tr>
+						<c:forEach var="drink" items="${userRecList}">
+							<td class="recTd2">
+								술 이름 : ${drink.alcohol.name} <br>
+								이미지 링크 : ${drink.alcohol.imageUrl} <br>
+								#${drink.alcohol.tasteString} #${drink.alcohol.flavorString} #${rank.alcohol.corpsString} <br>
+								마셔도 되는 양 : ${drink.amount} <br>
+							</td>
+						</c:forEach>
+					</tr></table>
+				</div>
 			</div>
-			<br><br><br>
+			<br><br><br><br>
 		</c:if>
 		
 		<div id="recommend2">
 			<h3>랭킹</h3>
-			<table class="recTable2"><tr>
-				<c:forEach var="rank" items="${overallRank}">
-					<td class="recTd2">
-						<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
-						${rank.alcohol.name} <br>
-						#${rank.alcohol.tasteString} #${rank.alcohol.flavorString} #${rank.alcohol.corpsString} <br>
-					</td>
-				</c:forEach>
-			</tr></table>
+			<br>
+			<div class="tableborder2">
+				<table class="recTable2"><tr>
+					<c:forEach var="rank" items="${overallRank}">
+						<td class="recTd2">
+							<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
+							${rank.alcohol.name} <br>
+							#${rank.alcohol.tasteString} #${rank.alcohol.flavorString} #${rank.alcohol.corpsString} <br>
+						</td>
+					</c:forEach>
+				</tr></table>
+			</div>
 		</div>
-		<br><br><br>
+		<br><br><br><br>
 		
 		<div id="recommend3">
 			<h3>최근 인기 순위 추천</h3>
-			<table class="recTable2"><tr>
-				<c:forEach var="rank" items="${hotRank}">
-					<td class="recTd2">
-						<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
-						${rank.alcohol.name} <br>
-						#${rank.alcohol.tasteString} #${rank.alcohol.flavorString} #${rank.alcohol.corpsString} <br>
-					</td>
-				</c:forEach>
-			</tr></table>
+			<br>
+			<div class="tableborder2">
+				<table class="recTable2"><tr>
+					<c:forEach var="rank" items="${hotRank}">
+						<td class="recTd2">
+							<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
+							${rank.alcohol.name} <br>
+							#${rank.alcohol.tasteString} #${rank.alcohol.flavorString} #${rank.alcohol.corpsString} <br>
+						</td>
+					</c:forEach>
+				</tr></table>
+			</div>
 		</div>
 		
-		<br><br><br>
+		<br><br><br><br>
 		<!-- 타입별 랭킹.... -->
 		<select id="selectBox" name="selectBox">
 			<option value="soju" selected="selected">소주</option>
@@ -152,18 +162,21 @@ $(document).ready(function($) {
 			<option value="wine">와인</option>
 			<option value="spirits">양주</option>
 			<option value="cocktail">칵테일</option>
-		</select> <h3>주종별 랭킹</h3><br>
-		
+		</select>
+		<br>
+		<h3>주종별 랭킹</h3><br>
 		<div id="soju" class="soju"> <!-- 소주 -->
-			<table class="recTable2"><tr>
-				<c:forEach var="rank" items="${soju}">
-					<td class="recTd2">
-						<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
-						${rank.alcohol.name} <br>
-						#${rank.alcohol.tasteString} #${rank.alcohol.flavorString} #${rank.alcohol.corpsString} <br>
-					</td>
-				</c:forEach>
-			</tr></table>
+			<div class="tableborder2">
+				<table class="recTable2"><tr>
+					<c:forEach var="rank" items="${soju}">
+						<td class="recTd2">
+							<img src='${rank.alcohol.imageUrl}'  width="auto" height="100px"> <br>
+							${rank.alcohol.name} <br>
+							#${rank.alcohol.tasteString} #${rank.alcohol.flavorString} #${rank.alcohol.corpsString} <br>
+						</td>
+					</c:forEach>
+				</tr></table>
+			</div>
 		</div>
 		
 		<div id="beer" class="beer"> <!-- 맥주 -->
