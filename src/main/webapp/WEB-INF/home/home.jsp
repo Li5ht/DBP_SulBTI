@@ -74,7 +74,7 @@ $(document).ready(function($) {
 
 	<br><br>
 		<div class="rankBox">
-			<div class="rankBox2">
+			<div class="rankBox2" style="border: 3px solid #66CDAA; border-radius: 10px;">
 				<b>종합 랭킹</b> <%= sf.format(nowTime) %> 기준<br><br>
 				<c:forEach var="rank" items="${overallRank}">
 					${rank.ranking}. 
@@ -83,7 +83,7 @@ $(document).ready(function($) {
 					+${rank.numberOfMention}<br><br>
 				</c:forEach>
 			</div>
-			<div class="rankBox2">
+			<div class="rankBox2" style="border: 3px solid #66CDAA; border-radius: 10px;">
 				<b>HOT</b> <%= sf.format(nowTime) %>기준<br><br>
 				<c:forEach var="rank" items="${hotRank}">
 					${rank.ranking}. 
@@ -92,7 +92,7 @@ $(document).ready(function($) {
 					+${rank.numberOfMention}<br><br>
 				</c:forEach>
 			</div>
-			<div class="rankBox2">
+			<div class="rankBox2" style="border: 3px solid #66CDAA; border-radius: 10px;">
 				<b>주종별 랭킹</b> <%= sf.format(nowTime) %>기준
 				<select id="selectBox" name="selectBox">
 					<option value="soju" selected="selected">소주</option>
@@ -154,15 +154,19 @@ $(document).ready(function($) {
 	
 		<div class="goBox">
 			<div class="box">
+				<br style="line-height:5px;">
 				<a href="<c:url value='/diary/list' />">음주 기록하기</a>
 			</div>
 			<div class="box">
+				<br style="line-height:5px;">
 				<a href="<c:url value='/recommend/list' />">술 추천받기</a>
 			</div>
 			<div class="box">
+				<br style="line-height:5px;">
 				<a href="<c:url value='/simulate' />">주량 시뮬레이션하기</a>
 			</div>
 			<div class="box2">
+				<br style="line-height:5px;">
 				<a href="<c:url value='/recommend/test' />">술BTI 테스트 하러가기</a>
 			</div>
 		</div>
