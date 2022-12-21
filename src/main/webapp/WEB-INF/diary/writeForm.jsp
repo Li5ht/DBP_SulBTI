@@ -155,8 +155,16 @@ function plus() {
 		var textBox = type + " " + name + " " + amount + "ml";
 		var newDiv = document.createElement('div');
 		var newText = document.createTextNode(textBox);
+		var newSpan = document.createElement('span');
+		var deleteText = document.createTextNode('X');
 		newDiv.className = "drinkingList";
+		newDiv.id = "drinkingList" + count;
+		newSpan.className = "deleteBtn";
+		newSpan.id = "deleteBtn" + count;
+		newSpan.onclick = function(){ newDiv.remove(); } 
 		newDiv.appendChild(newText);
+		newSpan.appendChild(deleteText);
+		newDiv.appendChild(newSpan);
 		
 		target.appendChild(newDiv);
 	} else {

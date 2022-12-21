@@ -101,3 +101,7 @@ textarea {
 	border: none;
 	width: 320px;
 }
+
+.deleteBtn {
+	margin: 0 0 0 10px;
+}
