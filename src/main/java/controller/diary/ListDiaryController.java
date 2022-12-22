@@ -63,8 +63,15 @@ public class ListDiaryController implements Controller {
 		List<Diary> diaryList = dManager.findDiaryListByMemberId(id);
 		request.setAttribute("diaryList", diaryList);
 		
+		// 초기값 세팅
 		request.setAttribute("drinkingDate", "2022-12-22");
-		request.setAttribute("diary", diaryList.get(0));
+		List<Diary> tmpDiary = dManager.findDiaryListByMemberId(id);
+		if (tmpDiary != null) {
+			request.setAttribute("diary", tmpDiary.get(0));
+		} else {
+			request.setAttribute("diary", dManager.findDiary(30105));
+		}
+		
 
 		/* 술 목록 받아오기 */
 		AlcoholManager alMan = AlcoholManager.getInstance();
