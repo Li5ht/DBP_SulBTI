@@ -282,7 +282,7 @@ public class MyCalendar {
 	<!-- 음주 기록 추가하기 -->
 	<div class="diaryBox2" id="createForm" style="display:none;">
 		<br><br><br>
-		<jsp:include page="writeForm.jsp">
+		<jsp:include page="registerForm.jsp">
 			<jsp:param name="tmpYear" value="2022" />
 			<jsp:param name="tmpMonth" value="12" />
 			<jsp:param name="tmpDate" value="22" />
@@ -292,7 +292,7 @@ public class MyCalendar {
 	<!-- 음주 기록 수정 및 삭제하기 -->
 	<div class="diaryBox2" id="updateForm">
 		<br><br><br>
-		<jsp:include page="update.jsp">
+		<jsp:include page="updateForm.jsp">
 			<jsp:param name="tmpYear" value="2022" />
 			<jsp:param name="tmpMonth" value="12" />
 			<jsp:param name="tmpDate" value="22" />
