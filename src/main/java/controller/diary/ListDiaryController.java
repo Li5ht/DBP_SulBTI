@@ -64,12 +64,16 @@ public class ListDiaryController implements Controller {
 		request.setAttribute("diaryList", diaryList);
 		
 		// 초기값 세팅
-		request.setAttribute("drinkingDate", "2022-12-22");
+		
 		List<Diary> tmpDiary = dManager.findDiaryListByMemberId(id);
 		if (tmpDiary != null) {
 			request.setAttribute("diary", tmpDiary.get(0));
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			String drinkingDate = df.format(tmpDiary.get(0).getDrinkingDate());
+			request.setAttribute("drinkingDate", drinkingDate);
 		} else {
 			request.setAttribute("diary", dManager.findDiary(30105));
+			request.setAttribute("drinkingDate", "2022-12-22");
 		}
 		
 
@@ -163,14 +167,34 @@ public class ListDiaryController implements Controller {
 				long diaryId = Long.parseLong(request.getParameter("diaryId"));
 				diary = dManager.findDiary(diaryId);
 
+				// 리퀘스트 파라미터로 술에 대한 정보 받아오기
+				int count = Integer.parseInt(request.getParameter("count1"));
+				List<Drink> drinkingList = new ArrayList<Drink>(); // Drink 저장
+				for (int i = 1; i <= count; i++) {
+					String str = "drink." + Integer.toString(i);
+					String drinkStr = request.getParameter(str);
+
+					String[] arr = drinkStr.split("/"); // arr[0] = 주종, arr[1] = 술 이름, arr[2] = 양
+
+					Alcohol alcohol = alMan.findAlcohol(arr[0], arr[1]);
+					Drink drink = new Drink(alcohol, Integer.parseInt(arr[2]));
+
+					drinkingList.add(drink);
+				}
+				
 				UserManager uManager = UserManager.getInstance();
 				Member member = uManager.findUserByPrimaryKey(diary.getMember().getId());
 				diary.setMember(member);
-				diary.setCondition(Integer.parseInt(request.getParameter("condition")));
+				DateFormat df = new SimpleDateFormat("yyyy-MM-dd"); 
+				Date drinkingDate = df.parse(request.getParameter("drinkingDate")); 
+				diary.setDrinkingDate(drinkingDate);
+				diary.setCondition(Integer.parseInt(request.getParameter("condition2")));
 				diary.setContent(request.getParameter("content"));
+				diary.setDrinkingList(drinkingList);
 				log.debug("Update Diary : {}", diary);
 
 				dManager.update(diary);
+				return "redirect:/diary/list";	
 			}
 			
 		}

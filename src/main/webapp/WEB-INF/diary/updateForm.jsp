@@ -68,6 +68,17 @@ function diaryUpdate(id) {
 	hiddenField.setAttribute("type", "hidden");
 	hiddenField.setAttribute("value", id);
 	form.appendChild(hiddenField);
+	
+	var hiddenField2 = document.createElement('input');
+	hiddenField2.setAttribute("name", "count1");
+	hiddenField2.setAttribute("type", "hidden");
+	hiddenField2.setAttribute("value", count);
+	form.appendChild(hiddenField2);
+	
+	var presentDrinkingList = document.getElementById("presentDrinkingList");
+	
+	
+	
 	form.submit();
 	alert('음주 기록이 수정되었습니다.');
 }
@@ -77,21 +88,10 @@ function diaryDelete() {
 	alert("삭제되었습니다.");
 }
 
-function changeFn(){
-	var alcohol = document.getElementById("alcohol");
-	var v = (alcohol.options[alcohol.selectedIndex].value);
-	document.getElementById("selectedAlcohol").value = v;
 	
-	/* 		
-	var selectedindex = city.selectedIndex;
-	alert("value = "+value+" , selectedindex = "+selectedindex); 
-	*/
-}
-	
-	
-function changeCondition(n){
+function changeConditionValue(n){
 	var v = n;
-	document.getElementById("condition").value = n;
+	document.getElementById("condition2").value = n;
 }	
 	
 function categorychange(e, num) {
@@ -139,17 +139,17 @@ function categorychange(e, num) {
 }
 
 function plus() {
-	var type = $("#sel1_2").val();
-	var name = $("#sel2_2").val();
-	var amount = $("#amount").val();
-	var amountInt = parseInt(amount);
+	let type = $("#sel1_3").val();
+	let name = $("#sel2_3").val();
+	let amount = $("#amount2").val();
+	let amountInt = parseInt(amount);
 	
 	if (type != null && name != null && amountInt > 0 && type != '0' && name != '0') {
 		count++;
 		
-		var form = document.getElementById("diaryRegisterForm");
+		var form = document.getElementById("diaryUpdateForm");
 		
-		var str = "drink" + count.toString();
+		var str = "drink." + count.toString();
 		var drinkStr = type + "/" + name + "/" + amount;
 		
 		var hiddenField = document.createElement('input');
@@ -158,20 +158,19 @@ function plus() {
 		hiddenField.setAttribute("value", drinkStr);
 		form.appendChild(hiddenField);
 		
-		$("#sel1_2").val("0").prop("selected", true);
-		$("#sel2_2").val("0").prop("selected", true);
-		$("#amount").val("");
+		$("#sel1_3").val("0").prop("selected", true);
+		$("#sel2_3").val("0").prop("selected", true);
+		$("#amount2").val("");
 		
-		var target = document.getElementById("todayAlcoholList");
+		var target = document.getElementById("todayAlcoholList2");
 		
 		var textBox = type + " " + name + " " + amount + "ml";
 		var newDiv = document.createElement('div');
 		var newText = document.createTextNode(textBox);
 		var newSpan = document.createElement('span');
-		var deleteText = document.createTextNode('X');
+		var deleteText = document.createTextNode('');
 		newDiv.className = "drinkingList";
 		newDiv.id = "drinkingList" + count;
-		newSpan.className = "deleteBtn";
 		newSpan.id = "deleteBtn" + count;
 		newSpan.onclick = function(){ newDiv.remove(); } 
 		newDiv.appendChild(newText);
@@ -182,28 +181,6 @@ function plus() {
 	} else {
 		alert('다시 입력해주세요.');
 	}
-}
-
-function simulSubmit() {
-	var type = $("#sel1_1").val();
-	var name = $("#sel2_1").val();
-	var amount = $("#amount").val();
-	var amountInt = parseInt(amount);
-	
-	if (type != null && name != null && amountInt > 0 && type != '0' && name != '0' && count > 0) {
-		var form = document.getElementById("diaryRegisterForm");
-		
-		var hiddenField = document.createElement('input');
-		hiddenField.setAttribute("name", "count");
-		hiddenField.setAttribute("type", "hidden");
-		hiddenField.setAttribute("value", count);
-		form.appendChild(hiddenField);
-		
-		form.submit();
-	} else {
-		alert ('주량 또는 마실 양을 다시 입력해주세요.');
-	}
-
 }
 
 </script>
@@ -225,14 +202,14 @@ function simulSubmit() {
 	<div class="parent green">
 		<label for="date" class="diaryLabel"><strong>날짜</strong></label>
 		<div class="diaryInput">
-			<input class="diaryAmount" type="date" name="drinkingDate" id="drinkingDate" value="${drinkingDate}">
+			<input class="diaryAmount" type="date" name="drinkingDate" id="drinkingDate" value="${drinkingDate}" style="margin:5px;">
 		</div>
 	</div>
 	<div class="green">
 		<label for="alcohol"><strong>오늘의 술</strong></label>
 		<div class="parent">
 			<div class="diaryLabel">
-				<select id="sel1_2" onchange="categorychange(this, 2)">
+				<select id="sel1_3" onchange="categorychange(this, 3)">
 					<option value="0">주종 선택</option>
 					<option value="소주">소주</option>
 					<option value="맥주">맥주</option>
@@ -243,45 +220,44 @@ function simulSubmit() {
 				
 			</div>&nbsp;
 			<div class="diaryLabel">
-				<select id="sel2_2">
+				<select id="sel2_3">
 					<option value="0">술 선택</option>
 				</select>
 			</div>&nbsp;
 			<div class="diaryInput">
-				<input class="diaryAmount" type="text" id="amount"> 
+				<input class="diaryAmount" type="text" id="amount2"> 
 			</div>&nbsp;
 			<div class="diaryInput">
 				<a href="#" onclick="plus()"> + </a>
 			</div>
 		</div>
 	</div>
-	<div id="todayAlcoholList">
+	<div id="todayAlcoholList2">
 	<c:forEach var="drink" items="${diary.drinkingList}">
-		<div class="drinkingList">
+		<div class="drinkingList" id="${drink.alcohol.type}${drink.alcohol.name}${drink.amount}">
 			${drink.alcohol.type} ${drink.alcohol.name} ${drink.amount}ml
-			<span class="deleteBtn">X</span>
 		</div>
 	</c:forEach>	
 	</div>
 	
 	<div class="parent green">
 		<label for="condition" class="diaryLabel"><strong>상태</strong></label>
-		<div class="diaryLabel" onclick="changeCondition(1)">
+		<div class="diaryLabel" onclick="changeConditionValue(1)">
 			🤢
 		</div>
-		<div class="diaryLabel" onclick="changeCondition(2)">
+		<div class="diaryLabel" onclick="changeConditionValue(2)">
 			😣
 		</div>
-		<div class="diaryLabel" onclick="changeCondition(3)">
+		<div class="diaryLabel" onclick="changeConditionValue(3)">
 			🙂
 		</div>
-		<div class="diaryLabel" onclick="changeCondition(4)">
+		<div class="diaryLabel" onclick="changeConditionValue(4)">
 			😊
 		</div>
-		<div class="diaryLabel" onclick="changeCondition(5)">
+		<div class="diaryLabel" onclick="changeConditionValue(5)">
 			😆
 		</div>
-		<input type="number" name="condition" id="condition" class="diaryCondition" value="${diary.condition}" readonly>
+		<input type="number" name="condition2" id="condition2" class="diaryCondition" value="${diary.condition}" readonly>
 	</div>
 	<div class="green">
 		<label for="content"><strong>오늘의 일기</strong></label>

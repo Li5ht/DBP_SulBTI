@@ -77,16 +77,6 @@ function hideCreateForm() {
 	$("#createForm").hide();
 }
 
-function changeFn(){
-	var alcohol = document.getElementById("alcohol");
-	var v = (alcohol.options[alcohol.selectedIndex].value);
-	document.getElementById("selectedAlcohol").value = v;
-	
-	/* 		
-	var selectedindex = city.selectedIndex;
-	alert("value = "+value+" , selectedindex = "+selectedindex); 
-	*/
-}
 	
 	
 function changeCondition(n){
@@ -138,7 +128,7 @@ function categorychange(e, num) {
 	}
 }
 
-function plus() {
+function plusDiv() {
 	var type = $("#sel1_2").val();
 	var name = $("#sel2_2").val();
 	var amount = $("#amount").val();
@@ -168,12 +158,10 @@ function plus() {
 		var newDiv = document.createElement('div');
 		var newText = document.createTextNode(textBox);
 		var newSpan = document.createElement('span');
-		var deleteText = document.createTextNode('X');
+		var deleteText = document.createTextNode('');
 		newDiv.className = "drinkingList";
 		newDiv.id = "drinkingList" + count;
-		newSpan.className = "deleteBtn";
-		newSpan.id = "deleteBtn" + count;
-		newSpan.onclick = function(){ newDiv.remove(); } 
+		newSpan.id = "drink" + count;
 		newDiv.appendChild(newText);
 		newSpan.appendChild(deleteText);
 		newDiv.appendChild(newSpan);
@@ -182,28 +170,6 @@ function plus() {
 	} else {
 		alert('다시 입력해주세요.');
 	}
-}
-
-function simulSubmit() {
-	var type = $("#sel1_1").val();
-	var name = $("#sel2_1").val();
-	var amount = $("#amount").val();
-	var amountInt = parseInt(amount);
-	
-	if (type != null && name != null && amountInt > 0 && type != '0' && name != '0' && count > 0) {
-		var form = document.getElementById("diaryRegisterForm");
-		
-		var hiddenField = document.createElement('input');
-		hiddenField.setAttribute("name", "count");
-		hiddenField.setAttribute("type", "hidden");
-		hiddenField.setAttribute("value", count);
-		form.appendChild(hiddenField);
-		
-		form.submit();
-	} else {
-		alert ('술 또는 마신 양을 다시 입력해주세요.');
-	}
-
 }
 
 </script>
@@ -251,7 +217,7 @@ function simulSubmit() {
 				<input class="diaryAmount" type="text" name="amount" id="amount"> 
 			</div>&nbsp;
 			<div class="diaryInput">
-				<a href="#" onclick="plus()"> + </a>
+				<a href="#" onclick="plusDiv()"> + </a>
 			</div>
 		</div>
 	</div>

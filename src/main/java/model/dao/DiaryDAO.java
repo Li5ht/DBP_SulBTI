@@ -299,12 +299,12 @@ public class DiaryDAO {
 	public int updateDiary(Diary diary) throws SQLException {
 		try {
 			// diary 테이블 수정
-			String sql1 = "UPDATE Diary " + "SET condition=?, content=? " + "WHERE diary_id=?";
-			Object[] param1 = new Object[] { diary.getCondition(), diary.getContent(), diary.getDiaryId() };
+			String sql1 = "UPDATE Diary " + "SET drinking_date=?, condition=?, content=? " + "WHERE diary_id=?";
+			Object[] param1 = new Object[] { new java.sql.Date(diary.getDrinkingDate().getTime()), diary.getCondition(), diary.getContent(), diary.getDiaryId() };
 			jdbcUtil.setSqlAndParameters(sql1, param1); // JDBCUtil에 update문과 매개 변수 설정
 			int result = jdbcUtil.executeUpdate(); // update 문 실행
 
-			/*
+			
 			// drink 삭제 전 preference 테이블 해당 양만큼 감소
 			RecommendDao rcd = new RecommendDao();
 			long preferenceId = -1;
@@ -314,14 +314,9 @@ public class DiaryDAO {
 				rcd.updatePreferenceByAmount(preferenceId, amount);
 			}
 
-			
-			// drink 테이블에서 해당 diary id 모두 삭제 후, 추가
-			String sql2 = "DELETE FROM Diary WHERE diary_id=?";
-			jdbcUtil.setSqlAndParameters(sql2, new Object[] { diary.getDiaryId() }); // JDBCUtil에 delete문과 매개 변수 설정
-			jdbcUtil.executeUpdate(); // delete 문 실행
 
 			// Drink 테이블에 마신 술 내역 추가
-			String key[] = { "drinkId" };
+			String key[] = { "drink_id" };
 			for (Drink dr : diary.getDrinkingList()) {
 				String sql3 = "INSERT INTO Drink VALUES (drink_id_seq.nextval, ?, ?, ?)";
 				Object[] param3 = new Object[] { diary.getDiaryId(), dr.getAlcohol().getAlcoholId(), dr.getAmount() };
@@ -332,7 +327,9 @@ public class DiaryDAO {
 				preferenceId = rcd.findPreference(diary.getMember().getId(), dr.getAlcohol().getAlcoholId());
 				rcd.updatePreferenceByAmount(preferenceId, dr.getAmount());
 			}
-			 */
+			
+			
+			 
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
