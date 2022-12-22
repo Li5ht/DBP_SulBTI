@@ -45,7 +45,6 @@ public class RequestMapping {
        
        // 음주 기록
        mappings.put("/diary/list", new ListDiaryController());
-       mappings.put("/diary/view", new ViewDiaryController());
        mappings.put("/diary/create", new ListDiaryController());
        mappings.put("/diary/update", new ListDiaryController());
        mappings.put("/diary/delete", new ListDiaryController());
