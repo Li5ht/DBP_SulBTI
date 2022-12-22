@@ -3,30 +3,23 @@ const qna = document.querySelector("#qna");
 const result = document.querySelector("#result");
 
 const endPoint = 4;
-const select = "";
+let select="";
 
 function calResult(){
+  console.log(select);
   for (let i = 0; i < 16; i++) {
 	if (select == infoList[i].mbti)
 	{
 		return i;
 	}
 	
-}
+	}
 }
 
 function setResult(){
   let point = calResult();
   const resultName = document.querySelector('.resultname');
   resultName.innerHTML = infoList[point].name;
-
-  var resultImg = document.createElement('img');
-  const imgDiv = document.querySelector('#resultImg');
-  var imgURL = infoList[point].img;
-  resultImg.src = imgURL;
-  resultImg.alt = point;
-  resultImg.classList.add('img-fluid');
-  imgDiv.appendChild(resultImg);
 
   const resultDesc = document.querySelector('.resultDesc');
   resultDesc.innerHTML = infoList[point].desc;
@@ -66,9 +59,7 @@ function addAnswer(answerText, qIdx, idx){
     }
     setTimeout(() => {
       var target = qnaList[qIdx].a[idx].type;
-      for(let i = 0; i < target.length; i++){
-        select[target[i]] += 1;
-      }
+      select += target;
 
       for(let i = 0; i < children.length; i++){
         children[i].style.display = 'none';
@@ -94,6 +85,7 @@ function goNext(qIdx){
 }
 
 function begin(){
+	console.log("start");
   main.style.WebkitAnimation = "fadeOut 1s";
   main.style.animation = "fadeOut 1s";
   setTimeout(() => {
