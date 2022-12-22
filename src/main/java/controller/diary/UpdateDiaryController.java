@@ -43,21 +43,55 @@ public class UpdateDiaryController implements Controller {
     	diary = dManager.findDiary(diaryId);
     	
     	
-		if (request.getMethod().equals("GET")) {	
+		if (request.getMethod().equals("GET")) {
+			// 현재 날짜 계산
+			Date date = new Date();
+			
+			int year = date.getYear() + 1900;
+			int month = date.getMonth() + 1;
+			
+			String startDate = String.format("%02d%02d01", year - 2000, month);
+			month++;
+			if (month >= 13) {
+				year++;
+				month = 1;
+			}
+			String endDate = String.format("%02d%02d01", year - 2000, month);
+			
+			// 이번 달 음주 기록
+			List<Diary> currentDiaryList = dManager.findDiaryListBydate(id, startDate, endDate);
+			// 전체 음주 기록
+			List<Diary> diaryList = dManager.findDiaryListByMemberId(id);
+			
+			
+			request.setAttribute("currentDiaryList", currentDiaryList);
+			request.setAttribute("diaryList", diaryList);
+			
     		// GET request: 음주 기록 수정 form 요청	
 			DateFormat df = new SimpleDateFormat("yyyyMMdd"); 
 	    	String drinkingDate = df.format(diary.getDrinkingDate());
 	    	drinkingDate = drinkingDate.substring(2, drinkingDate.length());
 	        
-	    	// 술 목록 받아오기
-	    	AlcoholDAO alcoholDao = new AlcoholDAO();
-			List<Alcohol> alcoholList = alcoholDao.viewAlcoholList();
+	    	/* 술 목록 받아오기 */
+			AlcoholManager alMan = AlcoholManager.getInstance();
+			List<Alcohol> alcoholList = alMan.viewAlcoholList();
+			String[] aSoju = alMan.nameListByType("소주");
+			String[] aBeer = alMan.nameListByType("맥주");
+			String[] aTraditional = alMan.nameListByType("전통주");
+			String[] aWine = alMan.nameListByType("와인");
+			String[] aSpirits = alMan.nameListByType("양주");
+			
+			request.setAttribute("aSoju", aSoju);
+	    	request.setAttribute("aBeer", aBeer);
+	    	request.setAttribute("aTraditional", aTraditional);
+	    	request.setAttribute("aWine", aWine);
+	    	request.setAttribute("aSpirits", aSpirits);
+	    	request.setAttribute("alcoholList", alcoholList);
 			
 			request.setAttribute("drinkingDate", drinkingDate);
-			request.setAttribute("alcoholList", alcoholList);	
 			request.setAttribute("diary", diary);			
 			
-			return "/diary/updateForm.jsp";   // 검색한 정보를 update form으로 전송     
+			return "/diary/list.jsp";   // 검색한 정보를 update form으로 전송     
 	    }	
     	
     	// POST request (음주 기록 정보가 parameter로 전송됨)

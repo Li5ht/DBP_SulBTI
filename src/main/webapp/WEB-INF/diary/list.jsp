@@ -72,6 +72,18 @@ public class MyCalendar {
 	span.today {background-color: #C1614D; color: white; border-radius: 50%; border:2.5px solid #C1614D;}
 
 </style>
+<script>
+	function showUpdateForm(id) {
+		$("#createForm").hide();
+		$("#updateForm").show();
+		request.getAttribute("diaryId", diaryId);
+	}
+	
+	function showCreateForm() {
+		$("#updateForm").hide();
+		$("#createForm").show();
+	}
+</script>
 </head>
 <body>
 	<!-- 네비게이션 바 -->
@@ -86,10 +98,6 @@ public class MyCalendar {
 	<!-- 음주 기록 -->
 	<!-- <div class="diaryBox1"> -->
 	
-	<!-- 음주 기록 추가 -->
-	<!--  
-	<button type="button" class="btn btn-outline-success" onclick="location.href='create'">음주 기록 추가하기</button>
-	-->
 	<%
 	// 컴퓨터 시스템의 년, 월 받아오기
 		Date date = new Date();
@@ -138,10 +146,13 @@ public class MyCalendar {
 	
 	<!-- 날짜 -->
 	<div class="date">
-		<input class="title" type="button" value="◁" onclick="location.href='?year=<%=year%>&month=<%=month-1%>'">
+		<input class="title" type="button" value="◁" onclick="location.href='/AlcoholService/diary/list?year=<%=year%>&month=<%=month-1%>'">
 		<strong><%=year%>년  <%=month%>월</strong>
-		<input class="title" type="button" value="▷" onclick="location.href='?year=<%=year%>&month=<%=month+1%>'">
+		<input class="title" type="button" value="▷" onclick="location.href='/AlcoholService/diary/list?year=<%=year%>&month=<%=month+1%>'">
 	</div><br/><br/>
+	
+	<!-- 음주 기록 추가 --> 
+	<button type="button" class="btn btn-outline-success" onclick="showCreateForm()">음주 기록 추가하기</button>
 	
 	<table align ="center">
 	<!-- 요일 표시칸 만들어주기(단, 토,일요일은 색을 다르게 하기위해 구분해주기) -->
@@ -206,7 +217,7 @@ public class MyCalendar {
 			int todayMonth = d.getMonth() + 1;
 			
 			for(int i = 1; i <= MyCalendar.lastDay(year, month); i++){
-				String url = "<br><a href='view?diaryId=" + idList[i] + "' " + list[i] + "</a>";
+				String url = "<br><a href='update?diaryId=" + idList[i] + "'" + list[i] + "</a>";
 				/* 요일별로 색깔 다르게 해주기위해 td에 class 태그걸어주기 */
 				switch(MyCalendar.weekDay(year, month, i)){
 					case 0 :
@@ -251,7 +262,7 @@ public class MyCalendar {
 	
 	</div>
 	<!-- 음주 기록 추가하기 -->
-	<div class="diaryBox2">
+	<div class="diaryBox2" id="createForm">
 		<br><br><br>
 		<jsp:include page="writeForm.jsp">
 			<jsp:param name="tmpYear" value="2022" />
@@ -261,10 +272,12 @@ public class MyCalendar {
 	</div>
 	
 	<!-- 음주 기록 수정 및 삭제하기 -->
-	<div class="diaryBox2" style="display:none;">
-		<jsp:include page="writeForm.jsp">
-			<jsp:param name="email" value="sesok808@naver.com" />
-			<jsp:param name="tel" value="010-1234-5678" />
+	<div class="diaryBox2" style="display:none;" id="updateForm">
+		<br><br><br>
+		<jsp:include page="update.jsp">
+			<jsp:param name="tmpYear" value="2022" />
+			<jsp:param name="tmpMonth" value="12" />
+			<jsp:param name="tmpDate" value="22" />
 		</jsp:include>
 	</div>
 	

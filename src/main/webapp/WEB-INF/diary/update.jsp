@@ -60,21 +60,14 @@
 <script>
 var count = 0;
 
-function diaryCreate() {
+function diaryUpdate() {
 	// 폼 내용 확인
-	var form = document.getElementById("diaryRegisterForm");
-	var hiddenField = document.createElement('input');
-	hiddenField.setAttribute("name", "count");
-	hiddenField.setAttribute("type", "hidden");
-	hiddenField.setAttribute("value", count);
-	form.appendChild(hiddenField);
 	form.submit();
-	alert('음주 기록이 추가되었습니다.');
 }
 
-function hideCreateForm() {
-	document.getElementById("diaryRegisterForm").reset();
-	$("#createForm").hide();
+function diaryDelete() {
+	// 삭제 알림
+	alert("삭제되었습니다.");
 }
 
 function changeFn(){
@@ -201,7 +194,7 @@ function simulSubmit() {
 		
 		form.submit();
 	} else {
-		alert ('술 또는 마신 양을 다시 입력해주세요.');
+		alert ('주량 또는 마실 양을 다시 입력해주세요.');
 	}
 
 }
@@ -223,9 +216,9 @@ function simulSubmit() {
 		<strong>음주 기록</strong>
 	</div>
 	<div class="parent green">
-		<label for="drinkingDate" class="diaryLabel"><strong>날짜</strong></label>
+		<label for="date" class="diaryLabel"><strong>날짜</strong></label>
 		<div class="diaryInput">
-			<input class="diaryAmount" type="date" name="drinkingDate" id="drinkingDate">
+			<span style="vertical-align:sub; padding:0 0 0 65px;"> <%=year %>년 <%=month %>월 <%=date %>일</span>
 		</div>
 	</div>
 	<div class="green">
@@ -248,7 +241,7 @@ function simulSubmit() {
 				</select>
 			</div>&nbsp;
 			<div class="diaryInput">
-				<input class="diaryAmount" type="text" name="amount" id="amount"> 
+				<input class="diaryAmount" type="text" id="amount"> 
 			</div>&nbsp;
 			<div class="diaryInput">
 				<a href="#" onclick="plus()"> + </a>
@@ -284,8 +277,11 @@ function simulSubmit() {
 	</div>
 	<br>
 	<div class="form-group">
-		<a href="javascript:hideCreateForm()"
-			class="btn btn-outline-success">취소</a> <input type="button"
-			class="btn btn-success" value="등록" onClick="diaryCreate()">
+		<input type="button" class="btn btn-success" value="수정" onClick="diaryUpdate()">
+		<a class="btn btn-outline-success"  onClick="diaryDelete()"
+	    	href="<c:url value='/diary/delete'> 
+	    			<c:param name='diaryId' value='${diary.diaryId}' />
+	    		</c:url>">삭제하기</a> 
+			
 	</div>
 </form>
