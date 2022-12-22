@@ -20,18 +20,6 @@ function setResult(){
   let point = calResult();
   const resultName = document.querySelector('.resultname');
   resultName.innerHTML = infoList[point].name;
-
-  var resultImg = document.createElement('img');
-  const imgDiv = document.querySelector('#resultImg');
-  var imgURL = infoList[point].img;
-  console.log(infoList[point]);
-  resultImg.src = imgURL;
-  resultImg.alt = point;
-  resultImg.classList.add('img-fluid');
-  imgDiv.appendChild(resultImg);
-  
-  const resultDesc = document.querySelector('.resultDesc');
-  resultDesc.innerHTML = infoList[point].desc;
 }
 
 function goResult(){
