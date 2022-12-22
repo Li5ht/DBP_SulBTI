@@ -496,7 +496,7 @@ public class AlcoholDAO {
 		Object[] param = new Object[] { alcoholId };
 		jdbcUtil.setSqlAndParameters(query, param);
 		ResultSet rs = null;
-		int[] num = {0, 0, 0, 0, 0};
+		int[] num = {0, 0, 0, 0, 0, 0};
 		
 		try {
 			rs = jdbcUtil.executeQuery();
@@ -524,8 +524,8 @@ public class AlcoholDAO {
 		Object[] param = new Object[] { alcoholId };
 		jdbcUtil.setSqlAndParameters(query, param);
 		ResultSet rs = null;
-		int[] num = new int[91];
-		for (int i = 0; i < 91; i++) {
+		int[] num = new int[92];
+		for (int i = 0; i < 92; i++) {
 			num[i] = 0;
 		}
 		
@@ -555,7 +555,7 @@ public class AlcoholDAO {
 		Object[] param = new Object[] { alcoholId };
 		jdbcUtil.setSqlAndParameters(query, param);
 		ResultSet rs = null;
-		int[] num = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+		int[] num = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		
 		try {
 			rs = jdbcUtil.executeQuery();
