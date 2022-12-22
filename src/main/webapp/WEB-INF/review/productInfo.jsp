@@ -470,7 +470,6 @@ $(document).ready(function() {
 					<td class="recTd"><a style = "color : black;" href='javascript:void(0);' onclick="selectDiv('전통주');">전통주</a></td>
 					<td class="recTd"><a style = "color : black;" href='javascript:void(0);' onclick="selectDiv('와인');">와인</a></td>
 					<td class="recTd"><a style = "color : black;" href='javascript:void(0);' onclick="selectDiv('양주');">양주</a></td>
-					<td class="recTd"><a style = "color : black;" href='javascript:void(0);' onclick="selectDiv('칵테일');">칵테일</a></td>
 				</tr>
 			</table>
 		</div>
