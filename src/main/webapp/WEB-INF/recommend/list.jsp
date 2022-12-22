@@ -181,6 +181,7 @@ $(document).ready(function($) {
 		</div>
 		
 		<div id="beer" class="beer"> <!-- 맥주 -->
+		<div class="tableborder2">
 			<table class="recTable2"><tr>
 				<c:forEach var="rank" items="${beer}">
 					<td class="recTd2">
@@ -191,8 +192,10 @@ $(document).ready(function($) {
 				</c:forEach>
 			</tr></table>
 		</div>
+		</div>
 		
 		<div id="traditional" class="traditional"> <!-- 전통주 -->
+		<div class="tableborder2">
 			<table class="recTable2"><tr>
 				<c:forEach var="rank" items="${traditional}">
 					<td class="recTd2">
@@ -203,8 +206,10 @@ $(document).ready(function($) {
 				</c:forEach>
 			</tr></table>
 		</div>
+		</div>
 		
 		<div id="wine" class="wine"> <!-- 와인 -->
+		<div class="tableborder2">
 			<table class="recTable2"><tr>
 				<c:forEach var="rank" items="${wine}">
 					<td class="recTd2">
@@ -215,8 +220,10 @@ $(document).ready(function($) {
 				</c:forEach>
 			</tr></table>
 		</div>
+		</div>
 		
 		<div id="spirits" class="spirits"> <!-- 양주 -->
+		<div class="tableborder2">
 			<table class="recTable2"><tr>
 				<c:forEach var="rank" items="${spirits}">
 					<td class="recTd2">
@@ -226,6 +233,7 @@ $(document).ready(function($) {
 					</td>
 				</c:forEach>
 			</tr></table>
+		</div>
 		</div>
 		
 		
