@@ -184,9 +184,6 @@ public class ViewAlcoholController implements Controller {
 					userRate = String.valueOf(Math.round(rate));
 				}
 				request.setAttribute("userRate", userRate);
-				request.setAttribute("userTaste", review.getTasteString());
-				request.setAttribute("userFlavor", review.getFlavorString());
-				request.setAttribute("userCorps", review.getCorpsString());
 				updateReview = 1;
 				request.setAttribute("updateReview", updateReview);
 				

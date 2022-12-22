@@ -116,9 +116,9 @@ function selectDiv(str) {
 	var updateReview = '<c:out value="${updateReview}"/>';
 	
 	var rate = '<c:out value="${userRate}"/>';
-	var taste = '<c:out value="${userTaste}"/>';
-	var flavor = '<c:out value="${userFlavor}"/>';
-	var corps = '<c:out value="${userCorps}"/>';
+	var taste = '<c:out value="${userReview.tasteString}"/>';
+	var flavor = '<c:out value="${userReview.flavorString}"/>';
+	var corps = '<c:out value="${userReview.corpsString}"/>';
 	if (updateReview == 1) {
 		$("#rate").val(rate).prop("selected", true);
 		$("#taste").val(taste).prop("selected", true);
