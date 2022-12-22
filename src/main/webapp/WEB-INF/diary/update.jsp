@@ -60,9 +60,16 @@
 <script>
 var count = 0;
 
-function diaryUpdate() {
+function diaryUpdate(id) {
 	// 폼 내용 확인
+	var form = document.getElementById("diaryUpdateForm");
+	var hiddenField = document.createElement('input');
+	hiddenField.setAttribute("name", "diaryId");
+	hiddenField.setAttribute("type", "hidden");
+	hiddenField.setAttribute("value", id);
+	form.appendChild(hiddenField);
 	form.submit();
+	alert('음주 기록이 수정되었습니다.');
 }
 
 function diaryDelete() {
@@ -211,14 +218,14 @@ function simulSubmit() {
 </div>
 
 <!-- registration form  -->
-<form name="form" id="diaryRegisterForm" method="POST" action="<c:url value='/diary/create' />">
+<form name="form" id="diaryUpdateForm" method="POST" action="<c:url value='/diary/update' />">
 	<div style="width: 100px; margin: auto">
 		<strong>음주 기록</strong>
 	</div>
 	<div class="parent green">
 		<label for="date" class="diaryLabel"><strong>날짜</strong></label>
 		<div class="diaryInput">
-			<span style="vertical-align:sub; padding:0 0 0 65px;"> <%=year %>년 <%=month %>월 <%=date %>일</span>
+			<input class="diaryAmount" type="date" name="drinkingDate" id="drinkingDate" value="${drinkingDate}">
 		</div>
 	</div>
 	<div class="green">
@@ -248,7 +255,14 @@ function simulSubmit() {
 			</div>
 		</div>
 	</div>
-	<div id="todayAlcoholList"></div>
+	<div id="todayAlcoholList">
+	<c:forEach var="drink" items="${diary.drinkingList}">
+		<div class="drinkingList">
+			${drink.alcohol.type} ${drink.alcohol.name} ${drink.amount}ml
+			<span class="deleteBtn">X</span>
+		</div>
+	</c:forEach>	
+	</div>
 	
 	<div class="parent green">
 		<label for="condition" class="diaryLabel"><strong>상태</strong></label>
@@ -267,17 +281,17 @@ function simulSubmit() {
 		<div class="diaryLabel" onclick="changeCondition(5)">
 			😆
 		</div>
-		<input type="number" name="condition" id="condition" class="diaryCondition" readonly>
+		<input type="number" name="condition" id="condition" class="diaryCondition" value="${diary.condition}" readonly>
 	</div>
 	<div class="green">
 		<label for="content"><strong>오늘의 일기</strong></label>
 		<div class="col-lg-10">
-			<textarea name="content"></textarea>
+			<textarea name="content">${diary.content}</textarea>
 		</div>
 	</div>
 	<br>
 	<div class="form-group">
-		<input type="button" class="btn btn-success" value="수정" onClick="diaryUpdate()">
+		<input type="button" class="btn btn-success" value="수정" onClick="diaryUpdate(${diary.diaryId})">
 		<a class="btn btn-outline-success"  onClick="diaryDelete()"
 	    	href="<c:url value='/diary/delete'> 
 	    			<c:param name='diaryId' value='${diary.diaryId}' />

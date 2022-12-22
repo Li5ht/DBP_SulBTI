@@ -23,7 +23,7 @@ import model.service.UserManager;
 
 public class ListDiaryController implements Controller {
 	private static final Logger log = LoggerFactory.getLogger(ListDiaryController.class);
-	
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		long id = -1; /* 사용자 primary key */
@@ -62,6 +62,9 @@ public class ListDiaryController implements Controller {
 		// 전체 음주 기록
 		List<Diary> diaryList = dManager.findDiaryListByMemberId(id);
 		request.setAttribute("diaryList", diaryList);
+		
+		request.setAttribute("drinkingDate", "2022-12-22");
+		request.setAttribute("diary", diaryList.get(0));
 
 		/* 술 목록 받아오기 */
 		AlcoholManager alMan = AlcoholManager.getInstance();
@@ -126,6 +129,58 @@ public class ListDiaryController implements Controller {
 				request.setAttribute("exception", e);
 				request.setAttribute("diary", diary);
 			}
+		}
+
+		
+		
+
+		/* 음주 기록 수정 */
+		if (request.getServletPath().equals("/diary/update")) {
+			/* 음주 기록 수정 버튼 클릭 시 */
+			if (request.getParameter("updateDiary") != null) {
+				Diary diary = null;
+				long diaryId = Long.parseLong(request.getParameter("diaryId"));
+				diary = dManager.findDiary(diaryId);
+
+				// GET request: 음주 기록 수정 form 요청
+				DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+				String drinkingDate = df.format(diary.getDrinkingDate());
+
+				/* 음주 기록 받아오기 */
+				request.setAttribute("drinkingDate", drinkingDate);
+				request.setAttribute("diary", diary);
+			}
+			
+			if (request.getMethod().equals("POST")) {
+				Diary diary = null;
+				long diaryId = Long.parseLong(request.getParameter("diaryId"));
+				diary = dManager.findDiary(diaryId);
+
+				UserManager uManager = UserManager.getInstance();
+				Member member = uManager.findUserByPrimaryKey(diary.getMember().getId());
+				diary.setMember(member);
+				diary.setCondition(Integer.parseInt(request.getParameter("condition")));
+				diary.setContent(request.getParameter("content"));
+				log.debug("Update Diary : {}", diary);
+
+				dManager.update(diary);
+			}
+			
+		}
+
+		/* 음주 기록 삭제 */
+		if (request.getServletPath().equals("/diary/delete")) {
+			Diary diary = null;
+			long diaryId = Long.parseLong(request.getParameter("diaryId"));
+			diary = dManager.findDiary(diaryId);
+
+			UserManager uManager = UserManager.getInstance();
+			Member member = uManager.findUserByPrimaryKey(diary.getMember().getId());
+			diary.setMember(member);
+
+			dManager.deleteDiary(diary);
+			
+			return "redirect:/diary/list";	
 		}
 
 		return "/diary/list.jsp";

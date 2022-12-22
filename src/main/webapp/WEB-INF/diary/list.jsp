@@ -76,13 +76,31 @@ public class MyCalendar {
 	function showUpdateForm(id) {
 		$("#createForm").hide();
 		$("#updateForm").show();
-		request.getAttribute("diaryId", diaryId);
+		
+		var form = document.createElement('form');
+    	form.setAttribute("action", "<c:url value='/diary/update'/>");
+    	
+    	var hiddenField = document.createElement('input');
+		hiddenField.setAttribute("name", 'diaryId');
+		hiddenField.setAttribute("type", "hidden");
+		hiddenField.setAttribute("value", id);
+		
+		var hiddenField2 = document.createElement('input');
+		hiddenField2.setAttribute("name", 'updateDiary');
+		hiddenField2.setAttribute("type", "hidden");
+		hiddenField2.setAttribute("value", "updateDiary");
+		
+		form.appendChild(hiddenField);
+		form.appendChild(hiddenField2);
+	    document.body.appendChild(form);
+		form.submit();
 	}
 	
 	function showCreateForm() {
 		$("#updateForm").hide();
 		$("#createForm").show();
 	}
+
 </script>
 </head>
 <body>
@@ -217,7 +235,7 @@ public class MyCalendar {
 			int todayMonth = d.getMonth() + 1;
 			
 			for(int i = 1; i <= MyCalendar.lastDay(year, month); i++){
-				String url = "<br><a href='update?diaryId=" + idList[i] + "'" + list[i] + "</a>";
+				String url = "<br><a href='javascript:showUpdateForm(" + idList[i] + ")'" + list[i] + "</a>";
 				/* 요일별로 색깔 다르게 해주기위해 td에 class 태그걸어주기 */
 				switch(MyCalendar.weekDay(year, month, i)){
 					case 0 :
@@ -262,7 +280,7 @@ public class MyCalendar {
 	
 	</div>
 	<!-- 음주 기록 추가하기 -->
-	<div class="diaryBox2" id="createForm">
+	<div class="diaryBox2" id="createForm" style="display:none;">
 		<br><br><br>
 		<jsp:include page="writeForm.jsp">
 			<jsp:param name="tmpYear" value="2022" />
@@ -272,7 +290,7 @@ public class MyCalendar {
 	</div>
 	
 	<!-- 음주 기록 수정 및 삭제하기 -->
-	<div class="diaryBox2" style="display:none;" id="updateForm">
+	<div class="diaryBox2" id="updateForm">
 		<br><br><br>
 		<jsp:include page="update.jsp">
 			<jsp:param name="tmpYear" value="2022" />
