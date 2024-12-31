@@ -20,6 +20,7 @@
  <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=Git&logoColor=white" alt="Git badge" class="badge">  <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white" alt="GitHub badge" class="badge">  <img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white" alt="Notion badge" class="badge">  <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white" alt="Figma badge" class="badge">  <img src="https://img.shields.io/badge/Google%20Drive-4285F4?style=flat-square&logo=Google%20Drive&logoColor=white" alt="Google Drive badge" class="badge">  <img src="https://img.shields.io/badge/Google%20Meet-32A350?style=flat-square&logo=Google%20Meet&logoColor=white" alt="Google Meet badge" class="badge">  <img src="https://img.shields.io/badge/Zoom-2D8CFF?style=flat-square&logo=Zoom&logoColor=white" alt="Zoom badge" class="badge">
   </div>
 <br/>
+
 #### 📹 Video
 - 영상 링크 :
   - https://drive.google.com/file/d/1O7hKtAUPvZ_x2gOzTsMJnBeJEn10V6FR/view?usp=sharing
