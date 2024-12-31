@@ -23,4 +23,5 @@
 
 
 #### 📹 Video
-https://drive.google.com/file/d/1O7hKtAUPvZ_x2gOzTsMJnBeJEn10V6FR/view?usp=sharing
+- 영상 링크 :
+  - https://drive.google.com/file/d/1O7hKtAUPvZ_x2gOzTsMJnBeJEn10V6FR/view?usp=sharing
