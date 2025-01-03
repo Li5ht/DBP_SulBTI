@@ -14,6 +14,7 @@
   - 술 정보 제공
 
 #### 📹 Video
+
 <a href="[https://drive.google.com/file/d/13WBKlRj1sCNKJDXosgSLLDFhQ68vvCdS/view?usp=drive_link](https://drive.google.com/file/d/1O7hKtAUPvZ_x2gOzTsMJnBeJEn10V6FR/view?usp=sharing)"></a> 
 >
     
