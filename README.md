@@ -46,6 +46,6 @@
 - 술 정보 제공
   
 ## 📹 Video
-![Video Label]([https://github.com/user-attachments/assets/bd582f2b-59a2-4009-bf71-4a4254ae62a6](https://youtu.be/BZxmVLw3Cbw))
+[![술BTI 시연영상](http://img.youtube.com/vi/BZxmVLw3Cbw/0.jpg)](https://youtu.be/BZxmVLw3Cbw)
 
   
