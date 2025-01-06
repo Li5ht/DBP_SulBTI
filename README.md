@@ -22,6 +22,9 @@
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=black" alt="JavaScript badge" class="badge">
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white" alt="CSS3 badge" class="badge">
 
+- Data Modeling
+  <br/>
+  <img src="https://img.shields.io/badge/erwin-007DB8?style=flat-square&logo=data:image/svg+xml;base64,<base64로 인코딩된 로고 데이터>&logoColor=white" alt="erwin badge" class="badge">
 - DB
    <br/>
    <img src="https://img.shields.io/badge/Oracle-F80000?style=flat-square&logo=Oracle&logoColor=white" alt="Oracle badge" class="badge">
