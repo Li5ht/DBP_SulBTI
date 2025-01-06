@@ -46,6 +46,6 @@
 - 술 정보 제공
   
 ## 📹 Video
-![GIFMaker_me](https://github.com/user-attachments/assets/bd582f2b-59a2-4009-bf71-4a4254ae62a6)
+![Video Label]([https://github.com/user-attachments/assets/bd582f2b-59a2-4009-bf71-4a4254ae62a6](https://youtu.be/BZxmVLw3Cbw))
 
   
