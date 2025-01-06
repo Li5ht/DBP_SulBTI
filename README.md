@@ -24,7 +24,7 @@
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white" alt="CSS3 badge" class="badge">
 - **Backend**
    <br/>
-   <img src="https://img.shields.io/badge/Java-fffbde?style=flat-square&logo=OpenJDK&logoColor=black" alt="Java badge" class="badge">
+   <img src="https://img.shields.io/badge/Java-f2e68b?style=flat-square&logo=OpenJDK&logoColor=black" alt="Java badge" class="badge">
    <img src="https://img.shields.io/badge/JSP-007396?style=flat-square&logo=java&logoColor=white" alt="JSP badge" class="badge">
    <img src="https://img.shields.io/badge/Java%20JDBC-007396?style=flat-square&logo=Java&logoColor=white" alt="Java JDBC badge" class="badge">
    <img src="https://img.shields.io/badge/MyBatis-35A69E?style=flat-square&logo=MyBatis&logoColor=white" alt="MyBatis badge" class="badge">
