@@ -68,4 +68,5 @@
   ![image](https://github.com/user-attachments/assets/a51dc7f5-6133-4fa8-9930-da2e9408691d)
 - Table Schema Diagram
   ![image](https://github.com/user-attachments/assets/38fd6a4a-bae2-4f6c-b73c-57c1324ecd0d)
-
+- Class Diagram
+  ![image](https://github.com/user-attachments/assets/f36202f6-69ce-45f6-a28e-2b58061346dd)
