@@ -70,12 +70,15 @@
    <br/><br/>
 
 2. **Domain Class Diagram**  
+   <br/>
    <img src="https://github.com/user-attachments/assets/f36202f6-69ce-45f6-a28e-2b58061346dd" alt="Domain Class Diagram" width="700">
    <br/><br/>
 
-3. **ER Diagram**  
+3. **ER Diagram**
+   <br/>  
    <img src="https://github.com/user-attachments/assets/a51dc7f5-6133-4fa8-9930-da2e9408691d" alt="ER Diagram" width="700">
    <br/><br/>
 
-4. **Table Schema Diagram**  
+4. **Table Schema Diagram**
+   <br/>
    <img src="https://github.com/user-attachments/assets/38fd6a4a-bae2-4f6c-b73c-57c1324ecd0d" alt="Table Schema Diagram" width="700">
