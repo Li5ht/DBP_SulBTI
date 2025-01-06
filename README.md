@@ -32,6 +32,7 @@
    <img src="https://img.shields.io/badge/Java-FFFFFF?style=flat-square&logo=OpenJDK&logoColor=black" alt="Java badge" class="badge">
    <img src="https://img.shields.io/badge/Java%20JDBC-007396?style=flat-square&logo=Java&logoColor=white" alt="Java JDBC badge" class="badge">
    <img src="https://img.shields.io/badge/MyBatis-35A69E?style=flat-square&logo=MyBatis&logoColor=white" alt="MyBatis badge" class="badge">
+   <img src="https://img.shields.io/badge/JSP-007396?style=flat-square&logo=java&logoColor=white" alt="JSP badge" class="badge">
    <img src="https://img.shields.io/badge/Eclipse-2C2255?style=flat-square&logo=Eclipse&logoColor=white" alt="Eclipse badge" class="badge">
 - Communication
   <br/>
