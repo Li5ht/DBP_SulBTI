@@ -3,6 +3,7 @@
 ## 📝 About Project(Aims)
 - 주량을 잘 모르는 새내기들을 위한 주량 변환 기능
 - 자신의 건강한 음주 습관을 형성하는데 도움을 주는 서비스 개발
+  
 ## 📅 Period
 - 2022.09 - 2022.12
 
@@ -50,6 +51,10 @@
   <img src="https://img.shields.io/badge/Google%20Meet-32A350?style=flat-square&logo=Google%20Meet&logoColor=white" alt="Google Meet badge" class="badge">
   <img src="https://img.shields.io/badge/Zoom-2D8CFF?style=flat-square&logo=Zoom&logoColor=white" alt="Zoom badge" class="badge">
   </div>
+  
+## 📹 Video
+[![술BTI 시연영상](http://img.youtube.com/vi/BZxmVLw3Cbw/0.jpg)](https://youtu.be/BZxmVLw3Cbw)
+> 이미지 클릭 시 프로젝트 전체 시연 영상(유튜브) 이동🔗
 
 ## 🎛️ Key Functions
 - 회원 관리
@@ -57,9 +62,8 @@
 - 음주 기록
 - 주량 시뮬레이션
 - 술 정보 제공
-  
-## 📹 Video
-[![술BTI 시연영상](http://img.youtube.com/vi/BZxmVLw3Cbw/0.jpg)](https://youtu.be/BZxmVLw3Cbw)
-> 이미지 클릭 시 프로젝트 전체 시연 영상(유튜브) 이동🔗
 
-  
+## 🔖 Diagram
+- ER Diagram
+  ![image](https://github.com/user-attachments/assets/a51dc7f5-6133-4fa8-9930-da2e9408691d)
+- Table Diagram
