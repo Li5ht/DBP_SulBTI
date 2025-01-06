@@ -18,11 +18,14 @@
 - 백엔드(3), 프론트엔드(1)
 <br>
 
-|   | <img src="https://avatars.githubusercontent.com/u/89853141?v=4" width="100" height="100"/> | <img src="https://avatars.githubusercontent.com/u/77628363?v=4" width="100" height="100"/> | <img src="https://avatars.githubusercontent.com/u/87109601?v=4" width="100" height="100"/> | <img src="https://avatars.githubusercontent.com/u/77821089?v=4" width="100" height="100"/> |
-|:---:|:---:|:---:|:---:|:---:|
 | **멤버** | [박예지](https://github.com/Li5ht) | [이나연](https://github.com/yeon2lee) | [이도현](https://github.com/zsderw) | [차은수](https://github.com/ckdmstn) |
+|:---:|:---:|:---:|:---:|:---:|
 | **역할** | 팀장/프론트엔드 | 백엔드 | 백엔드 | 백엔드 |
 
+<br>
+
+|   | <img src="https://avatars.githubusercontent.com/u/89853141?v=4" width="100" height="100"/> | <img src="https://avatars.githubusercontent.com/u/77628363?v=4" width="100" height="100"/> | <img src="https://avatars.githubusercontent.com/u/87109601?v=4" width="100" height="100"/> | <img src="https://avatars.githubusercontent.com/u/77821089?v=4" width="100" height="100"/> |
+|:---:|:---:|:---:|:---:|:---:|
 ## 📹 Video
 ![GIFMaker_me](https://github.com/user-attachments/assets/bd582f2b-59a2-4009-bf71-4a4254ae62a6)
 
