@@ -17,31 +17,31 @@
 |   | <img src="https://avatars.githubusercontent.com/u/89853141?v=4" width="100" height="100"/> | <img src="https://avatars.githubusercontent.com/u/77628363?v=4" width="100" height="100"/> | <img src="https://avatars.githubusercontent.com/u/87109601?v=4" width="100" height="100"/> | <img src="https://avatars.githubusercontent.com/u/77821089?v=4" width="100" height="100"/> |
 
 ## 🔧 Tech Stacks(Tools)
-- Frontend
+- **Frontend**
   <br/>
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white" alt="HTML5 badge" class="badge">
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=black" alt="JavaScript badge" class="badge">
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white" alt="CSS3 badge" class="badge">
-- Backend
+- **Backend**
    <br/>
    <img src="https://img.shields.io/badge/Java-FFFFFF?style=flat-square&logo=OpenJDK&logoColor=black" alt="Java badge" class="badge">
    <img src="https://img.shields.io/badge/JSP-007396?style=flat-square&logo=java&logoColor=white" alt="JSP badge" class="badge">
    <img src="https://img.shields.io/badge/Java%20JDBC-007396?style=flat-square&logo=Java&logoColor=white" alt="Java JDBC badge" class="badge">
    <img src="https://img.shields.io/badge/MyBatis-35A69E?style=flat-square&logo=MyBatis&logoColor=white" alt="MyBatis badge" class="badge">
-- Database(DB)
+- **Database(DB)**
    <br/>
    <img src="https://img.shields.io/badge/Oracle-F80000?style=flat-square&logo=Oracle&logoColor=white" alt="Oracle badge" class="badge">
-- Server
+- **Server**
    <br/>
    <img src="https://img.shields.io/badge/Apache%20Tomcat-F8DC75?style=flat-square&logo=Apache%20Tomcat&logoColor=black" alt="Apache Tomcat badge" class="badge">
-- Development(IDE)
+- **Development(IDE)**
   <br/>
    <img src="https://img.shields.io/badge/Eclipse-2C2255?style=flat-square&logo=Eclipse&logoColor=white" alt="Eclipse badge" class="badge">
-- Data Modeling
+- **Data Modeling**
   <br/>
   <img src="https://img.shields.io/badge/erwin-007DB8?style=flat-square&logoColor=white" alt="erwin badge" class="badge">
   <img src="https://img.shields.io/badge/draw.io-FF9900?style=flat-square&logo=diagrams.net&logoColor=white" alt="draw.io badge" class="badge">
-- Communication
+- **Communication**
   <br/>
   <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=Git&logoColor=white" alt="Git badge" class="badge">
   <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white" alt="GitHub badge" class="badge">
