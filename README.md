@@ -69,7 +69,8 @@
    <img src="https://github.com/user-attachments/assets/3f13eba7-31fa-4e6c-acfc-19433ddaf739" alt="유즈케이스 다이어그램 drawio" width="500">
    <br/><br/>
 
-2. **Domain Class Diagram** 
+2. **Domain Class Diagram**
+   <br/>
    <img src="https://github.com/user-attachments/assets/f36202f6-69ce-45f6-a28e-2b58061346dd" alt="Domain Class Diagram" width="700">
    <br/><br/>
 
