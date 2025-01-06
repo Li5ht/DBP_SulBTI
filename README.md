@@ -27,13 +27,13 @@
    <img src="https://img.shields.io/badge/JSP-007396?style=flat-square&logo=java&logoColor=white" alt="JSP badge" class="badge">
    <img src="https://img.shields.io/badge/Java%20JDBC-007396?style=flat-square&logo=Java&logoColor=white" alt="Java JDBC badge" class="badge">
    <img src="https://img.shields.io/badge/MyBatis-35A69E?style=flat-square&logo=MyBatis&logoColor=white" alt="MyBatis badge" class="badge">
-- DB
+- Database(DB)
    <br/>
    <img src="https://img.shields.io/badge/Oracle-F80000?style=flat-square&logo=Oracle&logoColor=white" alt="Oracle badge" class="badge">
 - Server
    <br/>
    <img src="https://img.shields.io/badge/Apache%20Tomcat-F8DC75?style=flat-square&logo=Apache%20Tomcat&logoColor=black" alt="Apache Tomcat badge" class="badge">
-- IDE(Development)
+- Development(IDE)
   <br/>
    <img src="https://img.shields.io/badge/Eclipse-2C2255?style=flat-square&logo=Eclipse&logoColor=white" alt="Eclipse badge" class="badge">
 - Data Modeling
