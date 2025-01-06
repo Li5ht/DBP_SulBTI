@@ -48,5 +48,6 @@
   
 ## 📹 Video
 [![술BTI 시연영상](http://img.youtube.com/vi/BZxmVLw3Cbw/0.jpg)](https://youtu.be/BZxmVLw3Cbw)
+> 이미지 클릭 시 프로젝트 전체 시연 영상(유튜브) 이동🔗
 
   
