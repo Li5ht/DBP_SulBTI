@@ -17,7 +17,7 @@
 - 4명
 - 백엔드(3), 프론트엔드(1)
 
-  |<img src="https://avatars.githubusercontent.com/u/89853141?v=4" width="100" height="100"/>|<img src="https://avatars.githubusercontent.com/u/77628363?v=4" width="100" height="100"/>|![image](https://avatars.githubusercontent.com/u/87109601?v=4)|![image](https://avatars.githubusercontent.com/u/77821089?v=4) |
+  |<img src="https://avatars.githubusercontent.com/u/89853141?v=4" width="100" height="100"/>|<img src="https://avatars.githubusercontent.com/u/77628363?v=4" width="100" height="100"/>|<img src="https://avatars.githubusercontent.com/u/87109601?v=4" width="100" height="100"/>|<img src="https://avatars.githubusercontent.com/u/77821089?v=4" width="100" height="100"/>
     |:---:|:---:|:---:|:---:|
   |[박예지](https://github.com/Li5ht)|[이나연](https://github.com/yeon2lee)|[이도현](https://github.com/zsderw)|[차은수](https://github.com/ckdmstn)|
 
