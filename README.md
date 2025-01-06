@@ -27,13 +27,15 @@
 - Server
    <br/>
    <img src="https://img.shields.io/badge/Apache%20Tomcat-F8DC75?style=flat-square&logo=Apache%20Tomcat&logoColor=black" alt="Apache Tomcat badge" class="badge">
+- IDE(Environment)
+  <br/>
+   <img src="https://img.shields.io/badge/JSP-007396?style=flat-square&logo=java&logoColor=white" alt="JSP badge" class="badge">
 - Backend
    <br/>
    <img src="https://img.shields.io/badge/Java-FFFFFF?style=flat-square&logo=OpenJDK&logoColor=black" alt="Java badge" class="badge">
    <img src="https://img.shields.io/badge/JSP-007396?style=flat-square&logo=java&logoColor=white" alt="JSP badge" class="badge">
    <img src="https://img.shields.io/badge/Java%20JDBC-007396?style=flat-square&logo=Java&logoColor=white" alt="Java JDBC badge" class="badge">
-   <img src="https://img.shields.io/badge/MyBatis-35A69E?style=flat-square&logo=MyBatis&logoColor=white" alt="MyBatis badge" class="badge">
-   <img src="https://img.shields.io/badge/Eclipse-2C2255?style=flat-square&logo=Eclipse&logoColor=white" alt="Eclipse badge" class="badge">
+   <img src="https://img.shields.io/badge/MyBatis-35A69E?style=flat-square&logo=MyBatis&logoColor=white" alt="MyBatis badge" class="badge"
 - Communication
   <br/>
   <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=Git&logoColor=white" alt="Git badge" class="badge">  <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white" alt="GitHub badge" class="badge">  <img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white" alt="Notion badge" class="badge">  <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white" alt="Figma badge" class="badge">  <img src="https://img.shields.io/badge/Google%20Drive-4285F4?style=flat-square&logo=Google%20Drive&logoColor=white" alt="Google Drive badge" class="badge">  <img src="https://img.shields.io/badge/Google%20Meet-32A350?style=flat-square&logo=Google%20Meet&logoColor=white" alt="Google Meet badge" class="badge">  <img src="https://img.shields.io/badge/Zoom-2D8CFF?style=flat-square&logo=Zoom&logoColor=white" alt="Zoom badge" class="badge">
