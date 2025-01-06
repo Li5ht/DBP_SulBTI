@@ -64,6 +64,8 @@
 - 술 정보 제공
 
 ## 🔖 Diagram
+- Use-case Diagram
+  ![유즈케이스 다이어그램 drawio](https://github.com/user-attachments/assets/3f13eba7-31fa-4e6c-acfc-19433ddaf739)
 - ER Diagram
   ![image](https://github.com/user-attachments/assets/a51dc7f5-6133-4fa8-9930-da2e9408691d)
 - Table Schema Diagram
