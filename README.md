@@ -18,6 +18,7 @@
 - 백엔드(3), 프론트엔드(1)
 
 <br>
+
 | **멤버** | [박예지](https://github.com/Li5ht) | [이나연](https://github.com/yeon2lee) | [이도현](https://github.com/zsderw) | [차은수](https://github.com/ckdmstn) |
 | **역할** | 팀장/프론트엔드 | 백엔드 | 백엔드 | 백엔드 |
 |:---:|:---:|:---:|:---:|:---:|
