@@ -64,12 +64,18 @@
 - 술 정보 제공
 
 ## 🔖 Diagram
-1. Use Case Diagram
+1. **Use Case Diagram**  
+   <br/>
+   <img src="https://github.com/user-attachments/assets/3f13eba7-31fa-4e6c-acfc-19433ddaf739" alt="유즈케이스 다이어그램 drawio" width="700">
    <br/><br/>
-  ![유즈케이스 다이어그램 drawio](https://github.com/user-attachments/assets/3f13eba7-31fa-4e6c-acfc-19433ddaf739)
-3. Domain Class Diagram
-  ![image](https://github.com/user-attachments/assets/f36202f6-69ce-45f6-a28e-2b58061346dd)
-4. ER Diagram
-  ![image](https://github.com/user-attachments/assets/a51dc7f5-6133-4fa8-9930-da2e9408691d)
-5. Table Schema Diagram
-  ![image](https://github.com/user-attachments/assets/38fd6a4a-bae2-4f6c-b73c-57c1324ecd0d)
+
+2. **Domain Class Diagram**  
+   <img src="https://github.com/user-attachments/assets/f36202f6-69ce-45f6-a28e-2b58061346dd" alt="Domain Class Diagram" width="700">
+   <br/><br/>
+
+3. **ER Diagram**  
+   <img src="https://github.com/user-attachments/assets/a51dc7f5-6133-4fa8-9930-da2e9408691d" alt="ER Diagram" width="700">
+   <br/><br/>
+
+4. **Table Schema Diagram**  
+   <img src="https://github.com/user-attachments/assets/38fd6a4a-bae2-4f6c-b73c-57c1324ecd0d" alt="Table Schema Diagram" width="700">
