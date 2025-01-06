@@ -64,11 +64,11 @@
 - 술 정보 제공
 
 ## 🔖 Diagram
-- Use-case Diagram
+1. Use Case Diagram
   ![유즈케이스 다이어그램 drawio](https://github.com/user-attachments/assets/3f13eba7-31fa-4e6c-acfc-19433ddaf739)
-- ER Diagram
-  ![image](https://github.com/user-attachments/assets/a51dc7f5-6133-4fa8-9930-da2e9408691d)
-- Table Schema Diagram
-  ![image](https://github.com/user-attachments/assets/38fd6a4a-bae2-4f6c-b73c-57c1324ecd0d)
-- Class Diagram
+2. Domain Class Diagram
   ![image](https://github.com/user-attachments/assets/f36202f6-69ce-45f6-a28e-2b58061346dd)
+3. ER Diagram
+  ![image](https://github.com/user-attachments/assets/a51dc7f5-6133-4fa8-9930-da2e9408691d)
+4. Table Schema Diagram
+  ![image](https://github.com/user-attachments/assets/38fd6a4a-bae2-4f6c-b73c-57c1324ecd0d)
