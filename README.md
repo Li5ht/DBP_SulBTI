@@ -65,7 +65,7 @@
 
 ## 🔖 Diagram
 1. Use Case Diagram
-   <br/>
+   <br/><br/>
   ![유즈케이스 다이어그램 drawio](https://github.com/user-attachments/assets/3f13eba7-31fa-4e6c-acfc-19433ddaf739)
 3. Domain Class Diagram
   ![image](https://github.com/user-attachments/assets/f36202f6-69ce-45f6-a28e-2b58061346dd)
