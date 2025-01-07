@@ -16,7 +16,7 @@
 | **역할** | (팀장) 프론트엔드 |     백엔드     |     백엔드     |     백엔드     |
 |   | <img src="https://avatars.githubusercontent.com/u/89853141?v=4" width="100" height="100"/> | <img src="https://avatars.githubusercontent.com/u/77628363?v=4" width="100" height="100"/> | <img src="https://avatars.githubusercontent.com/u/87109601?v=4" width="100" height="100"/> | <img src="https://avatars.githubusercontent.com/u/77821089?v=4" width="100" height="100"/> |
 
-## 🔧 Tech Stacks(Tools)
+## 🔧 Tech Tools
 
 | **Category**       | **Tools/Technologies**                                                                                                                                                      |
 |--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
