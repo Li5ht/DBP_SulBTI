@@ -1,7 +1,7 @@
 <div align="center">
   
 <p>
-<h1>🍶 술BTI</h1>
+<h2>🍶 술BTI</h2>
 <i>2022-2 데베프 팀프로젝트</i>
 </p>
 <hr>
