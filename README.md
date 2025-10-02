@@ -1,59 +1,48 @@
-# 🍶 술BTI (2022-2 데베프 팀프로젝트)
+# 🍶 술BTI (2022-2 DB Project)
 
-### 📝 About Project(Aims)
-- 주량을 잘 모르는 새내기들을 위한 주량 변환 기능
-- 자신의 건강한 음주 습관을 형성하는데 도움을 주는 서비스 개발
-  
-### 📅 Period
-- 2022.09 - 2022.12
+### 📌 Project Overview
+- 새내기들의 주량 파악과 건강한 음주 습관 형성을 돕는 웹 서비스
+- **주량 변환, 술 추천, 기록 관리** 기능 제공  
+- 개발 기간 : 2022.09 ~ 2022.12  
+- 팀 규모 : 4명 (BE 3, FE 1)  
 
-### 👥Members
-- 참여인원 : 4명
-- 분담 : 백엔드(3), 프론트엔드(1)
-  
-| **멤버** | [박예지](https://github.com/Li5ht) | [이나연](https://github.com/yeon2lee) | [이도현](https://github.com/zsderw) | [차은수](https://github.com/ckdmstn) |
-|:---:|:---:|:---:|:---:|:---:|
-| **역할** | (팀장) 프론트엔드 |     백엔드     |     백엔드     |     백엔드     |
-|   | <img src="https://avatars.githubusercontent.com/u/89853141?v=4" width="100" height="100"/> | <img src="https://avatars.githubusercontent.com/u/77628363?v=4" width="100" height="100"/> | <img src="https://avatars.githubusercontent.com/u/87109601?v=4" width="100" height="100"/> | <img src="https://avatars.githubusercontent.com/u/77821089?v=4" width="100" height="100"/> |
+---
 
-### 🔧 Tech Tools
+### 🧑‍💻 My Role (박예지)
+- **프론트엔드 총괄 & 팀장**
+  - UI 기획 및 화면 개발 (HTML/CSS/JS)
+  - JSP 연동 및 BE-FE 통신 테스트
+  - 프로젝트 문서 정리 및 발표
+- 협업 도구 : GitHub, draw.io, erwin
 
-| **Category**       | **Tools/Technologies**                                                                                                                                                      |
-|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Stack(Lang)**    | ![Java badge](https://img.shields.io/badge/Java-f2e68b?style=flat-square&logo=OpenJDK&logoColor=black) |
-| **Frontend(FE)**   | ![HTML5 badge](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white) ![JavaScript badge](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=black) ![CSS3 badge](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white) |
-| **Backend(BE)**    | ![JSP badge](https://img.shields.io/badge/JSP-007396?style=flat-square&logo=java&logoColor=white) ![Java JDBC badge](https://img.shields.io/badge/Java%20JDBC-007396?style=flat-square&logo=Java&logoColor=white) ![MyBatis badge](https://img.shields.io/badge/MyBatis-35A69E?style=flat-square&logo=MyBatis&logoColor=white) |
-| **Database(DB)**   | ![Oracle badge](https://img.shields.io/badge/Oracle-F80000?style=flat-square&logo=Oracle&logoColor=white)                                                                 |
-| **Server**         | ![Apache Tomcat badge](https://img.shields.io/badge/Apache%20Tomcat-F8DC75?style=flat-square&logo=Apache%20Tomcat&logoColor=black)                                        |
-| **Development(IDE)**| ![Eclipse badge](https://img.shields.io/badge/Eclipse-2C2255?style=flat-square&logo=Eclipse&logoColor=white)                                                             |
-| **Data Modeling**  | ![erwin badge](https://img.shields.io/badge/erwin-007DB8?style=flat-square&logoColor=white) ![draw.io badge](https://img.shields.io/badge/draw.io-FF9900?style=flat-square&logo=diagrams.net&logoColor=white) |
-### 📹 Video
-[![술BTI 시연영상](http://img.youtube.com/vi/BZxmVLw3Cbw/0.jpg)](https://youtu.be/BZxmVLw3Cbw)
-> 이미지 클릭 시 프로젝트 전체 시연 영상(유튜브) 이동🔗
+---
 
-### 🎛️ Key Functions
-- 회원 관리
-- 술 추천
-- 음주 기록
-- 주량 시뮬레이션
-- 술 정보 제공
+### 🔑 Key Features
+**User Features**
+- 회원가입 / 로그인
+- 음주 기록 저장 & 조회
+- 술 추천 / 주량 시뮬레이션
 
-### 🔖 Diagram
-1. **Use Case Diagram**  
-   <br/>
-   <img src="https://github.com/user-attachments/assets/3f13eba7-31fa-4e6c-acfc-19433ddaf739" alt="유즈케이스 다이어그램 drawio" width="500">
-   <br/><br/>
+**Service Features**
+- 술 정보 DB 제공
+- 주량 변환 알고리즘 기반 시뮬레이션
+- 개인 맞춤 음주 습관 리포트
 
-2. **Domain Class Diagram**
-   <br/>
-   <img src="https://github.com/user-attachments/assets/f36202f6-69ce-45f6-a28e-2b58061346dd" alt="Domain Class Diagram" width="700">
-   <br/><br/>
+---
 
-3. **ER Diagram**
-   <br/>  
-   <img src="https://github.com/user-attachments/assets/a51dc7f5-6133-4fa8-9930-da2e9408691d" alt="ER Diagram" width="700">
-   <br/><br/>
+### 🛠 Tech Stack
+- **Frontend** : HTML5, CSS3, JavaScript  
+- **Backend** : JSP, Java JDBC, MyBatis  
+- **Database** : Oracle  
+- **Server** : Apache Tomcat  
+- **Modeling** : erwin, draw.io  
 
-4. **Table Schema Diagram**
-   <br/><br/>
-   <img src="https://github.com/user-attachments/assets/38fd6a4a-bae2-4f6c-b73c-57c1324ecd0d" alt="Table Schema Diagram" width="700">
+> 👉 선택 이유 : Oracle + JSP → 기업 환경과 유사 / MyBatis → SQL 관리 효율화
+
+---
+
+### 📹 Demo
+[![술BTI 시연영상](http://img.youtube.com/vi/BZxmVLw3Cbw/0.jpg)](https://youtu.be/BZxmVLw3Cbw)  
+*(클릭 시 YouTube 시연 영상 이동)*
+
+---
