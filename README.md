@@ -1,11 +1,7 @@
 <div align="center">
   
-<!-- 제목 -->
-<strong>🍶 🍶 🍶 술BTI</strong><br/>
-
-<!-- 부제 -->
-<sub><i>2022-2 데베프 팀프로젝트</i></sub>
-
+# 🍶 술BTI
+## 2022-2 데베프 팀프로젝트
 
 ### _📌 Project Overview_
 🔴 **개발 기간** : 2022.09 ~ 2022.12 <br/>
