@@ -1,6 +1,6 @@
 <div align="center">
   
-<span style="font-size:30px; font-weight:bold;">🍶 술BTI</span><br/>
+<strong style="font-size:50px;">🍶 술BTI</strong>
 <sub><i>2022-2 데베프 팀프로젝트</i></sub>
 
 
