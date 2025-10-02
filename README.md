@@ -1,6 +1,9 @@
 <div align="center">
   
-<strong style="font-size:50px;">🍶 술BTI</strong>
+<!-- 제목 -->
+<strong>🍶 🍶 🍶 술BTI</strong><br/>
+
+<!-- 부제 -->
 <sub><i>2022-2 데베프 팀프로젝트</i></sub>
 
 
