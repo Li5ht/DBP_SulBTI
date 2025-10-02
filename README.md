@@ -8,12 +8,8 @@
 
 ---
 
-### 🧑‍💻 My Role (박예지)
-- **프론트엔드 총괄 & 팀장**
-  - UI 기획 및 화면 개발 (HTML/CSS/JS)
-  - JSP 연동 및 BE-FE 통신 테스트
-  - 프로젝트 문서 정리 및 발표
-- 협업 도구 : GitHub, draw.io, erwin
+### 🧑‍💻 Members
+| **멤버** | [박예지](https://github.com/Li5ht) | [이나연](https://github.com/yeon2lee) | [이도현](https://github.com/zsderw) | [차은수](https://github.com/ckdmstn) | |:---:|:---:|:---:|:---:|:---:| | **역할** | (팀장) 프론트엔드 | 백엔드 | 백엔드 | 백엔드 | | | <img src="https://avatars.githubusercontent.com/u/89853141?v=4" width="100" height="100"/> | <img src="https://avatars.githubusercontent.com/u/77628363?v=4" width="100" height="100"/> | <img src="https://avatars.githubusercontent.com/u/87109601?v=4" width="100" height="100"/> | <img src="https://avatars.githubusercontent.com/u/77821089?v=4" width="100" height="100"/> |
 
 ---
 
