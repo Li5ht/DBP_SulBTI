@@ -2,10 +2,12 @@
   
 # 🍶 술BTI (2022-2 데베프 팀프로젝트)
 
-### 📝 About Project(Aims) 
-- 주량을 잘 모르는 새내기들을 위한 주량 변환 기능
-- 자신의 건강한 음주 습관을 형성하는데 도움을 주는 서비스 개발
-
+### 📌 Project Overview
+🔴 새내기들의 주량 파악과 건강한 음주 습관 형성을 돕는 웹 서비스
+🔴 <i>주량 변환, 술 추천, 기록 관리</i> 기능 제공  
+🔴 **개발 기간** : 2022.09 ~ 2022.12  
+🔴 **팀 규모** : 4명 (BE 3, FE 1)
+  
 ### 👥Members
 | **멤버** | [박예지](https://github.com/Li5ht) | [이나연](https://github.com/yeon2lee) | [이도현](https://github.com/zsderw) | [차은수](https://github.com/ckdmstn) |
 |:---:|:---:|:---:|:---:|:---:|
