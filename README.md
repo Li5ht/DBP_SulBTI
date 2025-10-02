@@ -1,7 +1,7 @@
 <div align="center">
   
-# 🍶 술BTI
- *2022-2 데베프 팀프로젝트*
+<h1>🍶 술BTI</h1>
+<p><i>2022-2 데베프 팀프로젝트</i></p>
 <hr>
 
 ### _📌 Project Overview_
