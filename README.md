@@ -2,7 +2,7 @@
   
 # <sub><i>2022-2 데이터베이스 프로그래밍 팀프로젝트</i></sub> <br><br>🍶술BTI
 
-### 📌 Project Overview
+### <span style="text-decoration: underline;">📌 Project Overview</span>
 ---
 🔴 <u> **개발 기간** : 2022.09 ~ 2022.12 </u> <br/>
 🔴 **팀 규모** : 4명 (BE 3, FE 1)<br/>
