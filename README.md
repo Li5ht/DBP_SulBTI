@@ -56,7 +56,7 @@
 🔹주량 시뮬레이션
 <br/>
 
-### 📹 Demo
+### 📹 <ins>Demo</ins>
 [![술BTI 시연영상](http://img.youtube.com/vi/BZxmVLw3Cbw/0.jpg)](https://youtu.be/BZxmVLw3Cbw)  
 *(클릭 시 YouTube 시연 영상 이동)*
 </div>
