@@ -51,12 +51,12 @@
 <br/><br/>
 
 ### 🔑 <ins>Key Features</ins>
-**▫️▪️🔷◼️⬜User Features** <br/>
+**⬜ User Features** <br/>
 🔹회원가입 / 로그인<br/>
 🔹음주 기록 저장 & 조회<br/>
 🔹술 추천 & 정보 제공 <br/>
 🔹주량 시뮬레이션<br/><br/>
-**🔵 Service Features**<br/>
+**⬜ Service Features**<br/>
 🔹 술 정보 DB 제공<br/>
 🔹주량 변환 알고리즘 기반 시뮬레이션<br/>
 🔹개인 맞춤 음주 습관 리포트<br/><br/>
