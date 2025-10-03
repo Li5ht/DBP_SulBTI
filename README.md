@@ -21,10 +21,10 @@
   </tr>
    <tr align="center">
     <td><b>🛠 역할</b></td>
-    <td>🎯 <b>(팀장)</b> 프론트엔드</td>
-    <td>⚙️ 백엔드</td>
-    <td>⚙️ 백엔드</td>
-    <td>⚙️ 백엔드</td>
+    <td>🎯 <b>(팀장)프론트엔드</b></td>
+    <td>⚙️ <b>백엔드</b></td>
+    <td>⚙️ <b>백엔드</b></td>
+    <td>⚙️ <b>백엔드</b></td>
   </tr>
   <tr align="center">
     <td><b>🖼 프로필</b></td>
