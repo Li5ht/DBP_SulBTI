@@ -11,13 +11,13 @@
 </div>
 
 ### 👥<ins>Members</ins>
-<table style="background-color: F0F0F0;">
+<table>
   <tr align="center">
-    <td style="background-color: #e0e0e0; color: black;"><b>🌟 멤버</b></td>
-    <td bstyle="background-color: #e0e0e0; color: black;"><a href="https://github.com/Li5ht">👩🏻‍💻박예지</a></td>
-    <td width="150"><a href="https://github.com/yeon2lee">👩🏻‍💻이나연</a></td>
-    <td width="150"><a href="https://github.com/zsderw">👩🏻‍💻이도현</a></td>
-    <td width="150"><a href="https://github.com/ckdmstn">👩🏻‍💻차은수</a></td>
+    <td ><b>🌟 멤버</b></td>
+    <td width="160"><a href="https://github.com/Li5ht">👩🏻‍💻박예지</a></td>
+    <td width="160"><a href="https://github.com/yeon2lee">👩🏻‍💻이나연</a></td>
+    <td width="160"><a href="https://github.com/zsderw">👩🏻‍💻이도현</a></td>
+    <td width="160"><a href="https://github.com/ckdmstn">👩🏻‍💻차은수</a></td>
   </tr>
    <tr align="center">
     <td><b>🛠 역할</b></td>
