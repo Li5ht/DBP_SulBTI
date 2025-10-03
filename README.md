@@ -5,7 +5,7 @@
 ### 📌<ins>Project Overview</ins>
 🔺**Period** : 2022.09 ~ 2022.12 <br/>
 🔺**Team** : 4명 (BE 3, FE 1) <br/><br/>
-🔻<ins>**What are Project Aim for**</ins> : <br/>
+🔻<ins>**What are Project Aims for**</ins> : <br/>
 🔸 새내기들의 주량 파악과 건강한 음주 습관 형성을 돕는 웹 서비스 <br/>
 🔸 <b><i>주량 변환, 술 추천, 기록 관리</i></b> 기능 제공
 <br/><br/>
@@ -51,12 +51,12 @@
 <br/><br/>
 
 ### 🔑 <ins>Key Features</ins>
-**▪️User Features** <br/>
+**🔵 User Features** <br/>
 🔹회원가입 / 로그인<br/>
 🔹음주 기록 저장 & 조회<br/>
 🔹술 추천 & 정보 제공 <br/>
 🔹주량 시뮬레이션<br/><br/>
-**▪️Service Features**<br/>
+**🔵 Service Features**<br/>
 🔹 술 정보 DB 제공<br/>
 🔹주량 변환 알고리즘 기반 시뮬레이션<br/>
 🔹개인 맞춤 음주 습관 리포트<br/><br/>
