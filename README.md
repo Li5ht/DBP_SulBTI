@@ -14,10 +14,10 @@
 <table>
   <tr bgcolor="#b3e5fc" align="center">
     <td><b>🌟 멤버</b></td>
-    <td width="200"><a href="https://github.com/Li5ht">👩🏻‍💻박예지</a></td>
-    <td width="200"><a href="https://github.com/yeon2lee">👩🏻‍💻이나연</a></td>
-    <td width="200"><a href="https://github.com/zsderw">👩🏻‍💻이도현</a></td>
-    <td width="200"><a href="https://github.com/ckdmstn">👩🏻‍💻차은수</a></td>
+    <td width="150"><a href="https://github.com/Li5ht">👩🏻‍💻박예지</a></td>
+    <td width="150"><a href="https://github.com/yeon2lee">👩🏻‍💻이나연</a></td>
+    <td width="150"><a href="https://github.com/zsderw">👩🏻‍💻이도현</a></td>
+    <td width="150"><a href="https://github.com/ckdmstn">👩🏻‍💻차은수</a></td>
   </tr>
    <tr bgcolor="#e1bee7" align="center">
     <td><b>🛠 역할</b></td>
