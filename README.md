@@ -14,7 +14,7 @@
 <table style="background-color: F0F0F0;">
   <tr align="center">
     <td><b>🌟 멤버</b></td>
-    <td width="150"><a href="https://github.com/Li5ht">👩🏻‍💻박예지</a></td>
+    <td color = blue width="150"><a href="https://github.com/Li5ht">👩🏻‍💻박예지</a></td>
     <td width="150"><a href="https://github.com/yeon2lee">👩🏻‍💻이나연</a></td>
     <td width="150"><a href="https://github.com/zsderw">👩🏻‍💻이도현</a></td>
     <td width="150"><a href="https://github.com/ckdmstn">👩🏻‍💻차은수</a></td>
