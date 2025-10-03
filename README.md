@@ -12,26 +12,26 @@
 
 ### 👥<ins>Members</ins>
 <table>
-  <tr style="background-color:#b3e5fc; text-align:center; font-weight:bold;">
-    <td>🌟 멤버</td>
-    <td>👩🏻 <a href="https://github.com/Li5ht">박예지</a></td>
-    <td>👩🏻‍💻 <a href="https://github.com/yeon2lee">이나연</a></td>
-    <td>👨🏻‍💻 <a href="https://github.com/zsderw">이도현</a></td>
-    <td>👨🏻‍💻 <a href="https://github.com/ckdmstn">차은수</a></td>
+  <tr bgcolor="#b3e5fc" align="center">
+    <td><b>🌟 멤버</b></td>
+    <td><a href="https://github.com/Li5ht">👩🏻‍💻박예지</a></td>
+    <td><a href="https://github.com/yeon2lee">👩🏻‍💻이나연</a></td>
+    <td><a href="https://github.com/zsderw">👩🏻‍💻이도현</a></td>
+    <td><a href="https://github.com/ckdmstn">👩🏻‍💻차은수</a></td>
   </tr>
-  <tr style="background-color:#e1bee7; text-align:center;">
-    <td><b>🛠️ 역할</b></td>
+  <tr bgcolor="#e1bee7" align="center">
+    <td><b>🛠 역할</b></td>
     <td>🎯 (팀장) 프론트엔드</td>
     <td>⚙️ 백엔드</td>
     <td>⚙️ 백엔드</td>
     <td>⚙️ 백엔드</td>
   </tr>
-  <tr style="background-color:#f0f4c3; text-align:center;">
-    <td><b>🖼️ 프로필</b></td>
-    <td><img src="https://avatars.githubusercontent.com/u/89853141?v=4" width="100" height="100"/></td>
-    <td><img src="https://avatars.githubusercontent.com/u/77628363?v=4" width="100" height="100"/></td>
-    <td><img src="https://avatars.githubusercontent.com/u/87109601?v=4" width="100" height="100"/></td>
-    <td><img src="https://avatars.githubusercontent.com/u/77821089?v=4" width="100" height="100"/></td>
+  <tr bgcolor="#f0f4c3" align="center">
+    <td><b>🖼 프로필</b></td>
+    <td><img src="https://avatars.githubusercontent.com/u/89853141?v=4" width="100"/></td>
+    <td><img src="https://avatars.githubusercontent.com/u/77628363?v=4" width="100"/></td>
+    <td><img src="https://avatars.githubusercontent.com/u/87109601?v=4" width="100"/></td>
+    <td><img src="https://avatars.githubusercontent.com/u/77821089?v=4" width="100"/></td>
   </tr>
 </table>
 
