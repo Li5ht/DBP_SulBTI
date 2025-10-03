@@ -35,7 +35,7 @@
   </tr>
 </table>
 
-### 🔧 Tech Tools 
+### 🔧<ins>Tech Tools</ins>
 | **Category** | **Tools/Technologies** | 
 |--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
 | **Stack(Lang)** | ![Java badge](https://img.shields.io/badge/Java-f2e68b?style=flat-square&logo=OpenJDK&logoColor=black) | 
