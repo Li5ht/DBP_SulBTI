@@ -1,6 +1,6 @@
 <div align="center">
   
-# <sub><i>2022-2 데이터베이스 프로그래밍 팀프로젝트</i></sub> <br> 🍶술BTI
+# <sub><i>2022-2 데이터베이스 프로그래밍 팀프로젝트</i></sub> <br><br>🍶술BTI
 
 ### 📌 <u> Project Overview </u>
 🔴 **개발 기간** : 2022.09 ~ 2022.12 <br/>
