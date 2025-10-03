@@ -14,13 +14,15 @@
 <table>
   <tr bgcolor="#b3e5fc" align="center">
     <td><b>🌟 멤버</b></td>
-    <td width="150"><a href="https://github.com/Li5ht">👩🏻‍💻박예지</a></td>
+    <td>$${\color{green} \verb|**|text}$$/td>
+    <td width="150">$${\color{green} \verb|**|text}$$<a href="https://github.com/Li5ht">👩🏻‍💻박예지</a></td>
     <td width="150"><a href="https://github.com/yeon2lee">👩🏻‍💻이나연</a></td>
     <td width="150"><a href="https://github.com/zsderw">👩🏻‍💻이도현</a></td>
     <td width="150"><a href="https://github.com/ckdmstn">👩🏻‍💻차은수</a></td>
   </tr>
    <tr bgcolor="#e1bee7" align="center">
     <td><b>🛠 역할</b></td>
+    <td></td>
     <td>🎯 <b>(팀장)</b> 프론트엔드</td>
     <td>⚙️ 백엔드</td>
     <td>⚙️ 백엔드</td>
@@ -28,6 +30,7 @@
   </tr>
   <tr bgcolor="#f0f4c3" align="center">
     <td><b>🖼 프로필</b></td>
+    <td></td>
     <td><img src="https://avatars.githubusercontent.com/u/89853141?v=4" width="80"/></td>
     <td><img src="https://avatars.githubusercontent.com/u/77628363?v=4" width="80"/></td>
     <td><img src="https://avatars.githubusercontent.com/u/87109601?v=4" width="80"/></td>
