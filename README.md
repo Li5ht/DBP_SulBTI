@@ -14,7 +14,7 @@
 <table>
   <tr bgcolor="#b3e5fc" align="center">
     <td><b>🌟 멤버</b></td>
-    <td>$${\color{green} \verb|**|text}$$/td>
+    <td>$${\color{green} \verb|**|text}$$</td>
     <td width="150">$${\color{green} \verb|**|text}$$<a href="https://github.com/Li5ht">👩🏻‍💻박예지</a></td>
     <td width="150"><a href="https://github.com/yeon2lee">👩🏻‍💻이나연</a></td>
     <td width="150"><a href="https://github.com/zsderw">👩🏻‍💻이도현</a></td>
