@@ -45,8 +45,8 @@
 | **Server** | ![Apache Tomcat badge](https://img.shields.io/badge/Apache%20Tomcat-F8DC75?style=flat-square&logo=Apache%20Tomcat&logoColor=black) | 
 | **Development(IDE)**| ![Eclipse badge](https://img.shields.io/badge/Eclipse-2C2255?style=flat-square&logo=Eclipse&logoColor=white) | 
 | **Data Modeling** | ![erwin badge](https://img.shields.io/badge/erwin-007DB8?style=flat-square&logoColor=white) ![draw.io badge](https://img.shields.io/badge/draw.io-FF9900?style=flat-square&logo=diagrams.net&logoColor=white) |
-<p align="center">
-`👉 선택 이유 : Oracle + JSP → 기업 환경과 유사 / MyBatis → SQL 관리 효율화`
+<p align="center" style="background-color:#f0f0f0; display:inline-block; padding:4px 8px; border-radius:4px;">
+👉 선택 이유 : Oracle + JSP → 기업 환경과 유사 / MyBatis → SQL 관리 효율화
 </p>
 
 
