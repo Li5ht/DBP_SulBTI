@@ -10,7 +10,7 @@
 🔸 <b><i>주량 변환, 술 추천, 기록 관리</i></b> 기능 제공
 </div>
 
-### 🔑 Key Features
+### 🔑 <ins>Key Features</ins>
 🔹회원가입 / 로그인<br/>
 🔹음주 기록 저장 & 조회<br/>
 🔹술 추천 <br/>
