@@ -5,7 +5,7 @@
 ### 📌<ins>Project Overview</ins>
 🔺**Period** : 2022.09 ~ 2022.12 <br/>
 🔺**Team** : 4명 (BE 3, FE 1) <br/>
-🔺**What are Project Aim for** : <br/>
+🔺<ins>**What are Project Aim for**</ins> : <br/>
 🔸 새내기들의 주량 파악과 건강한 음주 습관 형성을 돕는 웹 서비스 <br/>
 🔸 <b><i>주량 변환, 술 추천, 기록 관리</i></b> 기능 제공
 </div>
