@@ -5,10 +5,11 @@
 ### 📌<ins>Project Overview</ins>
 🔺**Period** : 2022.09 ~ 2022.12 <br/>
 🔺**Team** : 4명 (BE 3, FE 1) <br/>
-🔺**Projcet Aims** : 
+🔺**Projcet Aims** : <br/>
 🔸 새내기들의 주량 파악과 건강한 음주 습관 형성을 돕는 웹 서비스 <br/>
 🔸 <b><i>주량 변환, 술 추천, 기록 관리</i></b> 기능 제공
 </div>
+<br/>
 
 ### 👥<ins>Members</ins>
 <table>
@@ -34,6 +35,7 @@
     <td><img src="https://avatars.githubusercontent.com/u/77821089?v=4" width="80"/></td>
   </tr>
 </table>
+<br/>
 
 ### 🔧<ins>Tech Tools</ins>
 | **Category** | **Tools/Technologies** | 
@@ -47,7 +49,7 @@
 | **Data Modeling** | ![erwin badge](https://img.shields.io/badge/erwin-007DB8?style=flat-square&logoColor=white) ![draw.io badge](https://img.shields.io/badge/draw.io-FF9900?style=flat-square&logo=diagrams.net&logoColor=white) |
 
 <span style="color: gray"> <b>|</b>👉 선택 이유 : Oracle + JSP → 기업 환경과 유사 / MyBatis → SQL 관리 효율화</span>
-
+<br/>
 
 ### 🔑 <ins>Key Features</ins>
 🔹회원가입 / 로그인<br/>
