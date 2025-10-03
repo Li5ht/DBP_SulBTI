@@ -21,7 +21,7 @@
   </tr>
    <tr bgcolor="#e1bee7" align="center">
     <td><b>🛠 역할</b></td>
-    <td>🎯 **(팀장)** 프론트엔드</td>
+    <td>🎯 <b>(팀장)</b> 프론트엔드</td>
     <td>⚙️ 백엔드</td>
     <td>⚙️ 백엔드</td>
     <td>⚙️ 백엔드</td>
