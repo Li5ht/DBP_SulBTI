@@ -11,7 +11,7 @@
 </div>
 
 ### 👥<ins>Members</ins>
-<table style="background-color: #F0F0F0;">
+<table style="background-color: F0F0F0;">
   <tr align="center">
     <td><b>🌟 멤버</b></td>
     <td width="150"><a href="https://github.com/Li5ht">👩🏻‍💻박예지</a></td>
