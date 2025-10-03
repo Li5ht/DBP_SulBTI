@@ -2,7 +2,8 @@
   
 # <sub><i>2022-2 데이터베이스 프로그래밍 팀프로젝트</i></sub> <br><br>🍶술BTI
 
-### 📌 <u> Project Overview </u>
+### 📌 <u> Project Overview
+<img src="https://via.placeholder.com/200x2" alt="underline" />
 🔴 <u> **개발 기간** : 2022.09 ~ 2022.12 </u> <br/>
 🔴 **팀 규모** : 4명 (BE 3, FE 1)<br/>
 🔴 새내기들의 주량 파악과 건강한 음주 습관 형성을 돕는 웹 서비스 <br/>
