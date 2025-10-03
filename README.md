@@ -10,12 +10,6 @@
 🔸 <b><i>주량 변환, 술 추천, 기록 관리</i></b> 기능 제공
 </div>
 
-### 🔑 <ins>Key Features</ins>
-🔹회원가입 / 로그인<br/>
-🔹음주 기록 저장 & 조회<br/>
-🔹술 추천 <br/>
-🔹주량 시뮬레이션
-
 ### 👥<ins>Members</ins>
 <table>
   <tr align="center">
@@ -51,3 +45,9 @@
 | **Server** | ![Apache Tomcat badge](https://img.shields.io/badge/Apache%20Tomcat-F8DC75?style=flat-square&logo=Apache%20Tomcat&logoColor=black) | 
 | **Development(IDE)**| ![Eclipse badge](https://img.shields.io/badge/Eclipse-2C2255?style=flat-square&logo=Eclipse&logoColor=white) | 
 | **Data Modeling** | ![erwin badge](https://img.shields.io/badge/erwin-007DB8?style=flat-square&logoColor=white) ![draw.io badge](https://img.shields.io/badge/draw.io-FF9900?style=flat-square&logo=diagrams.net&logoColor=white) |
+
+### 🔑 <ins>Key Features</ins>
+🔹회원가입 / 로그인<br/>
+🔹음주 기록 저장 & 조회<br/>
+🔹술 추천 <br/>
+🔹주량 시뮬레이션
