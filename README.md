@@ -1,6 +1,6 @@
 <div align="center">
   
-# 🍶 술BTI
+🍶 술BTI
 <sub><i>2022-2 데베프 팀프로젝트</i></sub>
 
 ### 📌 <u> Project Overview </u>
