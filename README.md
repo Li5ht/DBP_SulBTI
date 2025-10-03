@@ -5,10 +5,11 @@
 ### 📌<ins>Project Overview</ins>
 🔺**개발 기간** : 2022.09 ~ 2022.12 <br/>
 🔺**팀 규모** : 4명 (BE 3, FE 1) <br/>
-🔺**설명** : <br/>
-🔸새내기들의 주량 파악과 건강한 음주 습관 형성을 돕는 웹 서비스 <br/>
-🔸<b><i>주량 변환, 술 추천, 기록 관리</i></b> 기능 제공  
-  
+<div style="border:1px solid #a3d8f4; background-color:#e6f7ff; border-radius:8px; padding:12px;">
+🔸 새내기들의 주량 파악과 건강한 음주 습관 형성을 돕는 웹 서비스 <br/>
+🔸 <b><i>주량 변환, 술 추천, 기록 관리</i></b> 기능 제공
+</div>
+
 ### 👥<ins>Members</ins>
 | **멤버** | [박예지](https://github.com/Li5ht) | [이나연](https://github.com/yeon2lee) | [이도현](https://github.com/zsderw) | [차은수](https://github.com/ckdmstn) |
 |:---:|:---:|:---:|:---:|:---:|
