@@ -12,7 +12,7 @@
 
 ### 👥<ins>Members</ins>
 <table>
-  <tr bgcolor= #3e5fc align="center">
+  <tr bgcolor= blue align="center">
     <td><b>🌟 멤버</b></td>
     <td width="150"><a href="https://github.com/Li5ht">👩🏻‍💻박예지</a></td>
     <td width="150"><a href="https://github.com/yeon2lee">👩🏻‍💻이나연</a></td>
